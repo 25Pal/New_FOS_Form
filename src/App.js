@@ -1,16 +1,12 @@
 
 import './App.css';
-import Compannydetailpage from './Component/Comapanydeatilpage';
-import Bankdetailspage from './Component/Bankdetailpage';
-import Outletdetailpage from './Component/Outletdetailpage';
+import OutletDetailPage from './Component/View/Outletdetailpage';
 
 function App() {
   return (
     <div className="App">
-        Pallavi
-        <Compannydetailpage/>
-        <Bankdetailspage/>
-        <Outletdetailpage/>
+       
+        <OutletDetailPage/>
 
       
 
