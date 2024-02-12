@@ -34,10 +34,10 @@ const CompanyDetails = ({register}) => {
             <LabelHeadingComponet lable={false} heading={"Company Details"} />
       <div className="container">
         <div className="row">
-           {returnInputText("Pan Number","text","panNumber",6,register)} 
-           {returnInputText("GSTN Number","text","gstNumber",6,register)}
-           {returnInputText("FSAII Number","text","fsaiiNumber",6,register)}
-           {returnInputText("FSAII Refernce","text","fsaiiRefernce",6,register)}
+           {returnInputText("Pan Number","text","panNumber",6,register,"ComapnyDetails")} 
+           {returnInputText("GSTN Number","text","gstNumber",6,register,"ComapnyDetails")}
+           {returnInputText("FSAII Number","text","fsaiiNumber",6,register,"ComapnyDetails")}
+           {returnInputText("FSAII Refernce","text","fsaiiRefernce",6,register,"ComapnyDetails")}
           
         </div>
       </div>
@@ -46,10 +46,10 @@ const CompanyDetails = ({register}) => {
         <LabelHeadingComponet lable={false} heading={"Signing Authority"} />
          <div className="container">
             <div className="row">
-              {returnInputText("Name","text","s_a_name",6,register)} 
-              {returnInputText("Designation","text","s_a_designation",6,register)}
-              {returnInputText("Mobile No","number","s_a_mobileNo",6,register)}
-              {returnInputText("Email","email","s_a_email",6,register)}
+              {returnInputText("Name","text","s_a_name",6,register,"ComapnyDetails")} 
+              {returnInputText("Designation","text","s_a_designation",6,register,"ComapnyDetails")}
+              {returnInputText("Mobile No","number","s_a_mobileNo",6,register,"ComapnyDetails")}
+              {returnInputText("Email","email","s_a_email",6,register,"ComapnyDetails")}
             </div>
 
          </div>
@@ -63,6 +63,7 @@ const CompanyDetails = ({register}) => {
               idName="selectedOwnerType" 
               lableName="Owner Type"
               lg={6}
+              dynamicKey="ComapnyDetails"
               />
               <SelectOption 
               register={register}
@@ -70,6 +71,7 @@ const CompanyDetails = ({register}) => {
               idName="selectedTypeOfBussiness" 
               lableName="Type of Business"
               lg={6}
+              dynamicKey="ComapnyDetails"
               />
             </div>
 

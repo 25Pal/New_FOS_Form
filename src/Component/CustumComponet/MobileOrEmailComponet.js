@@ -27,8 +27,9 @@ const MobileOrEmailComponet = ({ data, setData, mobile,register }) => {
             <div className="container">
             <MobileNumberOrEmailDiv
               key={`${curElem}-${index}`}
-              dataObject={generateDataObject(index + 1, data, mobile,register)}
+              dataObject={generateDataObject(index + 1, data, mobile)}
               handleInputChange={(e) => handleInputChange(e, curElem)}
+              register={register}
             />
             </div>
           </div>

@@ -5,13 +5,14 @@ const SelectOption = ({
   idName,
   lableName,
   lg,
-  register
+  register,
+  dynamicKey
 }) => {
   return (
     <div className={`col-lg-${lg ? lg : 4} col-md-6 col-xs-12 select-option`}>
       <label htmlFor={idName}>{lableName}</label>
       <select
-        {...register(idName)}
+        {...register(`${dynamicKey ? dynamicKey + "." : ""}${idName}`)}
         name={idName}
         id={idName}
         className="select-dropdown"

@@ -1,7 +1,7 @@
 import React from "react";
 import InputText from "./InputText";
 
-const MobileNumberOrEmailDiv = ({ dataObject, handleInputChange}) => {
+const MobileNumberOrEmailDiv = ({ dataObject, handleInputChange,register}) => {
   return (
     <>
       <div
@@ -12,16 +12,17 @@ const MobileNumberOrEmailDiv = ({ dataObject, handleInputChange}) => {
         }} 
         className="row"
       >
-        {dataObject?.map((curElem,index) => {
+        {dataObject?.map((curElem) => {
           return (
             <InputText
-              key={curElem.id}
+              key={curElem.idName}
               labelName={curElem.labelName}
               idName={curElem.idName}
               type={curElem.type}
               value={curElem.value}
               handleChange={handleInputChange}
-              register={curElem.register}
+              dynamicKey={curElem.ID}
+              register={register}
             />
           );
         })}

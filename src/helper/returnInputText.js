@@ -1,7 +1,7 @@
 import React from 'react'
 import InputText from '../Component/CustumComponet/InputText'
 
-const returnInputText = (labelName,type,idName,lg,register) => {
+const returnInputText = (labelName,type,idName,lg,register,dynamicKey) => {
  
   return (
     <InputText
@@ -9,6 +9,7 @@ const returnInputText = (labelName,type,idName,lg,register) => {
     type={type}
     idName={idName}
     lg={lg}
+    dynamicKey={dynamicKey}
     register={register}
   />
   ) 

@@ -3,28 +3,31 @@ const generateDataObject = (NumberIndex,data,mobile,register) => {
     const email = data[`email${NumberIndex}`];
     return [
       {
-        id: mobile ? `name${mobile+NumberIndex}`:`name${NumberIndex}`,
+        id: mobile ? `mobileNumber${NumberIndex}`:`email${NumberIndex}`,
         labelName: "Name",
         idName: mobile ? `m_name${NumberIndex}`:`e_name${NumberIndex}`,
         type: "text",
         value:mobile? mobileNumber?.name:email?.name,
-        register:register
+        ID:mobile ? `mobileNumber${NumberIndex}`:`email${NumberIndex}`
+        
       },
       {
-        id:mobile ? `designation${mobile+NumberIndex}`:`designation${NumberIndex}`,
+        id:mobile ? `mobileNumber${NumberIndex}`:`email${NumberIndex}`,
         labelName: "Owner",
         idName: mobile ? `m_designation${NumberIndex}`:`e_designation${NumberIndex}`,
         type: "text",
         value:mobile? mobileNumber?.designation:email?.designation,
-        register:register
+        ID:mobile ? `mobileNumber${NumberIndex}`:`email${NumberIndex}`
+       
       },
       {
-        id:mobile ? `mobileNo${NumberIndex+mobile}`:`email${NumberIndex}`,
+        id:mobile ? `mobileNumber${NumberIndex}`:`email${NumberIndex}`,
         labelName:mobile? "Mobile No":"Email",
         idName:mobile ? `mobileNo${NumberIndex}`:`email${NumberIndex}`,
         type:mobile?"number" :'email' ,
         value:mobile? mobileNumber?.mobileNo:email?.email,
-        register:register
+        ID:mobile ? `mobileNumber${NumberIndex}`:`email${NumberIndex}`
+       
       },
     ];
   };
