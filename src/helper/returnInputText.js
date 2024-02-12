@@ -1,7 +1,7 @@
 import React from 'react'
 import InputText from '../Component/CustumComponet/InputText'
 
-const returnInputText = (labelName,type,idName,lg,value,handleChange) => {
+const returnInputText = (labelName,type,idName,lg,register) => {
  
   return (
     <InputText
@@ -9,8 +9,7 @@ const returnInputText = (labelName,type,idName,lg,value,handleChange) => {
     type={type}
     idName={idName}
     lg={lg}
-    value={value}
-    handleChange={handleChange}
+    register={register}
   />
   ) 
 }

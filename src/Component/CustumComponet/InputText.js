@@ -1,6 +1,6 @@
 import React from "react";
 
-const InputText = ({labelName, type, idName, handleChange, value,lg}) => {
+const InputText = ({labelName, type, idName, handleChange, value,lg,register}) => {
   return (
     <>
       <div className={`col-lg-${lg ? lg:4} col-md-6 col-xs-12 input-wrapper`}>
@@ -12,6 +12,7 @@ const InputText = ({labelName, type, idName, handleChange, value,lg}) => {
           id={idName}
           value={value}
           onChange={handleChange}
+          {...register(idName)}
           // required
         />
       </div>

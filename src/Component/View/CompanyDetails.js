@@ -27,27 +27,17 @@ const typeOfBussinessOption=[
     { name: "Bakery" },
 ]  
 
-const CompanyDetails = ({data,setData}) => {
-   
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setData({
-          ...data,
-          [name]: value
-        });
-      }
-    
-   
+const CompanyDetails = ({register}) => {
   return (
     <>
         <div style={{ padding: "5px" }}>
             <LabelHeadingComponet lable={false} heading={"Company Details"} />
       <div className="container">
         <div className="row">
-           {returnInputText("Pan Number","text","panNumber",6,data?.panNumber,handleChange)} 
-           {returnInputText("GSTN Number","text","gstNumber",6,data?.gstNumber,handleChange)}
-           {returnInputText("FSAII Number","text","fsaiiNumber",6,data?.fsaiiNumber,handleChange)}
-           {returnInputText("FSAII Refernce","text","fsaiiRefernce",6,data?.fsaiiRefernce,handleChange)}
+           {returnInputText("Pan Number","text","panNumber",6,register)} 
+           {returnInputText("GSTN Number","text","gstNumber",6,register)}
+           {returnInputText("FSAII Number","text","fsaiiNumber",6,register)}
+           {returnInputText("FSAII Refernce","text","fsaiiRefernce",6,register)}
           
         </div>
       </div>
@@ -56,10 +46,10 @@ const CompanyDetails = ({data,setData}) => {
         <LabelHeadingComponet lable={false} heading={"Signing Authority"} />
          <div className="container">
             <div className="row">
-              {returnInputText("Name","text","s_a_name",6,data?.s_a_name,handleChange)} 
-              {returnInputText("Designation","text","s_a_designation",6,data?.s_a_designation,handleChange)}
-              {returnInputText("Mobile No","number","s_a_mobileNo",6,data?.s_a_mobileNo,handleChange)}
-              {returnInputText("Email","email","s_a_email",6,data?.s_a_email,handleChange)}
+              {returnInputText("Name","text","s_a_name",6,register)} 
+              {returnInputText("Designation","text","s_a_designation",6,register)}
+              {returnInputText("Mobile No","number","s_a_mobileNo",6,register)}
+              {returnInputText("Email","email","s_a_email",6,register)}
             </div>
 
          </div>
@@ -68,16 +58,14 @@ const CompanyDetails = ({data,setData}) => {
          <div className="container">
             <div className="row">
             <SelectOption 
-              selectValue={data?.selectedOwnerType} 
-              handleChange={handleChange}  
+              register={register} 
               options={ownerTypeOption} 
               idName="selectedOwnerType" 
               lableName="Owner Type"
               lg={6}
               />
               <SelectOption 
-              selectValue={data?.selectedTypeOfBussiness} 
-              handleChange={handleChange}  
+              register={register}
               options={typeOfBussinessOption} 
               idName="selectedTypeOfBussiness" 
               lableName="Type of Business"

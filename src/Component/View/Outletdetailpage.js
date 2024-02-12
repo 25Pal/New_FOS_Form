@@ -1,10 +1,18 @@
 import React, { useState } from "react";
 import MobileOrEmailComponet from "../CustumComponet/MobileOrEmailComponet";
-import InputText from "../CustumComponet/InputText";
 import CompanyDetails from "./CompanyDetails";
-import SelectOption from "../CustumComponet/SelectOption";
+import { useForm } from "react-hook-form";
+
 
 const OutletDetailPage = () => {
+
+  const form =useForm();
+  const {register,handleSubmit,formState}=form;
+
+  const onSubmit=(data)=>{
+    console.log("form submitted :- 11", data);
+  }
+
   const [mobileData, setMobileData] = useState({
     mobileNumber1: {
       name: "",
@@ -41,32 +49,18 @@ const OutletDetailPage = () => {
     },
   });
 
-  const [companyData,setCompanyData] =useState({
-    panNumber:'',
-    gstNumber:'',
-    fsaiiNumber:'',
-    fsaiiRefernce:'',
-    s_a_name:'',
-    s_a_mobileNo:'',
-    s_a_email:'',
-    s_a_designation:'',
-    selectedOwnerType:'',
-    selectedTypeOfBussiness:''
-
-  }) 
-  
   const handlSubmit = (e) => {
     e.preventDefault();
-    console.log("form submitted", mobileData, emailData,companyData);
+    console.log("form submitted", mobileData, emailData);
   };
 
   return (
     <>
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <form onSubmit={handlSubmit} style={{ border: "1px solid red" }}>
-          <MobileOrEmailComponet data={mobileData} setData={setMobileData} mobile={true}/>
-          <MobileOrEmailComponet data={emailData} setData={setEmailData} />
-          <CompanyDetails  data={companyData} setData={setCompanyData}/>   
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <MobileOrEmailComponet data={mobileData} setData={setMobileData} mobile={true} register={register}/>
+          <MobileOrEmailComponet data={emailData} setData={setEmailData} register={register}/>
+          <CompanyDetails register={register}/>   
           <button type="submit">Submit</button>
         </form>
       </div>

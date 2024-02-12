@@ -3,7 +3,7 @@ import generateDataObject from "../../helper/generateDataObject";
 import MobileNumberOrEmailDiv from "./MobileNumberOrEmailDiv";
 import LabelHeadingComponet from "./LabelHeadingComponet";
 
-const MobileOrEmailComponet = ({ data, setData, mobile }) => {
+const MobileOrEmailComponet = ({ data, setData, mobile,register }) => {
   const numberKeys = Object.keys(data);
 
   const handleInputChange = (e, number) => {
@@ -27,7 +27,7 @@ const MobileOrEmailComponet = ({ data, setData, mobile }) => {
             <div className="container">
             <MobileNumberOrEmailDiv
               key={`${curElem}-${index}`}
-              dataObject={generateDataObject(index + 1, data, mobile)}
+              dataObject={generateDataObject(index + 1, data, mobile,register)}
               handleInputChange={(e) => handleInputChange(e, curElem)}
             />
             </div>
