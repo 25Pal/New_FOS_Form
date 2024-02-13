@@ -6,24 +6,20 @@ const SelectOption = ({
   lableName,
   lg,
   register,
-  dynamicKey
+  dynamicKey,
 }) => {
-
-  console.log(dynamicKey);
   return (
     <div className={`col-lg-${lg ? lg : 4} col-md-6 col-xs-12 select-option`}>
       <label htmlFor={idName}>{lableName}</label>
       <select
         {...register(`${dynamicKey ? dynamicKey + "." : ""}${idName}`)}
-        name={idName}
-        id={idName}
         className="select-dropdown"
-       
+        id={idName}
       >
         <option value="">{`Select ${lableName}`}</option>
         {options.map((curOption, index) => {
           return (
-            <option key={index} value={curOption.name}>
+            <option key={curOption.name} value={curOption.name}>
               {curOption.name}
             </option>
           );
