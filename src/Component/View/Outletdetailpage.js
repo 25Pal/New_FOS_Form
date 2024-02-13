@@ -5,7 +5,8 @@ import { useForm } from "react-hook-form";
 
 const OutletDetailPage = () => {
   const form = useForm();
-  const { register, handleSubmit } = form;
+  const { register, handleSubmit ,formState} = form;
+  const { errors } = formState;
 
   const onSubmit = (data) => {
     console.log("form submitted :- 11", data);
@@ -20,10 +21,10 @@ const OutletDetailPage = () => {
   return (
     <>
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <MobileOrEmailComponet mobile={true} register={register} />
-          <MobileOrEmailComponet register={register} />
-          <CompanyDetails register={register} />
+        <form onSubmit={handleSubmit(onSubmit)} noValidate>
+          <MobileOrEmailComponet mobile={true} register={register} errors={errors}/>
+          <MobileOrEmailComponet register={register} errors={errors} />
+          <CompanyDetails register={register} errors={errors} />
           <button type="submit">Submit</button>
         </form>
       </div>

@@ -27,17 +27,17 @@ const typeOfBussinessOption=[
     { name: "Bakery" },
 ]  
 
-const CompanyDetails = ({register}) => {
+const CompanyDetails = ({register,errors}) => {
   return (
     <>
         <div style={{ padding: "5px" }}>
             <LabelHeadingComponet lable={false} heading={"Company Details"} />
       <div className="container">
         <div className="row">
-           {returnInputText("Pan Number","text","panNumber",6,register,"ComapnyDetails")} 
-           {returnInputText("GSTN Number","text","gstNumber",6,register,"ComapnyDetails")}
-           {returnInputText("FSAII Number","text","fsaiiNumber",6,register,"ComapnyDetails")}
-           {returnInputText("FSAII Refernce","text","fsaiiRefernce",6,register,"ComapnyDetails")}
+           {returnInputText("Pan Number","text","panNumber",6,register,"ComapnyDetails",errors)} 
+           {returnInputText("GSTN Number","text","gstNumber",6,register,"ComapnyDetails",errors)}
+           {returnInputText("FSAII Number","text","fsaiiNumber",6,register,"ComapnyDetails",errors)}
+           {returnInputText("FSAII Refernce","text","fsaiiRefernce",6,register,"ComapnyDetails",errors)}
           
         </div>
       </div>
@@ -46,10 +46,10 @@ const CompanyDetails = ({register}) => {
         <LabelHeadingComponet lable={false} heading={"Signing Authority"} />
          <div className="container">
             <div className="row">
-              {returnInputText("Name","text","s_a_name",6,register,"ComapnyDetails")} 
-              {returnInputText("Designation","text","s_a_designation",6,register,"ComapnyDetails")}
-              {returnInputText("Mobile No","number","s_a_mobileNo",6,register,"ComapnyDetails")}
-              {returnInputText("Email","email","s_a_email",6,register,"ComapnyDetails")}
+              {returnInputText("Name","text","s_a_name",6,register,"ComapnyDetails",errors)} 
+              {returnInputText("Designation","text","s_a_designation",6,register,"ComapnyDetails",errors)}
+              {returnInputText("Mobile No","number","s_a_mobileNo",6,register,"ComapnyDetails",errors)}
+              {returnInputText("Email","email","s_a_email",6,register,"ComapnyDetails",errors)}
             </div>
 
          </div>
@@ -64,6 +64,7 @@ const CompanyDetails = ({register}) => {
               lableName="Owner Type"
               lg={6}
               dynamicKey="ComapnyDetails"
+              errors={errors}
               />
               <SelectOption 
               register={register}
@@ -72,6 +73,7 @@ const CompanyDetails = ({register}) => {
               lableName="Type of Business"
               lg={6}
               dynamicKey="ComapnyDetails"
+              errors={errors}
               />
             </div>
 

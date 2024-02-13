@@ -7,12 +7,21 @@ const SelectOption = ({
   lg,
   register,
   dynamicKey,
+  errors
 }) => {
+
+  console.log({dynamicKey,errors});
   return (
     <div className={`col-lg-${lg ? lg : 4} col-md-6 col-xs-12 select-option`}>
       <label htmlFor={idName}>{lableName}</label>
+      <p className="error">{errors[dynamicKey || '']?.[idName]?.message}</p>
       <select
-        {...register(`${dynamicKey ? dynamicKey + "." : ""}${idName}`)}
+        {...register(`${dynamicKey ? dynamicKey + "." : ""}${idName}`,{
+          required:{
+            value:true,
+            message:`${lableName} Is Required`,
+          }
+        })}
         className="select-dropdown"
         id={idName}
       >

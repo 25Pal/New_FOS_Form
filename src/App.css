@@ -35,3 +35,9 @@
   max-height: 50px; /* Set a maximum height for the dropdown */
   overflow-y: auto; /* Enable vertical scrolling when options exceed the height */
 }
+
+.error {
+  color: red;
+  font-size: 12px;
+  text-align: left;
+}
