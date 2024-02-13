@@ -1,7 +1,7 @@
 import React from "react";
 import InputText from "./InputText";
 
-const MobileNumberOrEmailDiv = ({ dataObject, handleInputChange,register}) => {
+const MobileNumberOrEmailDiv = ({ dataObject,register}) => {
   return (
     <>
       <div
@@ -19,8 +19,6 @@ const MobileNumberOrEmailDiv = ({ dataObject, handleInputChange,register}) => {
               labelName={curElem.labelName}
               idName={curElem.idName}
               type={curElem.type}
-              value={curElem.value}
-              handleChange={handleInputChange}
               dynamicKey={curElem.ID}
               register={register}
             />

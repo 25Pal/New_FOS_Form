@@ -13,53 +13,12 @@ const OutletDetailPage = () => {
     console.log("form submitted :- 11", data);
   }
 
-  const [mobileData, setMobileData] = useState({
-    mobileNumber1: {
-      name: "",
-      designation: "",
-      mobileNo: "",
-    },
-    mobileNumber2: {
-      name: "",
-      designation: "",
-      mobileNo: "",
-    },
-    mobileNumber3: {
-      name: "",
-      designation: "",
-      mobileNo: "",
-    },
-  });
-
-  const [emailData, setEmailData] = useState({
-    email1: {
-      name: "",
-      designation: "",
-      email: "",
-    },
-    email2: {
-      name: "",
-      designation: "",
-      email: "",
-    },
-    email3: {
-      name: "",
-      designation: "",
-      email: "",
-    },
-  });
-
-  const handlSubmit = (e) => {
-    e.preventDefault();
-    console.log("form submitted", mobileData, emailData);
-  };
-
   return (
     <>
       <div style={{ display: "flex", justifyContent: "center" }}>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <MobileOrEmailComponet data={mobileData} setData={setMobileData} mobile={true} register={register}/>
-          <MobileOrEmailComponet data={emailData} setData={setEmailData} register={register}/>
+          <MobileOrEmailComponet mobile={true} register={register}/>
+          <MobileOrEmailComponet register={register}/>
           <CompanyDetails register={register}/>   
           <button type="submit">Submit</button>
         </form>

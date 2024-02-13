@@ -8,6 +8,8 @@ const SelectOption = ({
   register,
   dynamicKey
 }) => {
+
+  console.log(dynamicKey);
   return (
     <div className={`col-lg-${lg ? lg : 4} col-md-6 col-xs-12 select-option`}>
       <label htmlFor={idName}>{lableName}</label>

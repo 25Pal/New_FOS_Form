@@ -3,21 +3,9 @@ import generateDataObject from "../../helper/generateDataObject";
 import MobileNumberOrEmailDiv from "./MobileNumberOrEmailDiv";
 import LabelHeadingComponet from "./LabelHeadingComponet";
 
-const MobileOrEmailComponet = ({ data, setData, mobile,register }) => {
-  const numberKeys = Object.keys(data);
-
-  const handleInputChange = (e, number) => {
-    const { name, value } = e.target;
-
-    setData({
-      ...data,
-      [number]: {
-        ...data[number],
-        [name]: value,
-      },
-    });
-  };
-
+const MobileOrEmailComponet = ({mobile,register }) => {
+  const numberKeys = [1,2,3];
+  
   return (
     <>
       {numberKeys?.map((curElem, index) => {
@@ -27,8 +15,7 @@ const MobileOrEmailComponet = ({ data, setData, mobile,register }) => {
             <div className="container">
             <MobileNumberOrEmailDiv
               key={`${curElem}-${index}`}
-              dataObject={generateDataObject(index + 1, data, mobile)}
-              handleInputChange={(e) => handleInputChange(e, curElem)}
+              dataObject={generateDataObject(index + 1,mobile)}
               register={register}
             />
             </div>
