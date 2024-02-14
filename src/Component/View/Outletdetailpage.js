@@ -5,19 +5,16 @@ import { useForm } from "react-hook-form";
 
 const OutletDetailPage = () => {
   const form = useForm();
-  const { register, handleSubmit ,formState} = form;
+  const { register, handleSubmit ,formState,getValues,setValue} = form;
   const { errors } = formState;
 
   const onSubmit = (data) => {
     console.log("form submitted :- 11", data);
   };
-  const ownerTypeOption = [
-    { name: "Private Company" },
-    { name: "Public Company" },
-    { name: "Partnership" },
-    { name: "Sole Proprietor" },
-    { name: "LLP" },
-  ];
+
+  const handleGetValues=()=>{
+    console.log("getValues",getValues());
+  }
   return (
     <>
       <div style={{ display: "flex", justifyContent: "center" }}>
@@ -26,6 +23,7 @@ const OutletDetailPage = () => {
           <MobileOrEmailComponet register={register} errors={errors} />
           <CompanyDetails register={register} errors={errors} />
           <button type="submit">Submit</button>
+          <button onClick={handleGetValues}>getValues</button>
         </form>
       </div>
     </>
