@@ -1,0 +1,88 @@
+#outletDetailsPage {
+    /* border: 1px solid black; */
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 5px 3px rgb(184, 180, 180);
+    /* border: 1px solid red; */
+    padding: 10px 50px;
+}
+
+.inputFields {
+    border: 1px solid yellow;
+    display: grid;
+    grid-auto-flow: row;
+
+}
+
+.mainOutlet {
+    height: auto;
+    width: auto;
+    background-color: #F5F6FB;
+
+}
+
+.OutletInputFields {
+    display: grid;
+    grid-auto-flow: column;
+    gap: 1rem;
+    border: 1px solid rgb(0, 255, 106);
+    width: auto;
+
+}
+
+.timingTable {
+    height: 200px;
+    border: 1px solid black;
+    width: 100%;
+}
+
+.MenuUploadContainerParent {
+    border: 1px solid rgb(180, 34, 34);
+    /* height: 500px;  */
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.MenuUploadContainer {
+    border: 1px solid rgb(180, 34, 34);
+    /* height: 500px;  */
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.menuButtons {
+    border: 1px solid rgb(180, 34, 34);
+    /* height: 500px;  */
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 0.1rem;
+}
+
+
+
+
+@media (max-width: 768px) {
+    .OutletInputFields {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .MenuUploadContainerParent {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .MenuUploadContainer {
+        justify-content: space-around;
+
+    }
+}
