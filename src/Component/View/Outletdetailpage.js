@@ -21,7 +21,7 @@ const OutletDetailPage = () => {
   return (
     <>
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <form onSubmit={handleSubmit(onSubmit)} noValidate>
+        <form onSubmit={handleSubmit(onSubmit)} noValidate style={{ border: "1px solid red" }}>
           <MobileOrEmailComponet mobile={true} register={register} errors={errors}/>
           <MobileOrEmailComponet register={register} errors={errors} />
           <CompanyDetails register={register} errors={errors} />
