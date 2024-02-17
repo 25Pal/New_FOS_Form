@@ -1,7 +1,7 @@
 import React from 'react'
 import InputText from '../Component/CustumComponet/InputText'
 
-const returnInputText = (labelName,type,idName,lg,register,dynamicKey,errors) => {
+const returnInputText = (labelName,type,idName,lg,register,dynamicKey,errors,form) => {
   const validation=(value)=>{
   const panRegex = /^[A-Z]{5}[0-9]{4}[A-Z]$/;
   if (!panRegex.test(value)) {
@@ -20,6 +20,7 @@ const returnInputText = (labelName,type,idName,lg,register,dynamicKey,errors) =>
     register={register}
     errors={errors}
     validation={validation}
+    form={form}
   />
   ) 
 }

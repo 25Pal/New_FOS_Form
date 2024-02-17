@@ -27,17 +27,17 @@ const typeOfBussinessOption=[
     { name: "Bakery" },
 ]  
 
-const CompanyDetails = ({register,errors}) => {
+const CompanyDetails = ({register,errors,form}) => {
   return (
     <>
         <div style={{ padding: "5px" }}>
             <LabelHeadingComponet lable={false} heading={"Company Details"} />
       <div className="container">
         <div className="row">
-           {returnInputText("Pan Number","text","panNumber",6,register,"ComapnyDetails",errors)} 
-           {returnInputText("GSTN Number","text","gstNumber",6,register,"ComapnyDetails",errors)}
-           {returnInputText("FSAII Number","text","fsaiiNumber",6,register,"ComapnyDetails",errors)}
-           {returnInputText("FSAII Refernce","text","fsaiiRefernce",6,register,"ComapnyDetails",errors)}
+           {returnInputText("Pan Number","text","panNumber",6,register,"ComapnyDetails",errors,form)} 
+           {returnInputText("GSTN Number","text","gstNumber",6,register,"ComapnyDetails",errors,form)}
+           {returnInputText("FSAII Number","text","fsaiiNumber",6,register,"ComapnyDetails",errors,form)}
+           {returnInputText("FSAII Refernce","text","fsaiiRefernce",6,register,"ComapnyDetails",errors,form)}
           
         </div>
       </div>
@@ -46,10 +46,10 @@ const CompanyDetails = ({register,errors}) => {
         <LabelHeadingComponet lable={false} heading={"Signing Authority"} />
          <div className="container">
             <div className="row">
-              {returnInputText("Name","text","s_a_name",6,register,"ComapnyDetails",errors)} 
-              {returnInputText("Designation","text","s_a_designation",6,register,"ComapnyDetails",errors)}
-              {returnInputText("Mobile No","number","s_a_mobileNo",6,register,"ComapnyDetails",errors)}
-              {returnInputText("Email","email","s_a_email",6,register,"ComapnyDetails",errors)}
+              {returnInputText("Name","text","s_a_name",6,register,"ComapnyDetails",errors,form)} 
+              {returnInputText("Designation","text","s_a_designation",6,register,"ComapnyDetails",errors,form)}
+              {returnInputText("Mobile No","number","s_a_mobileNo",6,register,"ComapnyDetails",errors,form)}
+              {returnInputText("Email","email","s_a_email",6,register,"ComapnyDetails",errors,form)}
             </div>
 
          </div>
@@ -65,6 +65,7 @@ const CompanyDetails = ({register,errors}) => {
               lg={6}
               dynamicKey="ComapnyDetails"
               errors={errors}
+              form={form}
               />
               <SelectOption 
               register={register}
@@ -74,6 +75,7 @@ const CompanyDetails = ({register,errors}) => {
               lg={6}
               dynamicKey="ComapnyDetails"
               errors={errors}
+              form={form}
               />
             </div>
 

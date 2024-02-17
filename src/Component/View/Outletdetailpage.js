@@ -4,7 +4,9 @@ import CompanyDetails from "./CompanyDetails";
 import { useForm } from "react-hook-form";
 
 const OutletDetailPage = () => {
-  const form = useForm();
+  const form = useForm({
+    mode:"all"
+  });
   const { register, handleSubmit ,formState,getValues,setValue} = form;
   const { errors } = formState;
 
@@ -19,9 +21,9 @@ const OutletDetailPage = () => {
     <>
       <div style={{ display: "flex", justifyContent: "center" }}>
         <form onSubmit={handleSubmit(onSubmit)} noValidate style={{ border: "1px solid red" }}>
-          <MobileOrEmailComponet mobile={true} register={register} errors={errors}/>
-          <MobileOrEmailComponet register={register} errors={errors} />
-          <CompanyDetails register={register} errors={errors} />
+          <MobileOrEmailComponet mobile={true} register={register} errors={errors} setValue={setValue} form={form}/>
+          <MobileOrEmailComponet register={register} errors={errors} form={form}/>
+          <CompanyDetails register={register} errors={errors}  form={form}/>
           <button type="submit">Submit</button>
           <button onClick={handleGetValues}>getValues</button>
         </form>

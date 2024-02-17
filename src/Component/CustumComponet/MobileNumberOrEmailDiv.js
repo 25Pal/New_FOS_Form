@@ -1,7 +1,7 @@
 import React from "react";
 import InputText from "./InputText";
 
-const MobileNumberOrEmailDiv = ({ dataObject,register,errors}) => {
+const MobileNumberOrEmailDiv = ({ dataObject,register,errors,setValue,form}) => {
   return (
     <>
       <div
@@ -22,6 +22,8 @@ const MobileNumberOrEmailDiv = ({ dataObject,register,errors}) => {
               dynamicKey={curElem.ID}
               register={register}
               errors={errors}
+              setValue={setValue}
+              form={form}
             />
           );
         })}

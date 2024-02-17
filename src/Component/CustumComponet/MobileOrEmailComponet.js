@@ -3,7 +3,7 @@ import generateDataObject from "../../helper/generateDataObject";
 import MobileNumberOrEmailDiv from "./MobileNumberOrEmailDiv";
 import LabelHeadingComponet from "./LabelHeadingComponet";
 
-const MobileOrEmailComponet = ({mobile,register,errors }) => {
+const MobileOrEmailComponet = ({mobile,register,errors,setValue,form }) => {
   const numberKeys = [1,2,3];
   
   return (
@@ -18,6 +18,8 @@ const MobileOrEmailComponet = ({mobile,register,errors }) => {
               dataObject={generateDataObject(index + 1,mobile)}
               register={register}
               errors={errors}
+              setValue={setValue}
+              form={form}
             />
             </div>
           </div>

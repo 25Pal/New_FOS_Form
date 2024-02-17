@@ -7,10 +7,10 @@ const SelectOption = ({
   lg,
   register,
   dynamicKey,
-  errors
+  errors,
+  form
 }) => {
 
-  console.log({dynamicKey,errors});
   return (
     <div className={`col-lg-${lg ? lg : 4} col-md-6 col-xs-12 select-option`}>
       <label htmlFor={idName}>{lableName}</label>
