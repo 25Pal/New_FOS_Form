@@ -1,15 +1,12 @@
 
 import './App.css';
-import OutletDetailPage from './Component/View/Outletdetailpage';
+import FullForm from './Component/View/FullForm';
+
 
 function App() {
   return (
-    <div className="App">
-       
-        <OutletDetailPage/>
-
-      
-
+    <div className="App"> 
+        <FullForm/>
     </div>
   );
 }

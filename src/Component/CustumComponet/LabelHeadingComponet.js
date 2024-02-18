@@ -1,6 +1,6 @@
 import React from "react";
 
-const LabelHeadingComponet = ({ lable, number,heading }) => {
+const LabelHeadingComponet = ({ lable, number,heading ,mainHeading}) => {
   const findLable = lable === true ? "Mobile No. " : "Email";
   return (
     <>
@@ -12,9 +12,19 @@ const LabelHeadingComponet = ({ lable, number,heading }) => {
             paddingBottom: "10px",
           }}
         >
-          {heading } 
+          {heading } *
         </div>
-      ) : (
+      ) : mainHeading ? (
+         <>
+        <div
+          className="main-heading"
+        >
+          {mainHeading }
+        </div>
+
+         </>
+
+      ): (
         <div
           style={{
             textAlign: "left",
@@ -22,7 +32,7 @@ const LabelHeadingComponet = ({ lable, number,heading }) => {
             paddingBottom: "10px",
           }}
         >
-          Outlet {findLable} #{number}
+          Outlet {findLable} #{number} *
         </div>
       )}
     </>

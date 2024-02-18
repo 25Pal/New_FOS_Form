@@ -10,9 +10,9 @@ const MobileOrEmailComponet = ({mobile,register,errors,setValue,form }) => {
     <>
       {numberKeys?.map((curElem, index) => {
         return (
-          <div key={`${curElem}-${index}`} style={{ padding: "5px" }}>
+          <div  key={`${curElem}-${index}`}>
+             {/* <div className="container"> */}
             <LabelHeadingComponet lable={mobile} number={index + 1} />
-            <div className="container">
             <MobileNumberOrEmailDiv
               key={`${curElem}-${index}`}
               dataObject={generateDataObject(index + 1,mobile)}
@@ -21,8 +21,8 @@ const MobileOrEmailComponet = ({mobile,register,errors,setValue,form }) => {
               setValue={setValue}
               form={form}
             />
-            </div>
-          </div>
+             {/* </div> */}
+           </div>
         );
       })}
     </>

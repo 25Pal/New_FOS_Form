@@ -10,6 +10,10 @@
     width: 100%;
     
   }
+.input-wrapper textarea{
+    height: 80px;
+    width: 100%;
+}
 
   @media screen and (max-width: 768px) {
     .input-container {
@@ -37,7 +41,17 @@
 }
 
 .error {
-  color: red;
+  color: rgb(211, 91, 91);
   font-size: 12px;
+  text-align: left;
+}
+
+.main-heading {
+  font-family: 'sans-serif';
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 48.41px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   text-align: left;
 }
