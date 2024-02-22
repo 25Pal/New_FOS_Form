@@ -13,7 +13,7 @@ const buttons1 = [
 const BankDetails = ({ register, errors, form }) => {
   return (
     <>   
-        <LabelHeadingComponet lable={false} heading={"Bank Details"} />
+        {/* <LabelHeadingComponet lable={false} heading={"Bank Details"} /> */}
           <div className="row">
             {returnInputText(
               "Beneficiary Name",

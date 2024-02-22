@@ -17,7 +17,8 @@ const OutLetNameComponet = ({ register, errors, form }) => {
               register,
               "OutletDetails",
               errors,
-              form
+              form,
+              true
             )}
           </div>
         {/* </div> */}

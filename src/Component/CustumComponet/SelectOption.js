@@ -8,7 +8,8 @@ const SelectOption = ({
   register,
   dynamicKey,
   errors,
-  form
+  form,
+  required
 }) => {
 
   return (
@@ -16,10 +17,10 @@ const SelectOption = ({
       <label htmlFor={idName}>{lableName}</label>
       <select
         {...register(`${dynamicKey ? dynamicKey + "." : ""}${idName}`,{
-          // required:{
-          //   value:true,
-          //   message:`${lableName} Is Required`,
-          // }
+          required:{
+            value: required ? true : false,
+            message:`${lableName} Is Required`,
+          }
         })}
         className="select-dropdown"
         id={idName}

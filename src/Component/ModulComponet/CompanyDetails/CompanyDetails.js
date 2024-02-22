@@ -32,8 +32,8 @@ const CompanyDetails = ({ register, errors, form }) => {
   return (
     <>
       
-        {/* <div className="container"> */}
-          <LabelHeadingComponet lable={false} heading={"Company Details"} />
+        <div className="container">
+          {/* <LabelHeadingComponet lable={false} heading={"Company Details"} /> */}
           <div className="row">
             {returnInputText(
               "Pan Number",
@@ -43,7 +43,8 @@ const CompanyDetails = ({ register, errors, form }) => {
               register,
               "ComapnyDetails",
               errors,
-              form
+              form,
+              true
             )}
             {returnInputText(
               "GSTN Number",
@@ -53,7 +54,8 @@ const CompanyDetails = ({ register, errors, form }) => {
               register,
               "ComapnyDetails",
               errors,
-              form
+              form,
+              true
             )}
             {returnInputText(
               "FSAII Number",
@@ -63,7 +65,8 @@ const CompanyDetails = ({ register, errors, form }) => {
               register,
               "ComapnyDetails",
               errors,
-              form
+              form,
+              true
             )}
             {returnInputText(
               "FSAII Refernce",
@@ -73,7 +76,8 @@ const CompanyDetails = ({ register, errors, form }) => {
               register,
               "ComapnyDetails",
               errors,
-              form
+              form,
+              false
             )}
           </div>
         {/* </div> */}
@@ -90,7 +94,8 @@ const CompanyDetails = ({ register, errors, form }) => {
               register,
               "ComapnyDetails",
               errors,
-              form
+              form,
+              true
             )}
             {returnInputText(
               "Designation",
@@ -100,7 +105,8 @@ const CompanyDetails = ({ register, errors, form }) => {
               register,
               "ComapnyDetails",
               errors,
-              form
+              form,
+              true
             )}
             {returnInputText(
               "Mobile No",
@@ -110,7 +116,8 @@ const CompanyDetails = ({ register, errors, form }) => {
               register,
               "ComapnyDetails",
               errors,
-              form
+              form,
+              true
             )}
             {returnInputText(
               "Email",
@@ -120,7 +127,8 @@ const CompanyDetails = ({ register, errors, form }) => {
               register,
               "ComapnyDetails",
               errors,
-              form
+              form,
+              true
             )}
           </div>
         {/* </div> */}
@@ -133,7 +141,9 @@ const CompanyDetails = ({ register, errors, form }) => {
               idName="Registered Address"
               dynamicKey="ComapnyDetails"
               register={register}
+              errors={errors} 
               lg={12}
+              required={true}
             />
             </div>
             <hr className="border-bottom" />
@@ -147,6 +157,7 @@ const CompanyDetails = ({ register, errors, form }) => {
               dynamicKey="ComapnyDetails"
               errors={errors}
               form={form}
+              required={true}
             />
             <SelectOption
               register={register}
@@ -157,13 +168,14 @@ const CompanyDetails = ({ register, errors, form }) => {
               dynamicKey="ComapnyDetails"
               errors={errors}
               form={form}
+              required={true}
             />
 
 
             </div>
            
           
-        {/* </div> */}
+        </div>
         <hr className="border-bottom" />
     </>
   );

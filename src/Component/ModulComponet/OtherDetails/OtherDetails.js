@@ -23,12 +23,14 @@ const OtherDetails = ({ register, errors, form }) => {
           dynamicKey="OtherDetails"
           errors={errors}
           form={form}
+          required={true}
         />
         <TextArea
           labelName="Remark"
           idName="remark"
           dynamicKey="OtherDetails"
           register={register}
+          errors={errors} 
           lg={12}
         />
       </div>

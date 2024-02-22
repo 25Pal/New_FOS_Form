@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const InputText = ({labelName, type, idName,lg,register,dynamicKey,errors,form}) => {
+const InputText = ({labelName, type, idName,lg,register,dynamicKey,errors,form,required}) => {
   const {setValue,setError,formState={errors}}=form;
   
   const CheckMobileNumber=(value)=>{
@@ -24,45 +24,45 @@ const InputText = ({labelName, type, idName,lg,register,dynamicKey,errors,form})
           name={idName}
           id={idName}
           {...register(`${dynamicKey ? dynamicKey + "." : ""}${idName}`,{
-            // required:{
-            //   value:true,
-            //   message:`${labelName} Is Required`,
-            // },
-            // ... (type === 'email' && {
-            //   pattern: {
-            //     value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-            //     message: "Invalide Format Email",
-            //   }
-            // }),
-          //  ...(type === 'number' && {
-          //   pattern: {
-          //     value: /\d{10}/,
-          //     message: "Mobile Number must be 10 digits",
-          //   },
-            // validate: {
-            //   isValid: (value) => CheckMobileNumber(value),
-            // }
-            // }),
-            // ...(labelName === 'Pan Number' && {
-              // validate: (value) => {
-              //   // Limit the input length to 10 characters
-              //   const newValue = value.replace(/[^A-Za-z0-9]/g, '').substring(0, 10);
-              //   setValue(`${dynamicKey ? dynamicKey + "." : ""}${idName}`, newValue);
-              //   setError(`${dynamicKey ? dynamicKey + "." : ""}${idName}`, { type: "manual", message: "Invalid PAN Number format" });
+            required:{
+              value:required ? true :false,
+              message:`${labelName} Is Required`,
+            },
+            ... (type === 'email' && {
+              pattern: {
+                value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                message: "Invalide Format Email",
+              }
+            }),
+           ...(type === 'number' && {
+            pattern: {
+              value: /\d{10}/,
+              message: "Mobile Number must be 10 digits",
+            },
+            validate: {
+              isValid: (value) => CheckMobileNumber(value),
+            }
+            }),
+            ...(labelName === 'Pan Number' && {
+              validate: (value) => {
+                // Limit the input length to 10 characters
+                const newValue = value.replace(/[^A-Za-z0-9]/g, '').substring(0, 10);
+                setValue(`${dynamicKey ? dynamicKey + "." : ""}${idName}`, newValue);
+                setError(`${dynamicKey ? dynamicKey + "." : ""}${idName}`, { type: "manual", message: "Invalid PAN Number format" });
             
-              //   // Check if the PAN number matches the correct format
-              //   const panPattern = /^[A-Za-z]{5}[0-9]{4}[A-Za-z]$/;
-              //   if (!panPattern.test(newValue)) {
-              //     setError(`${dynamicKey ? dynamicKey + "." : ""}${idName}`, { type: "manual", message: "Invalid PAN Number format" });
-              //     return false;
-              //   }
-              //   return true;
-            //   // },
-            //   pattern: {
-            //     value: /^[A-Z]{5}[0-9]{4}[A-Z]$/,
-            //     message: "PAN Number must be in the format AZCPN3435R"
-            //   }
-            // })
+                // Check if the PAN number matches the correct format
+                const panPattern = /^[A-Za-z]{5}[0-9]{4}[A-Za-z]$/;
+                if (!panPattern.test(newValue)) {
+                  setError(`${dynamicKey ? dynamicKey + "." : ""}${idName}`, { type: "manual", message: "Invalid PAN Number format" });
+                  return false;
+                }
+                return true;
+              },
+              pattern: {
+                value: /^[A-Z]{5}[0-9]{4}[A-Z]$/,
+                message: "PAN Number must be in the format AZCPN3435R"
+              }
+            })
           })}
           
           

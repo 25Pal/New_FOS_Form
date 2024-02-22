@@ -2,7 +2,7 @@ import React from 'react'
 import ButtonGroup from './ButtonGroup'
 import LabelHeadingComponet from './LabelHeadingComponet'
 
-const UploadFile = ({heading,fileName,fileSize,buttons,positionSize,positionButtons}) => {
+const UploadFile = ({heading,fileName,fileSize,buttons,positionSize,positionButtons,register, errors, form}) => {
   return (
     <>
         {/* <label>{heading}</label> */}

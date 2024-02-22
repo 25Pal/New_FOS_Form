@@ -24,6 +24,7 @@ const MobileNumberOrEmailDiv = ({ dataObject,register,errors,setValue,form}) => 
               errors={errors}
               setValue={setValue}
               form={form}
+              required={curElem.required}
             />
           );
         })}
