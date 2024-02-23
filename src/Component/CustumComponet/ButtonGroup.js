@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
-const ButtonGroup = ({ buttons }) => {
+const ButtonGroup = ({ buttons}) => {
+  console.log("BUTTON",buttons)
   return (
     <div
       className="btn-group p-1"

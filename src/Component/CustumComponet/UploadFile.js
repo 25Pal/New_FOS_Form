@@ -15,7 +15,7 @@ const UploadFile = ({heading,fileName,fileSize,buttons,positionSize,positionButt
             <div className="p-1">{fileSize}</div>
           </div>
           <div className={`col-lg-4 col-md-4 col-sm-4 col-xs-4 d-flex align-items-center justify-content-lg-${positionButtons}`}>
-          <ButtonGroup buttons={buttons} />
+          <ButtonGroup buttons={buttons}/>
           </div>
         </div>
     </>

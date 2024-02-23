@@ -6,23 +6,27 @@ import ButtonGroup from '../../CustumComponet/ButtonGroup'
 import UploadFile from '../../CustumComponet/UploadFile'
 import OutLetNameComponet from './OutLetNameComponet'
 import LocationComponet from './LocationComponet'
-const buttons1 = [
-    { color: 'success', icon: 'eye' ,fileUplodeBtn:false },
-    { color: 'primary', icon: 'upload',fileUplodeBtn:true },
-    { color: 'danger', icon: 'trash',fileUplodeBtn:false }
-  ];
+
 const Outletdetails = ({register,errors,form}) => {
   
-  const [fileSelected, setFileSelected] = useState(false);
+  const [selectedFile, setSelectedFile] = useState(null);
 
   const handleFileInputChange = (event) => {
-    // Check if a file has been selected
-    if (event.target.files.length > 0) {
-      setFileSelected(true);
-    } else {
-      setFileSelected(false);
+    if (event.target.files && event.target.files.length > 0) {
+      const file = event.target.files[0];
+      setSelectedFile(file);
+      console.log("selected file",selectedFile);
     }
   };
+  
+  
+  const buttons1 = [
+    { color: 'success', icon: 'eye', fileUplodeBtn: false, onClick: ()=> console.log("Hi") },
+    { color: 'primary', icon: 'upload', fileUplodeBtn: true, onClick: handleFileInputChange },
+    { color: 'danger', icon: 'trash', fileUplodeBtn: false, onClick: ()=>console.log("Byyy")  }
+  ];
+
+  
 
   return (
    <>
@@ -33,7 +37,7 @@ const Outletdetails = ({register,errors,form}) => {
     <hr className="border-bottom" />
     <MobileOrEmailComponet register={register} errors={errors} form={form}/>
     <hr className="border-bottom" />
-    <UploadFile heading={"Outlet Menu Uploaded File"} fileName={"Menu 1 for xyz company.docx"} fileSize={"25.05 KB"} buttons={buttons1} positionSize={"center"} positionButtons={"end"}  register={register} errors={errors} form={form} />
+    <UploadFile heading={"Outlet Menu Uploaded File"} fileName={"Menu 1 for xyz company.docx"} fileSize={"25.05 KB"} buttons={buttons1} positionSize={"center"} positionButtons={"end"}  register={register} errors={errors} form={form}/>
     <hr className="border-bottom" />
    </>
   )
