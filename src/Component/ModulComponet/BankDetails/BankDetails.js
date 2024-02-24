@@ -1,16 +1,43 @@
-import React from "react";
+import React, { useState } from "react";
 import returnInputText from "../../../helper/returnInputText";
 import LabelHeadingComponet from "../../CustumComponet/LabelHeadingComponet";
 import ButtonGroup from "../../CustumComponet/ButtonGroup";
 import UploadFile from "../../CustumComponet/UploadFile";
 
-const buttons1 = [
-    { color: 'success', icon: 'eye' },
-    { color: 'primary', icon: 'upload' },
-    { color: 'danger', icon: 'trash' }
-  ];
+
 
 const BankDetails = ({ register, errors, form }) => {
+
+  const [selectedFile, setSelectedFile] = useState({});
+
+  const handleFileInputChange = (event) => {
+    if (event.target.files && event.target.files.length > 0) {
+      const file = event.target.files[0];
+      setSelectedFile(file);
+    }
+  };
+
+  const handleFileDelete = () => {
+    setSelectedFile({});
+  };
+  
+  
+  const habdleViewImage = () => {
+    if (selectedFile && selectedFile.type && selectedFile.type.startsWith('image')) {
+      const blob = new Blob([selectedFile], { type: selectedFile.type });
+      const url = URL.createObjectURL(blob);
+      window.open(url, "_blank");
+    } else {
+      console.error("Selected file is not an image.");
+      // You may want to display an error message to the user if the selected file is not an image
+    }
+  };
+  const buttons1 = [
+    { id:'Cheque', color: 'success', icon: 'eye', fileUplodeBtn: false, onClick: habdleViewImage,selectedFile:selectedFile },
+    { id:'Cheque',color: 'primary', icon: 'upload', fileUplodeBtn: true, onClick: handleFileInputChange,selectedFile:selectedFile },
+    {id:'Cheque', color: 'danger', icon: 'trash', fileUplodeBtn: false, onClick: handleFileDelete ,selectedFile:selectedFile }
+  ];
+
   return (
     <>   
         {/* <LabelHeadingComponet lable={false} heading={"Bank Details"} /> */}
@@ -57,7 +84,7 @@ const BankDetails = ({ register, errors, form }) => {
             )}
           </div>
           <hr className="border-bottom" />
-      <UploadFile heading={"Cheque Upload and Download"} fileName={"cheque.png"} fileSize={"25.05 KB"} buttons={buttons1} positionSize={"start"} positionButtons={"flex-start"} />
+       <UploadFile heading={"Cheque Upload and Download"} fileName={selectedFile.name ? selectedFile.name:"File-Name"} fileSize={selectedFile.size ? selectedFile.size/1000 + "Kb" :'File-Size'} buttons={buttons1} positionSize={"start"} positionButtons={"flex-start"} register={register} errors={errors} form={form} />
       <hr className="border-bottom" />
     </>
   );
