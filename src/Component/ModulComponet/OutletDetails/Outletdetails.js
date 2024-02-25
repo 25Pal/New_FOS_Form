@@ -9,12 +9,14 @@ import LocationComponet from './LocationComponet'
 
 const Outletdetails = ({register,errors,form}) => {
   
+  const{setValue}=form;
   const [selectedFile, setSelectedFile] = useState({});
 
   const handleFileInputChange = (event) => {
     if (event.target.files && event.target.files.length > 0) {
       const file = event.target.files[0];
       setSelectedFile(file);
+      
     }
   };
 
@@ -40,9 +42,12 @@ const Outletdetails = ({register,errors,form}) => {
     {id:'Menu' ,color: 'danger', icon: 'trash', fileUplodeBtn: false, onClick: handleFileDelete ,selectedFile:selectedFile }
   ];
 
-  useEffect(()=>{
-    console.log("selected file",selectedFile);
-  })
+  useEffect(() => {
+    // Update the selectedFileName value when selectedFile changes
+    setValue('OutletDetails.selectedFile.name', selectedFile.name ? selectedFile.name:"");
+    setValue('OutletDetails.selectedFile.size', selectedFile.size ? selectedFile.size:"");
+  }, [selectedFile, setValue]);
+
 
   return (
    <>

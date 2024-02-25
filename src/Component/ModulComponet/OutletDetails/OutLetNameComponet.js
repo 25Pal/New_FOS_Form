@@ -7,7 +7,7 @@ const OutLetNameComponet = ({ register, errors, form }) => {
     <>
       {/* <div> */}
         {/* <div className="container"> */}
-          <LabelHeadingComponet lable={false} heading={"Outlet Name"} />
+          <LabelHeadingComponet lable={false} heading={"Outlet Name"} required={true} />
           <div className="row">
             {returnInputText(
               "Name",

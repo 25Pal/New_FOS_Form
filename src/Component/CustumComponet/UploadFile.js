@@ -6,7 +6,7 @@ const UploadFile = ({heading,fileName,fileSize,buttons,positionSize,positionButt
   return (
     <>
         {/* <label>{heading}</label> */}
-        <LabelHeadingComponet lable={false} heading={heading} />
+        <LabelHeadingComponet lable={false} heading={heading} required={true} />
         <div className="row align-items-center d-flex flex-wrap justify-content-start">
           <div className="col-lg-4 col-md-4 col-sm-4 col-xs-4 ">
             <div className="">{fileName}</div>

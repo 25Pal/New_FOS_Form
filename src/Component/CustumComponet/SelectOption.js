@@ -14,7 +14,7 @@ const SelectOption = ({
 
   return (
     <div className={`col-lg-${lg ? lg : 4} col-md-6 col-xs-12 select-option`}>
-      <label htmlFor={idName}>{lableName}</label>
+      <label htmlFor={idName}>{lableName} {required ? <span style={{color:'red'}}>*</span>:''}</label>
       <select
         {...register(`${dynamicKey ? dynamicKey + "." : ""}${idName}`,{
           required:{

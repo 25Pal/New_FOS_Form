@@ -84,7 +84,7 @@ const CompanyDetails = ({ register, errors, form }) => {
         <hr className="border-bottom" />
       
         {/* <div className="container"> */}
-          <LabelHeadingComponet lable={false} heading={"Signing Authority"} />
+          <LabelHeadingComponet lable={false} heading={"Signing Authority"} required={true}/>
           <div className="row">
             {returnInputText(
               "Name",

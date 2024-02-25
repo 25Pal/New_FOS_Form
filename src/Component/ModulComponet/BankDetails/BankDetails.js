@@ -3,11 +3,12 @@ import returnInputText from "../../../helper/returnInputText";
 import LabelHeadingComponet from "../../CustumComponet/LabelHeadingComponet";
 import ButtonGroup from "../../CustumComponet/ButtonGroup";
 import UploadFile from "../../CustumComponet/UploadFile";
+import { useEffect } from "react";
 
 
 
 const BankDetails = ({ register, errors, form }) => {
-
+  const {setValue}=form;
   const [selectedFile, setSelectedFile] = useState({});
 
   const handleFileInputChange = (event) => {
@@ -37,6 +38,13 @@ const BankDetails = ({ register, errors, form }) => {
     { id:'Cheque',color: 'primary', icon: 'upload', fileUplodeBtn: true, onClick: handleFileInputChange,selectedFile:selectedFile },
     {id:'Cheque', color: 'danger', icon: 'trash', fileUplodeBtn: false, onClick: handleFileDelete ,selectedFile:selectedFile }
   ];
+  
+  useEffect(() => {
+    // Update the selectedFileName value when selectedFile changes
+    setValue('BankDetails.selectedFile.name', selectedFile.name ? selectedFile.name:"");
+    setValue('BankDetails.selectedFile.size', selectedFile.size ? selectedFile.size:"");
+  }, [selectedFile, setValue]);
+
 
   return (
     <>   
