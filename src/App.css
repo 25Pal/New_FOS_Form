@@ -29,14 +29,31 @@
   display: flex;
   flex-direction: column;
   gap: 5px;
-}  
+}
+
+.select-option-time{
+  display: flex;
+  align-items: center;
+}
 
 .select-option select {
   height: 30px;
 } 
 
-.select-dropdown {
+
+.select-option-time select {
+  height: 35px;
+  width: 100%;
+} 
+
+
+.select-option .select-dropdown {
   max-height: 50px; /* Set a maximum height for the dropdown */
+  overflow-y: auto; /* Enable vertical scrolling when options exceed the height */
+}
+
+.select-option-time .select-dropdown {
+  height: 35px; /* Set a maximum height for the dropdown */
   overflow-y: auto; /* Enable vertical scrolling when options exceed the height */
 }
 
