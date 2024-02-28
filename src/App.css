@@ -34,6 +34,7 @@
 .select-option-time{
   display: flex;
   align-items: center;
+  flex-direction: row;
 }
 
 .select-option select {
@@ -44,6 +45,8 @@
 .select-option-time select {
   height: 35px;
   width: 100%;
+  display: flex;
+  
 } 
 
 

@@ -20,12 +20,12 @@ const FullForm = () => {
   };
  
   const childs=[
-    {mainHeading:"Outlet Details" ,childComponent:<Outletdetails register={register} errors={errors} form={form} />},
-    {mainHeading:"Company Details" ,childComponent:<CompanyDetails register={register} errors={errors} form={form} />},
+    // {mainHeading:"Outlet Details" ,childComponent:<Outletdetails register={register} errors={errors} form={form} />},
+    // {mainHeading:"Company Details" ,childComponent:<CompanyDetails register={register} errors={errors} form={form} />},
+    // {mainHeading:"Bank Details" ,childComponent:<BankDetails register={register} errors={errors} form={form} />},
+    // {mainHeading:"Commission Details" ,childComponent:<CommisionDetails register={register} errors={errors} form={form} />},
+    // {mainHeading:"Other Details",childComponent:<OtherDetails register={register} errors={errors} form={form} />},
     {mainHeading:"Time Details",childComponent:<TimesDetails register={register} errors={errors} form={form} />},
-    {mainHeading:"Bank Details" ,childComponent:<BankDetails register={register} errors={errors} form={form} />},
-    {mainHeading:"Commission Details" ,childComponent:<CommisionDetails register={register} errors={errors} form={form} />},
-    {mainHeading:"Other Details",childComponent:<OtherDetails register={register} errors={errors} form={form} />},
   ]
 
   return (
