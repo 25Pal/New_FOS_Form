@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SelectOption from "../../CustumComponet/SelectOption";
 import LabelHeadingComponet from "../../CustumComponet/LabelHeadingComponet";
 import { useFieldArray } from "react-hook-form";
+import { getValue } from "@testing-library/user-event/dist/utils";
 
 function generateTimeArray() {
   const times = [];
@@ -34,7 +35,7 @@ function generateTimeArray() {
 
 const TimesDetails = ({ register, errors, form }) => {
   const [switchState, setSwitchState] = useState({});
-  const { control } = form;
+  const { control, setValue, getValues } = form;
   const handleSwitchChange = (day, value) => {
     setSwitchState((prevState) => ({
       ...prevState,
@@ -60,16 +61,14 @@ const TimesDetails = ({ register, errors, form }) => {
     />
   );
 
-  const returnTimeSlots = (day, slot,index, remove) => {
-    console.log({slot,index, })
+  const returnTimeSlots = (day, slot) => {
     return (
-      <>
-        {renderTimeSelector(day, `fromTime-${day.day}-${slot.id}`)}
-  
-        <div className="col-lg-1 col-md-1 col-xs-1 col-sm-1">
+        <div className="row d-flex align-items-center pt-2 justify-content-end">
+          {renderTimeSelector(day, `fromTime-${day.day}-${slot.id}`)}
+        <div className="col-lg-1 col-md-1 col-xs-1 col-sm-1 text-center">
           <span>To</span>
         </div>
-        {renderTimeSelector(day, `toTime-${day.day}-${slot.id}`)}
+          {renderTimeSelector(day, `toTime-${day.day}-${slot.id}`)}
         <div className="col-lg-1 col-md-1 col-xs-1 col-sm-1">
           <svg
             width="22"
@@ -77,7 +76,8 @@ const TimesDetails = ({ register, errors, form }) => {
             viewBox="0 0 22 22"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            onClick={() => remove(day.day+slot.id+index)}
+            onClick={() => handleRemoveSlot(slot.id)}
+            style={{ cursor: "pointer" }}
           >
             <path
               fillRule="evenodd"
@@ -87,7 +87,8 @@ const TimesDetails = ({ register, errors, form }) => {
             />
           </svg>
         </div>
-      </>
+      </div>
+      
     );
   };
   
@@ -98,9 +99,19 @@ const TimesDetails = ({ register, errors, form }) => {
   });
 
   const handleAddSlots = (day) => {
-    append({ day: day.day, fromTime: "", toTime: "" });
+    append({ day: day.day, slot: [{ fromTime: "", toTime: "" }] });
   };
 
+  const handleRemoveSlot = (id) => {
+    const index = fields.findIndex((field) => field.id === id);
+    if (index !== -1) {
+      remove(index);
+    }
+  };
+
+  useEffect(() => {
+    console.log("filds", fields);
+  }, [fields]);
   const days = [
     {
       day: "Monday",
@@ -213,7 +224,7 @@ const TimesDetails = ({ register, errors, form }) => {
               </div>
               {renderTimeSelector(day, "fromTime")}
 
-              <div className="col-lg-1 col-md-1 col-xs-1 col-sm-1">
+              <div className="col-lg-1 col-md-1 col-xs-1 col-sm-1 text-center">
                 <span>To</span>
               </div>
               {renderTimeSelector(day, "toTime")}
@@ -237,15 +248,16 @@ const TimesDetails = ({ register, errors, form }) => {
               </div>
               {fields
                 .filter((slot) => slot.day === day.day)
-                .map((slot,index) => (
+                .map((slot, index) => (
                   <div
                     key={slot.id}
-                    className="row p-0.5 w-100 d-flex align-items-center p-2"
                   >
-                    {returnTimeSlots(day, slot,index, remove)}
+                    {returnTimeSlots(day, slot, index)}{" "}
+                    {/* Change slot.slot to slot */}
                   </div>
                 ))}
             </div>
+            
           </div>
         ))}
       </div>
