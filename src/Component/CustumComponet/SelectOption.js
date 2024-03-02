@@ -13,7 +13,8 @@ const SelectOption = ({
   errors,
   form,
   required,
-  time
+  time,
+  disabled
 }) => {
 
   return (
@@ -33,6 +34,7 @@ const SelectOption = ({
         })}
         className="select-dropdown"
         id={idName}
+        disabled={disabled ? disabled:false }
       >
         <option value="">{`Select ${lableName? lableName:'...' }`}</option>
         {options.map((curOption, index) => {

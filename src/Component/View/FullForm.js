@@ -16,7 +16,7 @@ const FullForm = () => {
   const { errors } = formState;
 
   const onSubmit = (data) => {
-    console.log("form submitted :- 11", data);
+    console.log("form submitted :-", data);
   };
  
   const childs=[
