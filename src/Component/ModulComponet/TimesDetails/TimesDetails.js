@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import SelectOption from "../../CustumComponet/SelectOption";
 import LabelHeadingComponet from "../../CustumComponet/LabelHeadingComponet";
 import { useFieldArray } from "react-hook-form";
+import { DevTool } from "@hookform/devtools";
+
 
 
 const TimesDetails = ({ register, errors, form }) => {
   const [switchState, setSwitchState] = useState({});
-
   const { control,watch } = form;
 
   const handleSwitchChange = (day, value) => {
@@ -106,6 +107,7 @@ const addMinutes = (time, minutes) => {
     return (
         <SelectOption
             register={register}
+            required={true}
             options={idName === 'fromTime' ? fromTimeOptions : toTimeOptions}
             idName={idName}
             lg={3}
@@ -168,6 +170,11 @@ const addMinutes = (time, minutes) => {
     const index = fields.findIndex((field) => field.id === id);
     if (index !== -1) {
       remove(index);
+
+      // Update TimeDetails here
+    const updatedTimeDetails = {...form.getValues().TimeDetails}; 
+    updatedTimeDetails[fields[index].day].Slots.splice(index+1, 1); 
+    form.setValue("TimeDetails", updatedTimeDetails); 
     }
   };
 
@@ -183,12 +190,19 @@ const addMinutes = (time, minutes) => {
   
   const returnTimes = (day, index) => {
     const TimeDetails = watch(`TimeDetails.${day.day}`);
-    
     if (!TimeDetails || !TimeDetails.Slots || !Array.isArray(TimeDetails.Slots)) {
       
         return false;
     }
-    
+    const hasEmptySlot = TimeDetails.Slots.some(slot => {
+        return !slot.slot || !slot.slot.fromTime || !slot.slot.toTime;
+    });
+
+    if (hasEmptySlot) {
+        // alert("Please fill in all time slots.");
+        return hasEmptySlot;
+    }
+
     const hasSlotWithTime = TimeDetails.Slots.some(slot => slot.slot && (slot.slot.fromTime === '05:45' || slot.slot.toTime === '05:45'));
     return hasSlotWithTime;
 }
@@ -264,9 +278,8 @@ let dsdsd=false
               <div className="col-lg-1 col-md-1 col-xs-1 col-sm-1">
                 <svg
                   onClick={() => {
-                    
-                    dsdsd=returnTimes(day,index);
-                   
+                    dsdsd = returnTimes(day, index);
+
                     if (day.switchState[day.day] && !dsdsd) {
                       day.handleAddSlots(day);
                     }
@@ -277,10 +290,10 @@ let dsdsd=false
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
                   style={{
-                    cursor: day.switchState[day.day] || returnTimes(day,index) ? "pointer" : "not-allowed",
-                    opacity: day.switchState[day.day] || returnTimes(day,index) ? "1" : "0.5",
-                    // disabled:day.switchState[day.day] ? false : true
-                    pointerEvents: day.switchState[day.day]|| returnTimes(day,index) ? "auto" : "not-allowed"
+                    cursor:day.switchState[day.day] ? "pointer" :"not-allowed",
+                    opacity: day.switchState[day.day] ? "1" : "0.5",
+                    // disabled: day.switchState[day.day] ? false : true
+                    // pointerEvents: day.switchState[day.day] || !dsdsd ? "auto" : "not-allowed"
                   }}
                 >
                   <path
@@ -294,18 +307,13 @@ let dsdsd=false
               {fields
                 .filter((slot) => slot.day === day.day)
                 .map((slot, index) => (
-                  <div
-                    key={slot.id}
-                  >
-                    {returnTimeSlots(day, slot, index)}{" "}
-
-                  </div>
+                  <div key={slot.id}>{returnTimeSlots(day, slot, index)} </div>
                 ))}
             </div>
-
           </div>
         ))}
       </div>
+      <DevTool control={control} />
     </>
   );
 };

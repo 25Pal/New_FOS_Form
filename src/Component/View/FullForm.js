@@ -8,6 +8,8 @@ import OtherDetails from "../ModulComponet/OtherDetails/OtherDetails";
 import ParentComponent from "../CustumComponet/ParentComponent";
 import TimesDetails from "../ModulComponet/TimesDetails/TimesDetails";
 
+
+
 const FullForm = () => {
   const form = useForm({
     mode:"all"
@@ -18,13 +20,14 @@ const FullForm = () => {
   const onSubmit = (data) => {
     console.log("form submitted :-", data);
   };
- 
+  
+
   const childs=[
-    // {mainHeading:"Outlet Details" ,childComponent:<Outletdetails register={register} errors={errors} form={form} />},
-    // {mainHeading:"Company Details" ,childComponent:<CompanyDetails register={register} errors={errors} form={form} />},
-    // {mainHeading:"Bank Details" ,childComponent:<BankDetails register={register} errors={errors} form={form} />},
-    // {mainHeading:"Commission Details" ,childComponent:<CommisionDetails register={register} errors={errors} form={form} />},
-    // {mainHeading:"Other Details",childComponent:<OtherDetails register={register} errors={errors} form={form} />},
+    {mainHeading:"Outlet Details" ,childComponent:<Outletdetails register={register} errors={errors} form={form} />},
+    {mainHeading:"Company Details" ,childComponent:<CompanyDetails register={register} errors={errors} form={form} />},
+    {mainHeading:"Bank Details" ,childComponent:<BankDetails register={register} errors={errors} form={form} />},
+    {mainHeading:"Commission Details" ,childComponent:<CommisionDetails register={register} errors={errors} form={form} />},
+    {mainHeading:"Other Details",childComponent:<OtherDetails register={register} errors={errors} form={form} />},
     {mainHeading:"Time Details",childComponent:<TimesDetails register={register} errors={errors} form={form} />},
   ]
 

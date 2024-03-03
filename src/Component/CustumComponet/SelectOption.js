@@ -17,8 +17,25 @@ const SelectOption = ({
   disabled
 }) => {
 
+  const dynamicKeyParts = dynamicKey.split('.');
+  let errorMessage = errors;
+
+dynamicKeyParts.forEach(key => {
+  if (errorMessage && key.endsWith(']')) {
+    // Handle array index notation
+    const index = parseInt(key.match(/\d+/)[0]);
+    errorMessage = errorMessage?.[key.substring(0, key.indexOf('['))]?.[index];
+  } else {
+    errorMessage = errorMessage?.[key];
+  }
+});
+
+const message = errorMessage?.[idName]?.message || '';
+const showError = time && message && !disabled;
+  
   return (
-    <div className={`col-lg-${lg ? lg : 4} col-${md ? md : 6} col-${xs ? xs : 12} col-${sm ? sm : 12} ${!time  ? 'select-option' : 'select-option-time'}`}>
+    <>
+    <div className={`col-lg-${lg ? lg : 4} col-${md ? md : 6} col-${xs ? xs : 12} col-${sm ? sm : 12} ${!time ? 'select-option' : 'select-option-time'}`}>
       {
         !time && (
 
@@ -28,11 +45,11 @@ const SelectOption = ({
       <select
         {...register(`${dynamicKey ? dynamicKey + "." : ""}${idName}`,{
           required:{
-            value: required ? false : false,
-            message:`${lableName} Is Required`,
+            value: required ? true : false,
+            message: !time  ? `${lableName} Is Required` : `*`,
           }
         })}
-        className="select-dropdown"
+        className={`${!showError ? 'select-dropdown':'select-dropdown error-border'}`}
         id={idName}
         disabled={disabled ? disabled:false }
       >
@@ -45,8 +62,15 @@ const SelectOption = ({
           );
         })}
       </select>
-      <p className="error">{errors[dynamicKey || '']?.[idName]?.message}</p>
+       {
+        !time && 
+          <p className="error">{errors[dynamicKey || '']?.[idName]?.message}</p> 
+       }
+     
     </div>
+    
+    
+    </>
   );
 };
 

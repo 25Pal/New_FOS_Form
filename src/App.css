@@ -1,29 +1,30 @@
 .input-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    padding: 10px;
-  }
-  
-  .input-wrapper input {
-    height: 30px;
-    width: 100%;
-    
-  }
-.input-wrapper textarea{
-    height: 80px;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 10px;
 }
 
-  @media screen and (max-width: 768px) {
-    .input-container {
-      flex-direction: column;
-    }
-  
-    .input-container input {
-      width: 100%;
-    }
+.input-wrapper input {
+  height: 30px;
+  width: 100%;
+
+}
+
+.input-wrapper textarea {
+  height: 80px;
+  width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+  .input-container {
+    flex-direction: column;
   }
+
+  .input-container input {
+    width: 100%;
+  }
+}
 
 .select-option {
   display: flex;
@@ -31,7 +32,7 @@
   gap: 5px;
 }
 
-.select-option-time{
+.select-option-time {
   display: flex;
   align-items: center;
   flex-direction: row;
@@ -39,25 +40,45 @@
 
 .select-option select {
   height: 30px;
-} 
+}
 
 
 .select-option-time select {
-  height: 35px;
+  height:35px;
   width: 100%;
   display: flex;
-  
-} 
+  border-radius: 10px;
+
+}
+.select-option-time select option {
+  max-height: 25px;
+  overflow-y: auto;
+}
+
+.select-option-time select:focus {
+  outline: none;
+  box-shadow: 0 0 3px 1px rgb(84, 170, 99);
+}
 
 
 .select-option .select-dropdown {
-  max-height: 50px; /* Set a maximum height for the dropdown */
-  overflow-y: auto; /* Enable vertical scrolling when options exceed the height */
+  max-height: 50px;
+  overflow-y: auto;
 }
 
 .select-option-time .select-dropdown {
-  height: 35px; /* Set a maximum height for the dropdown */
-  overflow-y: auto; /* Enable vertical scrolling when options exceed the height */
+  height: 35px;
+  overflow-y: auto;
+}
+
+.select-option-time .error-border {
+  border: 1.5px solid red;
+  padding: 0px;
+}
+
+.select-option-time .error-border:focus {
+  outline: none;
+  box-shadow: 0 0 3px 1px red;
 }
 
 .error {
@@ -65,6 +86,8 @@
   font-size: 12px;
   text-align: left;
 }
+
+
 
 .main-heading {
   font-family: 'sans-serif';

@@ -14,7 +14,7 @@ const TextArea = ({labelName,idName,dynamicKey,errors,register,lg,required}) => 
             `${dynamicKey ? dynamicKey + "." : ""}${idName}`
           ,{
             required:{
-              value:required ? false :false,
+              value:required ? true :false,
               message:`${labelName} Is Required`,
             }
           })}
