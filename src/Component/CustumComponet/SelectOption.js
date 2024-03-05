@@ -45,7 +45,7 @@ const showError = time && message && !disabled;
       <select
         {...register(`${dynamicKey ? dynamicKey + "." : ""}${idName}`,{
           required:{
-            value: required ? true : false,
+            value: required ? false : false,
             message: !time  ? `${lableName} Is Required` : `*`,
           }
         })}
