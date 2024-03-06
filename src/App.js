@@ -12,6 +12,7 @@ import { useFormik } from 'formik';
 import validator from 'validator';
 import axios from 'axios';
 import { signUpSchema } from "./schema";
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   const brandNameRef = useRef(null);
@@ -220,12 +221,15 @@ function App() {
             <Bankdetailspage handleChange={handleChange} handleBlur={handleBlur} values={values} errors={errors} touched={touched} />
             <Commisiondetailpage handleChange={handleChange} handleBlur={handleBlur} values={values} errors={errors} touched={touched} />
             <Otherdetailpage handleChange={handleChange} handleBlur={handleBlur} values={values} errors={errors} touched={touched} />
-
             <div className='saveBtn'>
               <button type='submit'> Submit </button>
             </div>
 
       </form>
+
+      <ToastContainer />
+
+     
 
     </div>
   );

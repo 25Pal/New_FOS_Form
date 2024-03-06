@@ -1,4 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
+import { ToastContainer, toast } from "react-toastify"
+import 'react-toastify/dist/ReactToastify.css';
 import './Outletdetailpage.css'
 import OutletTimingTable from './OutletTimingTable';
 function OutletDetailPage({ values, handleBlur, handleChange, touched, errors, brandNameRef, handlTimeReturn }) {
@@ -39,6 +41,7 @@ function OutletDetailPage({ values, handleBlur, handleChange, touched, errors, b
     const timeList = generateTimeArray();
 
     const [selectedFile, setSelectedFile] = useState({});
+    const [menuUplaodError, setMenuUplaodError] = useState(null)
     const [switchh, setSwitchh] = useState({});
     const [slot, setSlot] = useState([
         { day: "Monday", slots: [{ from: "Select Time ", to: "Select Time" }], timeDropdown: [{ fromTimeList: timeList, toTimeList: timeList }] },
@@ -111,7 +114,8 @@ function OutletDetailPage({ values, handleBlur, handleChange, touched, errors, b
 
 
                     } else {
-                        alert("Time DropDown does not exist for next slot")
+
+                        alert("Time DropDown does not exist for next slot");
                     }
 
                 }
@@ -260,9 +264,10 @@ function OutletDetailPage({ values, handleBlur, handleChange, touched, errors, b
         handlTimeReturn(timeData);
 
 
-    }, [slot,switchh])
+    }, [slot, switchh])
 
    
+
 
     const handleOutletSubmit = (e) => {
         e.preventDefault();
@@ -345,25 +350,29 @@ function OutletDetailPage({ values, handleBlur, handleChange, touched, errors, b
     }
 
     const handleFileView = () => {
-        console.log("View menu", selectedFile, Object.keys(selectedFile).length)
-
-
-        if (selectedFile && selectedFile?.name?.length > 0) {
-            const blob = new Blob([selectedFile], { type: selectedFile.type }); // Change 'image/png' to the appropriate MIME type
+        if (selectedFile && selectedFile.name && selectedFile.name.length > 0) {
+            const blob = new Blob([selectedFile], { type: selectedFile.type });
             const url = URL.createObjectURL(blob);
             window.open(url, '_blank');
-            // window.open(values.menuImage, '_blank');
         } else {
-            alert("Please Upload Menu Image !")
+            setMenuUplaodError(true);
+            toast.dark("Please Select Menu File !", {
+                position: "top-center",
+              }); 
         }
-
-
-
-    }
+    };
+    
+    useEffect(() => {
+        if (menuUplaodError) {
+            
+        setMenuUplaodError(false)
+        }
+       
+    }, [menuUplaodError]);
 
 
     return (
-
+      <>
         <div className='mainOutlet'>
             <div className='heading'>
                 <h5>Outlet Details</h5>
@@ -420,7 +429,7 @@ function OutletDetailPage({ values, handleBlur, handleChange, touched, errors, b
                                     <input name='bmob' maxLength={10} minLength={10} value={values.bmob} onChange={handleChange} onBlur={handleBlur} placeholder='Enter Owner Number' />
                                     {errors.bmob && touched.bmob ? <p className='form-error'  > {errors.bmob}  </p> : null}
                                 </div>
-                
+
                             </div>
                         </div>
 
@@ -463,7 +472,7 @@ function OutletDetailPage({ values, handleBlur, handleChange, touched, errors, b
                             <div className='inputFields'>
                                 <label>Name</label>
                                 <div className='errorcontainr'>
-                                    <input name='name3' value={values.name3} onChange={handleChange} placeholder='Enter Person Name'  />
+                                    <input name='name3' value={values.name3} onChange={handleChange} placeholder='Enter Person Name' />
 
                                 </div>
 
@@ -471,7 +480,7 @@ function OutletDetailPage({ values, handleBlur, handleChange, touched, errors, b
                             <div className='inputFields'>
                                 <label>Designation</label>
                                 <div className='errorcontainr'>
-                                    <input name='role2' value={values.role2} onChange={handleChange} placeholder='Enter Role '  />
+                                    <input name='role2' value={values.role2} onChange={handleChange} placeholder='Enter Role ' />
 
                                 </div>
 
@@ -632,7 +641,7 @@ function OutletDetailPage({ values, handleBlur, handleChange, touched, errors, b
                             <div className='inputFields'>
                                 <label>Email</label>
                                 <div className='errorcontainr'>
-                                    <input name='email3' value={values.email3} onChange={handleChange} onBlur={handleBlur}  placeholder='Enter Person Email'/>
+                                    <input name='email3' value={values.email3} onChange={handleChange} onBlur={handleBlur} placeholder='Enter Person Email' />
                                     {errors.email3 && touched.email3 ? <p className='form-error'  > {errors.email3}  </p> : null}
                                 </div>
                             </div>
@@ -675,15 +684,16 @@ function OutletDetailPage({ values, handleBlur, handleChange, touched, errors, b
 
                     <div>
                         <div className="subDiv" >
-                        {/* menuImage */}
+                            {/* menuImage */}
                             <h6>
                                 Outlet Menu Uploaded File<span className='mandatory'> *</span>
                                 <div className='errorcontainr'>
-                                     {errors.menuImage && touched.menuImage ? <p className='form-error' style={{ paddingLeft:'0'}}  > {errors.menuImage}  </p> : null}
+                                    {errors.menuImage && touched.menuImage ? <p className='form-error' style={{ paddingLeft: '0' }}  > {errors.menuImage}  </p> : null}
                                 </div>
 
                             </h6>
                         </div>
+
                         <div className='MenuUploadContainerParent'>
 
                             <div className='MenuUploadContainer'>
@@ -706,6 +716,7 @@ function OutletDetailPage({ values, handleBlur, handleChange, touched, errors, b
                                         <path fillRule="evenodd" clipRule="evenodd" d="M23.8941 8.55208C24.0348 8.83361 24.0352 9.16569 23.8944 9.44721L23 9C23.8944 9.44721 23.8938 9.44844 23.8936 9.4488L23.8925 9.45113L23.889 9.45796L23.8777 9.48018C23.8681 9.49873 23.8546 9.52469 23.8372 9.55756C23.8025 9.6233 23.752 9.71677 23.686 9.83401C23.5542 10.0684 23.3601 10.3985 23.1057 10.7925C22.5979 11.5787 21.8432 12.6294 20.8545 13.6839C18.8955 15.7736 15.8995 18 12 18C8.10049 18 5.10448 15.7736 3.14546 13.6839C2.15683 12.6294 1.40207 11.5787 0.894336 10.7925C0.63985 10.3985 0.445792 10.0684 0.313971 9.83401C0.248023 9.71677 0.19754 9.6233 0.162753 9.55756C0.145357 9.52469 0.131875 9.49873 0.122338 9.48018L0.11099 9.45796L0.107539 9.45113L0.105573 9.44721L0.999491 9.00025C0.111724 9.44414 0.105437 9.44684 0.105573 9.44721C-0.0351909 9.16569 -0.0351909 8.83431 0.105573 8.55279L0.999491 9.00025C0.105064 8.55304 0.106186 8.55156 0.10637 8.5512L0.107539 8.54887L0.11099 8.54204L0.122338 8.51982C0.131875 8.50127 0.145357 8.47531 0.162753 8.44244C0.19754 8.3767 0.248023 8.28323 0.313971 8.16599C0.445792 7.93164 0.63985 7.60152 0.894336 7.20747C1.40207 6.42131 2.15683 5.3706 3.14546 4.31606C5.10448 2.22644 8.10049 0 12 0C15.8995 0 18.8955 2.22644 20.8545 4.31606C21.8432 5.3706 22.5979 6.42131 23.1057 7.20747C23.3601 7.60152 23.5542 7.93164 23.686 8.16599C23.752 8.28323 23.8025 8.3767 23.8372 8.44244C23.8546 8.47531 23.8681 8.50127 23.8777 8.51982L23.889 8.54204L23.8925 8.54887L23.8941 8.55208ZM2.57441 9.70747C2.39492 9.42955 2.25003 9.18887 2.14074 9C2.25003 8.81113 2.39492 8.57045 2.57441 8.29253C3.03543 7.57869 3.71817 6.6294 4.60454 5.68394C6.39552 3.77356 8.89951 2 12 2C15.1005 2 17.6045 3.77356 19.3955 5.68394C20.2818 6.6294 20.9646 7.57869 21.4256 8.29253C21.6051 8.57045 21.75 8.81113 21.8593 9C21.75 9.18887 21.6051 9.42955 21.4256 9.70747C20.9646 10.4213 20.2818 11.3706 19.3955 12.3161C17.6045 14.2264 15.1005 16 12 16C8.89951 16 6.39552 14.2264 4.60454 12.3161C3.71817 11.3706 3.03543 10.4213 2.57441 9.70747ZM23 9C23.8944 8.55279 23.8943 8.55245 23.8941 8.55208L23 9Z" fill="white" />
                                     </svg>
                                 </button>
+                                
 
 
                                 <button type='button' className='btn1 upload1' for="file-upload" onClick={() => document.getElementById('file-upload').click()} >
@@ -730,8 +741,9 @@ function OutletDetailPage({ values, handleBlur, handleChange, touched, errors, b
             </div>
 
 
-
         </div>
+       
+      </>
     )
 }
 

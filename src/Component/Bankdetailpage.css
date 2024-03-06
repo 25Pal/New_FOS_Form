@@ -161,12 +161,12 @@
     }
 
     .errorcontainr {
-        border: 1px solid black;
+        /* border: 1px solid black; */
         margin-bottom: 1rem;
     
     }
     #bankDetailsPage {
-        border: 1px solid rgb(94, 255, 0);
+        /* border: 1px solid rgb(94, 255, 0); */
         padding: 20px;
 
     }
@@ -239,7 +239,7 @@
 
 
     #bankDetailsPage {
-        border: 3px solid blue;
+        /* border: 3px solid blue; */
         padding: 15px;
     }
     .chequeUploadContainerParent {
@@ -305,14 +305,14 @@
         }
     }
     #bankDetailsPage {
-        border: 3px solid purple;
+        /* border: 3px solid purple; */
         padding: 1rem;
     }
 
     .chequeUploadContainerParent {
         flex-direction: column;
         gap: 0.5rem;
-        border: 1px solid red;
+        /* border: 1px solid red; */
     }
 
     .chequeUploadContainer {

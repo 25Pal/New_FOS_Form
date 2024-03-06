@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Select from 'react-select';
-
+import { ToastContainer, toast } from "react-toastify"
+import 'react-toastify/dist/ReactToastify.css';
 import './OutletTimingTable.css'
 function OutletTimingTable({ Day, timeList, handleSwitch, switchh, slot, handleAddSlot, handleRemoveSlot, saveSelectedTime, timeDropdown }) {
 
@@ -25,7 +26,6 @@ function OutletTimingTable({ Day, timeList, handleSwitch, switchh, slot, handleA
   // console.log("Slots data to child ----->", slot)
   function addSlot() {
 
-
     let newFromTimeList = "";
 
     let checkExistingEntryIndex = slot.findIndex(entry => entry.day === Day);
@@ -41,7 +41,6 @@ function OutletTimingTable({ Day, timeList, handleSwitch, switchh, slot, handleA
       if (lastSlot.to !== "Select Time") {
         let lastSlotTime = lastSlot.to;
         let lastSlotTimeIndex = timeList.findIndex(time => time === lastSlot.to);
-
         newFromTimeList = timeList.slice(lastSlotTimeIndex + 1);
       }
 
@@ -51,8 +50,14 @@ function OutletTimingTable({ Day, timeList, handleSwitch, switchh, slot, handleA
       }
 
       handleAddSlot(Day, obj, timeObj, lastSlot.to);
+
     } else {
-      alert("Please select both 'From' and 'To' times in the last slot before adding a new one.");
+
+      // alert("Please select both 'From' and 'To' times in the last slot before adding a new one.");
+      toast.dark("Please Select Proper Time !",{
+        position: "top-center",
+      });
+
     }
 
   }

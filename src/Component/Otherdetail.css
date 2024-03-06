@@ -63,7 +63,7 @@
 
     #otherDeatilPage {
         grid-auto-flow: row;
-        border: 3px solid rgb(66, 207, 27);
+        /* border: 3px solid rgb(66, 207, 27); */
     padding: 1rem;
     gap: 1rem;
 
@@ -98,7 +98,7 @@
 
     #otherDeatilPage {
         grid-auto-flow: row;
-        border: 3px solid rgb(42, 203, 198);
+        /* border: 3px solid rgb(42, 203, 198); */
 
         padding: 1rem;
         gap: 1rem;
@@ -142,7 +142,7 @@
 
     #otherDeatilPage {
         grid-auto-flow: row;
-        border: 3px solid rgb(220, 15, 15);
+        /* border: 3px solid rgb(220, 15, 15); */
         padding: 1rem;
         gap: 1rem;
     }
