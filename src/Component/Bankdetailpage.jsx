@@ -88,6 +88,7 @@ function BankDetailPage({ values, handleBlur, handleChange, touched, errors }) {
     } else {
       toast.dark("Please Upload Cheque Image !", {
         position: "top-center",
+        className: 'toast-center'
       })
     }
 

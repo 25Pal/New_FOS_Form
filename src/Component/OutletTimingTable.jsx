@@ -56,6 +56,7 @@ function OutletTimingTable({ Day, timeList, handleSwitch, switchh, slot, handleA
       // alert("Please select both 'From' and 'To' times in the last slot before adding a new one.");
       toast.dark("Please Select Proper Time !",{
         position: "top-center",
+        className: 'toast-center'
       });
 
     }
