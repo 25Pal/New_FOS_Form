@@ -213,6 +213,7 @@ function comapanyDetailPage({ values, handleBlur, handleChange, touched, errors 
                 id='ownertype'
                 options={options1}
                 styles={customStyles}
+                isSearchable={false}
                 value={options1.find((option) => option.value === values.ownership)}
                 onChange={(selectedOption) => handleChange({ target: { name: "ownership", value: selectedOption.value } })} 
                
@@ -234,6 +235,7 @@ function comapanyDetailPage({ values, handleBlur, handleChange, touched, errors 
                 id='bustype'
                 options={options2}
                 styles={customStyles}
+                isSearchable={false}
                 value={options2.find((option) => option.value === values.ownership)}
                 onChange={(selectedOption) => handleChange({ target: { name: "type_of_business", value: selectedOption.value } })}
 

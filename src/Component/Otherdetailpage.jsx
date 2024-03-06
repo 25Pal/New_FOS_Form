@@ -255,6 +255,7 @@ function Otherdetailpage({ values, handleBlur, handleChange, touched, errors }) 
                 id='fosInputField'
                 options={FOSIDs}
                 styles={customStyles1}
+                isSearchable={false}
                 // value={values.fos_id} 
                 value={FOSIDs.find((option) => option.value === values.fos_id)}
                 onChange={(selectedOption) => handleChange({ target: { name: "fos_id", value: selectedOption.value } })}

@@ -201,6 +201,7 @@ function OutletTimingTable({ Day, timeList, handleSwitch, switchh, slot, handleA
                         styles={customStyles3}
                         className={`${switchh === undefined || !switchh ? 'disable_elements' : ''}`}
                         disabled={switchh === undefined || !switchh}
+                        isSearchable={false}
                         onChange={(selectedOption) => handleSelectSlotTime(selectedOption.value, 'from', slotIndex)}
                         options={filteredSlot.timeDropdown[slotIndex].fromTimeList.map((time) => ({ value: time, label: time }))} // Convert time array to options format
                       />
@@ -237,6 +238,7 @@ function OutletTimingTable({ Day, timeList, handleSwitch, switchh, slot, handleA
                         value={{ value: oneSlot.to, label: oneSlot.to }}
                         // classNamePrefix="select"
                         styles={customStyles3}
+                        isSearchable={false}
                         className={`${switchh === undefined || !switchh ? 'disable_elements' : ''}`}
                         disabled={switchh === undefined || !switchh}
                         onChange={(selectedOption) => handleSelectSlotTime(selectedOption.value, 'to', slotIndex)}
