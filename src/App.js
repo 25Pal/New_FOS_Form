@@ -51,8 +51,7 @@ function App() {
       "Outlet_address_locality": "",
 
       //Timing Pending 
-
-
+      "timeData":[],
       //Menu Upload Pending(New UI)
 
       "menuImage":"",
@@ -78,6 +77,7 @@ function App() {
       
       //Mobile Number
       "o_mnumber": "",
+
       //Signing  Mail
       "s_a_email": "",
 
@@ -98,7 +98,7 @@ function App() {
       "bankaccountnum": "",
       //IFSC code 
       "ifsc": "",
-      //Bank Name  Missing
+      //Bank Name  
       "userBankName": "",
 
 
@@ -118,6 +118,7 @@ function App() {
       "fos_id": "",
       "remarks": "",
 
+
       "Outlet_address_pincode": "",
       "Billing_address_pincode": "",
       "Billing_address_locality": "",
@@ -132,6 +133,8 @@ function App() {
       "menu_url": "",
     }
   )
+
+  
   const [isRefReady, setIsRefReady] = useState(false);
 
   useEffect(() => {
@@ -140,6 +143,15 @@ function App() {
     }
   }, [brandNameRef]);
 
+  const handlTimeReturn = (timeDataArray) =>{
+    console.log("------------>>>>>=========",timeDataArray)
+    handleChange({
+      target: {
+        name: 'timeData', // Name of the field to update
+        value: timeDataArray // New value for the field
+      }
+    });
+  }
 
   //------------------  Formik Integration ----------------------\\
   const { values, errors, touched, handleBlur, handleChange, handleSubmit, setErrors, setTouched, setFieldError } = useFormik({
@@ -149,18 +161,22 @@ function App() {
     
     onSubmit: async (values) => {
       console.log("Formik Values ---->", values);
+      
+    console.log("Validation Errors ---->", errors);
 
+      
       // const response =  axios.post("https://apis.saveeat.in/api/v1/adminUser/getfosdata1", values)
-      const response = await axios.post("http://localhost:3032/api/v1/adminUser/getfosdata1", values);
+      // const response = await axios.post("http://localhost:3032/api/v1/adminUser/getfosdata1", values);
 
-      console.log(response.data);
 
     }
 
   });
 
+  
+ 
 
-  console.log("Values --->", formData)
+
 
   const handleSubmit1 = (e) => {
     e.preventDefault();
@@ -169,7 +185,6 @@ function App() {
     const isInvalid = Object.keys(errors).some((key) => touched[key] && errors[key]);
 
     if (isInvalid) {
-      console.log("11111111")
 
       const firstInvalidField = Object.keys(errors).find((key) => touched[key] && errors[key]);
       console.log("firstInvalidField---->", firstInvalidField, touched)
@@ -192,25 +207,23 @@ function App() {
   };
 
 
+
   return (
 
     <div className="App" >
 
-      <form className='MainForm'
-        onSubmit={handleSubmit1}
-      >
+      <form className='MainForm' onSubmit={handleSubmit1}>
 
-        <HeaderImage />
+            <HeaderImage />
+            <Outletdetailpage handleChange={handleChange} handleBlur={handleBlur} values={values} errors={errors} touched={touched} brandNameRef={brandNameRef}  handlTimeReturn={handlTimeReturn} />
+            <Compannydetailpage handleChange={handleChange} handleBlur={handleBlur} values={values} errors={errors} touched={touched} />
+            <Bankdetailspage handleChange={handleChange} handleBlur={handleBlur} values={values} errors={errors} touched={touched} />
+            <Commisiondetailpage handleChange={handleChange} handleBlur={handleBlur} values={values} errors={errors} touched={touched} />
+            <Otherdetailpage handleChange={handleChange} handleBlur={handleBlur} values={values} errors={errors} touched={touched} />
 
-        <Outletdetailpage handleChange={handleChange} handleBlur={handleBlur} values={values} errors={errors} touched={touched} brandNameRef={brandNameRef} />
-        <Compannydetailpage handleChange={handleChange} handleBlur={handleBlur} values={values} errors={errors} touched={touched} />
-        <Bankdetailspage handleChange={handleChange} handleBlur={handleBlur} values={values} errors={errors} touched={touched} />
-        <Commisiondetailpage handleChange={handleChange} handleBlur={handleBlur} values={values} errors={errors} touched={touched} />
-        <Otherdetailpage handleChange={handleChange} handleBlur={handleBlur} values={values} errors={errors} touched={touched} />
-
-        <div className='saveBtn'>
-          <button type='submit'> Submit </button>
-        </div>
+            <div className='saveBtn'>
+              <button type='submit'> Submit </button>
+            </div>
 
       </form>
 

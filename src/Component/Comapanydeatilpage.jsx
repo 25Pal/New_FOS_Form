@@ -70,12 +70,13 @@ function comapanyDetailPage({ values, handleBlur, handleChange, touched, errors 
 
               <div className='singleDetail'>
                 <div>
-                  <label>GSTIN Number  </label><span className='mandatory'> *</span>
+                  <label>GSTIN Number  </label>
+                  {/* <span className='mandatory'> *</span> */}
 
                 </div>
                 <div className='errorcontainr'>
-                  <input name='gstin' placeholder='Enter 15 digit GSTIN Number' maxLength={15} value={values.gstin} onChange={handleChange} onBlur={handleBlur} />
-                  {errors.gstin && touched.gstin ? <p className='form-error'  > {errors.gstin}  </p> : null}
+                  <input name='gstin' placeholder='Enter 15 digit GSTIN Number' maxLength={15} value={values.gstin} onChange={handleChange}  />
+                  {/* {errors.gstin && touched.gstin ? <p className='form-error'  > {errors.gstin}  </p> : null} */}
 
                 </div>
 
@@ -87,17 +88,7 @@ function comapanyDetailPage({ values, handleBlur, handleChange, touched, errors 
             <div className='subInputField'>
 
               <div className='singleDetail' >
-                <div>
-                  <label> FASSAI Refrence Number</label>
-
-                </div>
-                <div className='errorcontainr'>
-                <input name='fssairef' placeholder='Enter 17 digit FSSAI Refrence Number' maxLength={17} value={values.fssairef} onChange={handleChange} />
-
-                </div>
-              </div>
-              <div className='singleDetail' >
-                <div>
+              <div>
                   <label>   FSSAI License Number</label><span className='mandatory'> *</span>
 
                 </div>
@@ -107,6 +98,22 @@ function comapanyDetailPage({ values, handleBlur, handleChange, touched, errors 
                 {errors.fssai && touched.fssai ? <p className='form-error'  > {errors.fssai}  </p> : null}
 
                 </div>
+              </div>
+              <div className='singleDetail' >
+
+
+              <div>
+                  <label> FSSAI Refrence Number</label>
+
+                </div>
+                <div className='errorcontainr'>
+                <input name='fssairef' placeholder='Enter 17 digit FSSAI Refrence Number' maxLength={17} value={values.fssairef} onChange={handleChange} />
+
+                </div>
+
+
+
+                
                
               </div>
 
@@ -153,7 +160,7 @@ function comapanyDetailPage({ values, handleBlur, handleChange, touched, errors 
               <div className='singleDetail' >
                 <label> Mobile Number </label>
                 <div className='errorcontainr'>
-                <input name='o_mnumber' placeholder='Enter Signing Number' value={values.o_mnumber} onChange={handleChange} onBlur={handleBlur} />
+                <input name='o_mnumber'  maxLength={10} placeholder='Enter Signing Number' value={values.o_mnumber} onChange={handleChange} onBlur={handleBlur} />
                 {errors.o_mnumber && touched.o_mnumber ? <p className='form-error'  > {errors.o_mnumber}  </p> : null}
 
                 </div>
@@ -173,6 +180,7 @@ function comapanyDetailPage({ values, handleBlur, handleChange, touched, errors 
 
             </div>
           </div>
+
           <hr style={{ marginTop: "15px", boxShadow: "0px 0.6px 5px #CFCCCC", color: "#CFCCC" }} />
 
           <div className=' subDiv1 billingDetails'>
@@ -182,7 +190,7 @@ function comapanyDetailPage({ values, handleBlur, handleChange, touched, errors 
             </h6>
 
             <div className='errorcontainr'>
-              <textarea style={{ height: "50px" }} name='Billing_address_street' value={values.Billing_address_street} placeholder=' Enter Biling Address' onChange={handleChange} onBlur={handleBlur}>
+              <textarea  style={{ height: "50px",  padding:"10px" , outline:"none"  , border:"1px solid #d4d4d4" , borderRadius:"5px"}} name='Billing_address_street' value={values.Billing_address_street} placeholder=' Enter Billing Address' onChange={handleChange} onBlur={handleBlur}>
 
               </textarea>
               {errors.Billing_address_street && touched.Billing_address_street ? <p className='form-error'  > {errors.Billing_address_street}  </p> : null}
@@ -206,7 +214,8 @@ function comapanyDetailPage({ values, handleBlur, handleChange, touched, errors 
                 options={options1}
                 styles={customStyles}
                 value={options1.find((option) => option.value === values.ownership)}
-                onChange={(selectedOption) => handleChange({ target: { name: "ownership", value: selectedOption.value } })}
+                onChange={(selectedOption) => handleChange({ target: { name: "ownership", value: selectedOption.value } })} 
+               
               />
               {errors.ownership && touched.ownership ? <p className='form-error'  > {errors.ownership}  </p> : null}
 
