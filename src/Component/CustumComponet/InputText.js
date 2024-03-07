@@ -39,7 +39,7 @@ const InputText = ({
           id={idName}
           {...register(`${dynamicKey ? dynamicKey + "." : ""}${idName}`, {
             required: {
-              value: required ? false : false,
+              value: required ? true : false,
               message: `${labelName} Is Required`,
             },
             ...(type === "email" && {
