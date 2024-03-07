@@ -155,7 +155,7 @@ function App() {
   }
 
   //------------------  Formik Integration ----------------------\\
-  const { values, errors, touched, handleBlur, handleChange, handleSubmit, setErrors, setTouched, setFieldError } = useFormik({
+  const { values, errors, touched, handleBlur, handleChange, handleSubmit, setErrors, setTouched, setFieldError , handleReset} = useFormik({
 
     initialValues: formData,
     validationSchema: signUpSchema,
@@ -166,11 +166,13 @@ function App() {
     console.log("Validation Errors ---->", errors);
 
       
-      const response =  axios.post("https://apis.saveeat.in/api/v1/adminUser/getfosdata1", values)
-      // const response = await axios.post("http://localhost:3032/api/v1/adminUser/getfosdata1", values);
+      // const response =  axios.post("https://apis.saveeat.in/api/v1/adminUser/getfosdata1", values)
+      const response = await axios.post("http://localhost:3032/api/v1/adminUser/getfosdata1", values);
+      handleReset();
 
-
-    }
+    },
+   
+    
 
   });
 

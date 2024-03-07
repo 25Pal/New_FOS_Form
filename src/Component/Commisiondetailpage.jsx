@@ -22,6 +22,7 @@ function Commisiondetailpage({values,handleBlur,handleChange, touched, errors}) 
                     <input
                         id='commInputField'
                         name='comm'
+                        type='number'
                         value={values.comm}
                         placeholder='Enter Commission'
                         // onChange={handleInputChange}
