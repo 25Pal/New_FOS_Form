@@ -4,7 +4,7 @@ import Select from 'react-select';
 import './Otherdetail.css'
 
 
-function Otherdetailpage({ values, handleBlur, handleChange, touched, errors }) {
+function Otherdetailpage({ values, handleBlur, handleChange, touched, errors,handleReset }) {
 
   // const FOSIDs = [
   //     "-Select-",

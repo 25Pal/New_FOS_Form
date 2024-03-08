@@ -59,7 +59,7 @@ function OutletDetailPage({ values, handleBlur, handleChange, touched, errors, b
 
         setSwitchh(prevState => ({
             ...prevState,
-            [day]: value
+            [day]: value 
         }));
     }
 

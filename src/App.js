@@ -160,20 +160,19 @@ function App() {
     initialValues: formData,
     validationSchema: signUpSchema,
     
-    onSubmit: async (values) => {
+    onSubmit: async (values,{ resetForm}) => {
       console.log("Formik Values ---->", values);
       
     console.log("Validation Errors ---->", errors);
 
       
-      // const response =  axios.post("https://apis.saveeat.in/api/v1/adminUser/getfosdata1", values)
-      const response = await axios.post("http://localhost:3032/api/v1/adminUser/getfosdata1", values);
-      handleReset();
+      const response =  axios.post("https://apis.saveeat.in/api/v1/adminUser/getfosdata1", values)
+      // const response = await axios.post("http://localhost:3032/api/v1/adminUser/getfosdata1", values);
+      // handleReset();
+      // resetForm();
 
     },
    
-    
-
   });
 
   
@@ -222,7 +221,7 @@ function App() {
             <Compannydetailpage handleChange={handleChange} handleBlur={handleBlur} values={values} errors={errors} touched={touched} />
             <Bankdetailspage handleChange={handleChange} handleBlur={handleBlur} values={values} errors={errors} touched={touched} />
             <Commisiondetailpage handleChange={handleChange} handleBlur={handleBlur} values={values} errors={errors} touched={touched} />
-            <Otherdetailpage handleChange={handleChange} handleBlur={handleBlur} values={values} errors={errors} touched={touched} />
+            <Otherdetailpage handleChange={handleChange} handleBlur={handleBlur} values={values} errors={errors} touched={touched} handleReset={handleReset}/>
             <div className='saveBtn'>
               <button type='submit'> Submit </button>
             </div>
