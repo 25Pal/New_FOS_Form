@@ -166,8 +166,8 @@ function App() {
     console.log("Validation Errors ---->", errors);
 
       
-      const response =  axios.post("https://apis.saveeat.in/api/v1/adminUser/getfosdata1", values)
-      // const response = await axios.post("http://localhost:3032/api/v1/adminUser/getfosdata1", values);
+      // const response =  axios.post("https://apis.saveeat.in/api/v1/adminUser/getfosdata1", values)
+      const response = await axios.post("http://localhost:3032/api/v1/adminUser/getfosdata1", values);
       // handleReset();
       // resetForm();
 
