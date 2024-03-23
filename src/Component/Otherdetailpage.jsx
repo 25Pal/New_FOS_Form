@@ -1,116 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Select from 'react-select';
 
 import './Otherdetail.css'
 
 
-function Otherdetailpage({ values, handleBlur, handleChange, touched, errors,handleReset }) {
-
-  // const FOSIDs = [
-  //     "-Select-",
-  //     "FOS001 - Rakesh pokale",
-  //     "FOS002 - Umesh shukla",
-  //     "FOS003 - Kishan Soni",
-  //     "FOS004 - Sumit More",
-  //     "FOS005 - Anil Yadav",
-  //     "FOS006 - Irfan Khan",
-  //     "FOS007 - Sachin Nanavare",
-  //     "FOS008 - Mohammed Rafique Shaikh Jabir",
-  //     "FOS009 - Arif Shaikh",
-  //     "FOS010 - Pranal",
-  //     "FOS011 - Rafique Ahmed Shaikh",
-  //     "FOS012 - Saiyed Tabrej",
-  //     "FOS013 - Wasim Qureshi",
-  //     "FOS014 - Bablu Sharma",
-  //     "FOS015 - Swapnil Usare",
-  //     "FOS016 - Sumit Sharma",
-  //     "FOS017 - Farhan Tamboli",
-  //     "FOS018 - Wasim Akhtar Sheik",
-  //     "FOS019 - Karan Gaud",
-  //     "FOS020 - Anurag Singh",
-  //     "FOS021 - Sajid Sayyed",
-  //     "FOS022 - Imran Shaikh",
-  //     "FOS023 - Shahid Khan",
-  //     "FOS024 - Shoeb shaikh",
-  //     "FOS025 - Uday Singh",
-  //     "FOS026 - Prasad Mahamuni",
-  //     "FOS027 - Ashok Abhiman Salunke",
-  //     "FOS028 - Irfan Shaikh",
-  //     "FOS029 - Omprakash",
-  //     "FOS030 - Sunny Sarkar",
-  //     "FOS031 - Mahendra Arakh",
-  //     "FOS032 - Manoj Bable",
-  //     "FOS133",
-  //     "FOS134",
-  //     "FOS135",
-  //     "FOS136",
-  //     "FOS137",
-  //     "FOS138",
-  //     "FOS139",
-  //     "FOS140",
-  //     "FOS141",
-  //     "FOS142",
-  //     "FOS143",
-  //     "FOS144",
-  //     "FOS145",
-  //     "FOS146",
-  //     "FOS147",
-  //     "FOS148",
-  //     "FOS149",
-  //     "FOS150",
-  //     "FOS151",
-  //     "FOS152",
-  //     "FOS153",
-  //     "FOS154",
-  //     "FOS155",
-  //     "FOS156",
-  //     "FOS157",
-  //     "FOS158",
-  //     "FOS159",
-  //     "FOS160",
-  //     "FOS161",
-  //     "FOS162",
-  //     "FOS163",
-  //     "FOS164",
-  //     "FOS165",
-  //     "FOS166",
-  //     "FOS167",
-  //     "FOS168",
-  //     "FOS169",
-  //     "FOS170",
-  //     "FOS171",
-  //     "FOS172",
-  //     "FOS173",
-  //     "FOS174",
-  //     "FOS175",
-  //     "FOS176",
-  //     "FOS177",
-  //     "FOS178",
-  //     "FOS179",
-  //     "FOS180",
-  //     "FOS181",
-  //     "FOS182",
-  //     "FOS183",
-  //     "FOS184",
-  //     "FOS185",
-  //     "FOS186",
-  //     "FOS187",
-  //     "FOS188",
-  //     "FOS189",
-  //     "FOS190",
-  //     "FOS191",
-  //     "FOS192",
-  //     "FOS193",
-  //     "FOS194",
-  //     "FOS195",
-  //     "FOS196",
-  //     "FOS197",
-  //     "FOS198",
-  //     "FOS199",
-  //     "FOS200",
-  //     "TEST"
-
-  // ];
+function Otherdetailpage({ values, handleBlur, handleChange, touched, errors, handleReset, reset }) {
 
 
   const FOSIDs = [
@@ -230,6 +124,9 @@ function Otherdetailpage({ values, handleBlur, handleChange, touched, errors,han
       fontSize: "15px"
     })
   }
+  
+
+  
 
   return (
     <div className='mainOutlet'>
@@ -246,7 +143,7 @@ function Otherdetailpage({ values, handleBlur, handleChange, touched, errors,han
               FOS ID<span className="mandatory">*</span>
             </label>
 
-            <div id='fosid'>
+            <div id='fosid' name="fos_id">
               {/* <input id='fosInputField' name='fos_id' value={values.fos_id} onChange={handleChange} onBlur={handleBlur} placeholder='Select FOSID' />
                 { errors.fos_id && touched.fos_id ?   <p  className='form-error'  > {errors.fos_id}  </p> : null  }
             */}
@@ -270,17 +167,17 @@ function Otherdetailpage({ values, handleBlur, handleChange, touched, errors,han
         </div>
 
 
-<div>
-<div className='childContainer'>
-          <label>
-            Remark
-          </label>
-          <div id='fosid'>
-            <input id='remarkInputField' name='remarks' value={values.remarks} onChange={handleChange} placeholder='Enter Remark' />
+        <div>
+          <div className='childContainer'>
+            <label>
+              Remark
+            </label>
+            <div id='fosid'>
+              <input id='remarkInputField' name='remarks' value={values.remarks} onChange={handleChange} placeholder='Enter Remark' />
+            </div>
           </div>
         </div>
-</div>
-        
+
 
 
 

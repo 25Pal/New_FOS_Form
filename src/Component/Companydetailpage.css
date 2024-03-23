@@ -112,6 +112,8 @@
     /* margin-bottom: 1rem; */
     outline: none;
     padding: 0.5rem;
+    min-width: 100%;
+    
     /* border: 1px solid black; */
 }
 

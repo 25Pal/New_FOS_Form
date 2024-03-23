@@ -46,7 +46,7 @@ export const signUpSchema = Yup.object({
     //GSTIN
     gstin: Yup.string().min(15, "GSTIN should be exact 15 Digit").max(15, "GSTIN should be exact 15 Digit"),
     //FASSAI Licencse 
-    fssai: Yup.string().min(14, "FSSAI License should be exact 14 Digit").max(14, "FSSAI License should be exact 14 Digit").required("Please Enter Valid FSSAI License Number"),
+    fssai: Yup.string().required("Invalid FSSAI License Number"),
     //FASSAI Ref Num
     fssairef: Yup.string().min(0, "FSSAI Refrence should be exact 17 Digit").max(17, "FSSAI Refrence should be exact 17 Digit"),
 

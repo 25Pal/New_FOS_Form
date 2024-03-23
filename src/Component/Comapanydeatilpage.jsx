@@ -53,68 +53,78 @@ function comapanyDetailPage({ values, handleBlur, handleChange, touched, errors 
           <div className='identityDetails'>
             <div className='subInputField'>
 
-              <div className='singleDetail'>
+              <div>
+                <div className='singleDetail'>
+                  <div>
+                    <label>PAN Number</label><span className='mandatory'> *</span>
 
-                <div>
-                  <label>PAN Number</label><span className='mandatory'> *</span>
+                  </div>
+
+                  <div className='errorcontainr'>
+                    <input name='pan' placeholder='Enter 10 digit PAN Card Number' maxLength={10} value={values.pan} onChange={handleChange} onBlur={handleBlur} />
+
+                  </div>
 
                 </div>
-                <div className='errorcontainr'>
-                  <input name='pan' placeholder='Enter 10 digit PAN Card Number' maxLength={10} value={values.pan} onChange={handleChange} onBlur={handleBlur} />
-                  {errors.pan && touched.pan ? <p className='form-error'  > {errors.pan}  </p> : null}
+                {errors.pan && touched.pan ? <p className='form-error'  > {errors.pan}  </p> : null}
+
+
+              </div>
+
+              <div>
+                <div className='singleDetail'>
+                  <div>
+                    <label>GSTIN Number  </label>
+                    {/* <span className='mandatory'> *</span> */}
+
+                  </div>
+                  <div className='errorcontainr'>
+                    <input name='gstin' placeholder='Enter 15 digit GSTIN Number' maxLength={15} value={values.gstin} onChange={handleChange} />
+                    {/* {errors.gstin && touched.gstin ? <p className='form-error'  > {errors.gstin}  </p> : null} */}
+
+                  </div>
 
                 </div>
 
               </div>
 
-
-              <div className='singleDetail'>
-                <div>
-                  <label>GSTIN Number  </label>
-                  {/* <span className='mandatory'> *</span> */}
-
-                </div>
-                <div className='errorcontainr'>
-                  <input name='gstin' placeholder='Enter 15 digit GSTIN Number' maxLength={15} value={values.gstin} onChange={handleChange}  />
-                  {/* {errors.gstin && touched.gstin ? <p className='form-error'  > {errors.gstin}  </p> : null} */}
-
-                </div>
-
-              </div>
             </div>
 
 
 
             <div className='subInputField'>
-
-              <div className='singleDetail' >
               <div>
-                  <label>   FSSAI License Number</label><span className='mandatory'> *</span>
+                <div className='singleDetail' >
+                  <div>
+                    <label>   FSSAI License Number</label><span className='mandatory'> *</span>
 
+                  </div>
+
+                  <div className='errorcontainr'>
+
+
+                    <input name='fssai' placeholder='Enter 14 digit FSSAI License Number' maxLength={14} value={values.fssai} onChange={handleChange} onBlur={handleBlur} />
+
+                  </div>
                 </div>
-
-                <div className='errorcontainr'>
-                <input name='fssai' placeholder='Enter 14 digit FSSAI License Number' maxLength={14} value={values.fssai} onChange={handleChange} onBlur={handleBlur} />
                 {errors.fssai && touched.fssai ? <p className='form-error'  > {errors.fssai}  </p> : null}
 
-                </div>
               </div>
-              <div className='singleDetail' >
-
 
               <div>
-                  <label> FSSAI Refrence Number</label>
 
+                <div className='singleDetail' >
+
+
+                  <div>
+                    <label> FSSAI Refrence Number</label>
+
+                  </div>
+                  <div className='errorcontainr'>
+                    <input name='fssairef' placeholder='Enter 17 digit FSSAI Refrence Number' maxLength={17} value={values.fssairef} onChange={handleChange} />
+
+                  </div>
                 </div>
-                <div className='errorcontainr'>
-                <input name='fssairef' placeholder='Enter 17 digit FSSAI Refrence Number' maxLength={17} value={values.fssairef} onChange={handleChange} />
-
-                </div>
-
-
-
-                
-               
               </div>
 
 
@@ -133,49 +143,68 @@ function comapanyDetailPage({ values, handleBlur, handleChange, touched, errors 
           </div>
           <div className='signingDetails'>
 
+
             <div className='subInputField' >
 
-              <div className='singleDetail'>
-                <label> Name</label>
-                <div className='errorcontainr'>
-                <input name='registered_name' placeholder='Enter Signing Name' value={values.registered_name} onChange={handleChange} onBlur={handleBlur} />
+              <div>
+                <div className='singleDetail'>
+                  <label> Name</label>
+                  <div className='errorcontainr'>
+                    <input name='registered_name' placeholder='Enter Signing Name' value={values.registered_name} onChange={handleChange} onBlur={handleBlur} />
+
+                  </div>
+
+                </div>
                 {errors.registered_name && touched.registered_name ? <p className='form-error'  > {errors.registered_name}  </p> : null}
 
-                </div>
-                
+
               </div>
 
 
-              <div className='singleDetail' >
-                <label> Designation </label>
-                <div className='errorcontainr'>
-                <input name='role' placeholder='Enter Signing Designation' value={values.role} onChange={handleChange} onBlur={handleBlur} />
+              <div>
+                <div className='singleDetail' >
+                  <label> Designation </label>
+                  <div className='errorcontainr'>
+                    <input name='role' placeholder='Enter Signing Designation' value={values.role} onChange={handleChange} onBlur={handleBlur} />
+
+                  </div>
+
+                </div>
                 {errors.role && touched.role ? <p className='form-error'  > {errors.role}  </p> : null}
 
-                </div>
 
               </div>
+
             </div>
             <div className='subInputField'>
+              <div>
               <div className='singleDetail' >
                 <label> Mobile Number </label>
                 <div className='errorcontainr'>
-                <input name='o_mnumber'  maxLength={10} placeholder='Enter Signing Number' value={values.o_mnumber} onChange={handleChange} onBlur={handleBlur} />
-                {errors.o_mnumber && touched.o_mnumber ? <p className='form-error'  > {errors.o_mnumber}  </p> : null}
+                  <input name='o_mnumber' maxLength={10} placeholder='Enter Signing Number' value={values.o_mnumber} onChange={handleChange} onBlur={handleBlur} />
 
                 </div>
-                
-              </div>
 
-              <div className='singleDetail'>
+              </div>
+              {errors.o_mnumber && touched.o_mnumber ? <p className='form-error'  > {errors.o_mnumber}  </p> : null}
+
+
+              </div>
+              
+<div>
+<div className='singleDetail'>
                 <label>   Email </label>
                 <div className='errorcontainr'>
-                <input name='s_a_email' placeholder='Enter Signing Email' value={values.s_a_email} onChange={handleChange} onBlur={handleBlur} />
-                {errors.s_a_email && touched.s_a_email ? <p className='form-error'  > {errors.s_a_email}  </p> : null}
+                  <input name='s_a_email' placeholder='Enter Signing Email' value={values.s_a_email} onChange={handleChange} onBlur={handleBlur} />
 
                 </div>
-                
+
               </div>
+              {errors.s_a_email && touched.s_a_email ? <p className='form-error'  > {errors.s_a_email}  </p> : null}
+
+
+</div>
+             
 
 
             </div>
@@ -183,20 +212,20 @@ function comapanyDetailPage({ values, handleBlur, handleChange, touched, errors 
 
           <hr style={{ marginTop: "15px", boxShadow: "0px 0.6px 5px #CFCCCC", color: "#CFCCC" }} />
 
-          <div className=' subDiv1 billingDetails'>
+          <div className=' subDiv1 billingDetails' style={{"marginBottom": "2.5rem"}}>
 
             <h6>
-              Registered Address / Billing Address<span className='mandatory'>*</span>
+              Registered Address / Billing Address <span className='mandatory'>*</span>
             </h6>
 
             <div className='errorcontainr'>
-              <textarea  style={{ height: "50px",  padding:"10px" , outline:"none"  , border:"1px solid #d4d4d4" , borderRadius:"5px"}} name='Billing_address_street' value={values.Billing_address_street} placeholder=' Enter Billing Address' onChange={handleChange} onBlur={handleBlur}>
+              <textarea style={{ height: "50px", padding: "10px", outline: "none", border: "1px solid #d4d4d4", borderRadius: "5px" }} name='Billing_address_street' value={values.Billing_address_street} placeholder=' Enter Billing Address' onChange={handleChange} onBlur={handleBlur}>
 
               </textarea>
               {errors.Billing_address_street && touched.Billing_address_street ? <p className='form-error'  > {errors.Billing_address_street}  </p> : null}
 
             </div>
-            
+
 
           </div>
 
@@ -208,16 +237,19 @@ function comapanyDetailPage({ values, handleBlur, handleChange, touched, errors 
               <h6>
                 Ownership Type<span className='mandatory'> *</span>
               </h6>
+              <div name="ownership">
+                <Select
+                  id='ownertype'
+                  options={options1}
+                  styles={customStyles}
+                  isSearchable={false}
+                  value={options1.find((option) => option.value === values.ownership)}
+                  onChange={(selectedOption) => handleChange({ target: { name: "ownership", value: selectedOption.value } })}
 
-              <Select
-                id='ownertype'
-                options={options1}
-                styles={customStyles}
-                isSearchable={false}
-                value={options1.find((option) => option.value === values.ownership)}
-                onChange={(selectedOption) => handleChange({ target: { name: "ownership", value: selectedOption.value } })} 
-               
-              />
+                />
+
+              </div>
+
               {errors.ownership && touched.ownership ? <p className='form-error'  > {errors.ownership}  </p> : null}
 
 
@@ -231,15 +263,20 @@ function comapanyDetailPage({ values, handleBlur, handleChange, touched, errors 
 
               </h6>
 
-              <Select
-                id='bustype'
-                options={options2}
-                styles={customStyles}
-                isSearchable={false}
-                value={options2.find((option) => option.value === values.ownership)}
-                onChange={(selectedOption) => handleChange({ target: { name: "type_of_business", value: selectedOption.value } })}
+              <div name="type_of_business">
 
-              />
+                <Select
+                  id='bustype'
+                  options={options2}
+                  styles={customStyles}
+                  isSearchable={false}
+                  value={options2.find((option) => option.value === values.ownership)}
+                  onChange={(selectedOption) => handleChange({ target: { name: "type_of_business", value: selectedOption.value } })}
+
+                />
+              </div>
+
+
 
               {errors.type_of_business && touched.type_of_business ? <p className='form-error'  > {errors.type_of_business}  </p> : null}
 

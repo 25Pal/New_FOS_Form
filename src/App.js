@@ -7,15 +7,20 @@ import Outletdetailpage from './Component/Outletdetailpage';
 import HeaderImage from './Component/HeaderImage';
 import Otherdetailpage from './Component/Otherdetailpage';
 import Commisiondetailpage from './Component/Commisiondetailpage';
+
 import { useEffect, useState, useRef } from 'react';
+import { ToastContainer, toast } from "react-toastify"
 import { useFormik } from 'formik';
+
 import validator from 'validator';
 import axios from 'axios';
 import { signUpSchema } from "./schema";
-import { ToastContainer } from 'react-toastify';
+import CameraComponent from './Component/CameraComponent';
+import Outletphotos from './Component/OutletPhotosComponent';
 
 function App() {
   const brandNameRef = useRef(null);
+
 
   const [formData, setFormData] = useState(
 
@@ -29,7 +34,7 @@ function App() {
       "role": "",
       "bmob": "",
       "outletemail": "",
-      "bemail":"",
+      "bemail": "",
 
       //#M2
 
@@ -52,12 +57,12 @@ function App() {
       "Outlet_address_locality": "",
 
       //Timing Pending 
-      "timeData":[],
+      "timeData": [],
       //Menu Upload Pending(New UI)
 
-      "menuImage":"",
-      "menuFileName":"",
-      "menuFileSize":"",
+      "menuImage": "",
+      "menuFileName": "",
+      "menuFileSize": "",
 
 
 
@@ -75,7 +80,7 @@ function App() {
 
       //Signing Name
       "registered_name": "",
-      
+
       //Mobile Number
       "o_mnumber": "",
 
@@ -105,9 +110,9 @@ function App() {
 
       //Check Upload and Download Missing 
 
-      "userChequeImage":"",
-      "userChequeImageName":"",
-      "userChequeImageSize":"",
+      "userChequeImage": "",
+      "userChequeImageName": "",
+      "userChequeImageSize": "",
 
 
 
@@ -119,14 +124,18 @@ function App() {
       "fos_id": "",
       "remarks": "",
 
+      //Take a Photo
 
+      "ownerPhoto": "",
+      //Outlet 4 photos 
+      "outletphotos": [],
       "Outlet_address_pincode": "",
       "Billing_address_pincode": "",
       "Billing_address_locality": "",
 
       "loc": "",
-      "loc_lat": 19.1663,
-      "loc_lon": 72.8526,
+      "loc_lat": "",//Make Dynamic 
+      "loc_lon": "",// Make Dynamic 
       "w_o_time": "",
       "w_c_time": "",
       "wk_o_time": "",
@@ -135,7 +144,7 @@ function App() {
     }
   )
 
-  
+
   const [isRefReady, setIsRefReady] = useState(false);
 
   useEffect(() => {
@@ -144,96 +153,196 @@ function App() {
     }
   }, [brandNameRef]);
 
-  const handlTimeReturn = (timeDataArray) =>{
-    console.log("------------>>>>>=========",timeDataArray)
+  const handlTimeReturn = (timeDataArray) => {
+    console.log("------------>>>>>=========", timeDataArray)
     handleChange({
       target: {
-        name: 'timeData', // Name of the field to update
+        name: 'timeData',
         value: timeDataArray // New value for the field
       }
     });
   }
 
+  const saveOwnerPhoto = (photoData) => {
+    console.log("---------->saveOwnerPhoto", photoData);
+
+    handleChange({
+      target: {
+        name: 'ownerPhoto',
+        value: photoData,
+      }
+    });
+
+  }
+
+
+  const saveOutletsPhoto = (photoData) => {
+    console.log("---------->saveOutletsPhoto<-------", photoData);
+
+    handleChange({
+      target: {
+        name: 'outletphotos',
+        value: photoData,
+      }
+    });
+
+  }
+
   //------------------  Formik Integration ----------------------\\
-  const { values, errors, touched, handleBlur, handleChange, handleSubmit, setErrors, setTouched, setFieldError , handleReset} = useFormik({
+  const { values, errors, touched, handleBlur, handleChange, handleSubmit, setErrors, setTouched, setFieldError } = useFormik({
 
     initialValues: formData,
     validationSchema: signUpSchema,
-    
-    onSubmit: async (values,{ resetForm}) => {
-      console.log("Formik Values ---->", values);
-      
-    console.log("Validation Errors ---->", errors);
-
-      
-      // const response =  axios.post("https://apis.saveeat.in/api/v1/adminUser/getfosdata1", values)
-      const response = await axios.post("http://localhost:3032/api/v1/adminUser/getfosdata1", values);
-      // handleReset();
-      // resetForm();
-
+    onSubmit: async (values) => {
+      if (Object.keys(errors).length > 0) {
+        console.log("Inside Submit function =====>>>", values)
+      }
+      // axios.post("https://apis.saveeat.in/api/v1/adminUser/getfosdata1", values)
+      axios.post("http://localhost:3032/api/v1/adminUser/getfosdata1", values)
+        .then((response) => {
+          toast.success("Form Submitted Successfully!", {
+            position: "top-center",
+            autoClose: 2000,
+            onClose: () => {
+              // window.location.reload();
+            }
+          });
+        })
+        .catch((error) => {
+          // Handle error
+          toast.error("An error occurred. Please try again later.");
+        });
     },
-   
+
   });
 
-  
- 
 
 
-
-  const handleSubmit1 = (e) => {
+  const handleSubmit1 = async (e) => {
     e.preventDefault();
+    console.log("values.errors", values.errors, values)
+    console.log(" cheking values", values)
 
-    // Check if any fields are invalid
-    const isInvalid = Object.keys(errors).some((key) => touched[key] && errors[key]);
+    //here call function to set LAT and long 
+    let locationofoutlet = values.Outlet_address_street
+   await setLatitudeAndLongitude(locationofoutlet);
 
-    if (isInvalid) {
+    if (Object.keys(errors).length > 0) { // Change formik.errors to values.errors
 
-      const firstInvalidField = Object.keys(errors).find((key) => touched[key] && errors[key]);
-      console.log("firstInvalidField---->", firstInvalidField, touched)
-
-      setTouched((touched) => ({ ...touched, [firstInvalidField]: true }));
-
-      setFieldError(firstInvalidField, errors[firstInvalidField]);
-      console.log("setFieldError---->", errors);
-
-      if (isRefReady) {
-
-        const invalidFieldRef = brandNameRef.current;
-        invalidFieldRef.focus();
-      }
-
+      scrollToFirstError();
 
     } else {
       handleSubmit();
     }
   };
 
+  // Function to find the first field with an error and scroll to it
+  const scrollToFirstError = () => {
+    console.log("Inside scroll function !");
 
 
-  return (
 
-    <div className="App" >
+    const firstErrorField = Object.keys(errors)[0];
+    console.log("firstErrorField", firstErrorField);
 
-      <form className='MainForm' onSubmit={handleSubmit1}>
+    const firstErrorFieldElement = document.querySelector(`[name='${firstErrorField}']`);
+    console.log("firstErrorFieldElement", firstErrorFieldElement);
 
-            <HeaderImage />
-            <Outletdetailpage handleChange={handleChange} handleBlur={handleBlur} values={values} errors={errors} touched={touched} brandNameRef={brandNameRef}  handlTimeReturn={handlTimeReturn} />
-            <Compannydetailpage handleChange={handleChange} handleBlur={handleBlur} values={values} errors={errors} touched={touched} />
-            <Bankdetailspage handleChange={handleChange} handleBlur={handleBlur} values={values} errors={errors} touched={touched} />
-            <Commisiondetailpage handleChange={handleChange} handleBlur={handleBlur} values={values} errors={errors} touched={touched} />
-            <Otherdetailpage handleChange={handleChange} handleBlur={handleBlur} values={values} errors={errors} touched={touched} handleReset={handleReset}/>
-            <div className='saveBtn'>
-              <button type='submit'> Submit </button>
-            </div>
+    if (firstErrorFieldElement) {
 
-      </form>
+      if (firstErrorField === "menuImage") {
+        firstErrorFieldElement.style.display = 'block';
+      }
 
-      <ToastContainer />
+      firstErrorFieldElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
-     
+      firstErrorFieldElement.focus();
+      // Change display back to none after focusing
+      if (firstErrorField === "menuImage") {
 
-    </div>
-  );
-}
+        firstErrorFieldElement.style.display = 'none';
 
-export default App;
+      }
+
+      handleSubmit();
+
+    } else {
+
+      handleSubmit();
+
+    }
+  };
+
+/* global google */
+  const setLatitudeAndLongitude = (locationofoutlet) => {
+    console.log("setLatitudeAndLongitude ", locationofoutlet)
+
+
+    const geocoder = new google.maps.Geocoder();
+    geocoder.geocode({ address: locationofoutlet }, (results, status) => {
+      if (status === 'OK' && results.length > 0) {
+        const coordinates = results[0].geometry.location;
+        const latitude = coordinates.lat();
+        const longitude = coordinates.lng();
+
+
+        console.log("let long ,", latitude, longitude)
+
+        handleChange({
+          target: {
+            name: 'loc_lat',
+            value: latitude
+          }
+        });
+
+        handleChange({
+          target: {
+            name: 'loc_lon',
+            value: longitude
+          }
+        });
+
+
+      } else {
+        alert('Geocode was not successful for the following reason:', status);
+      }
+    });
+  }
+
+
+
+
+
+
+    return (
+
+      <div className="App" >
+
+        <form className='MainForm' onSubmit={handleSubmit1}>
+
+          <HeaderImage />
+          <Outletdetailpage handleChange={handleChange} handleBlur={handleBlur} values={values} errors={errors} touched={touched} brandNameRef={brandNameRef} handlTimeReturn={handlTimeReturn} />
+          <Compannydetailpage handleChange={handleChange} handleBlur={handleBlur} values={values} errors={errors} touched={touched} />
+          <Bankdetailspage handleChange={handleChange} handleBlur={handleBlur} values={values} errors={errors} touched={touched} />
+          <CameraComponent onPhotoCapture={(photoData) => saveOwnerPhoto(photoData)} handleChange={handleChange} />
+
+          <Outletphotos saveOutletsPhoto={saveOutletsPhoto} handleChange={handleChange} />
+
+          <Commisiondetailpage handleChange={handleChange} handleBlur={handleBlur} values={values} errors={errors} touched={touched} />
+          <Otherdetailpage handleChange={handleChange} handleBlur={handleBlur} values={values} errors={errors} touched={touched} />
+
+          <div className='saveBtn'>
+            <button type='submit'> Submit </button>
+          </div>
+
+        </form>
+
+        <ToastContainer />
+
+
+
+      </div>
+    );
+  }
+
+  export default App;
