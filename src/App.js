@@ -197,8 +197,9 @@ function App() {
       if (Object.keys(errors).length > 0) {
         console.log("Inside Submit function =====>>>", values)
       }
-      // axios.post("https://apis.saveeat.in/api/v1/adminUser/getfosdata1", values)
-      axios.post("http://localhost:3032/api/v1/adminUser/getfosdata1", values)
+      axios.post("https://apis.saveeat.in/api/v1/adminUser/getfosdata1", values)
+      // axios.post("http://localhost:3032/api/v1/adminUser/getfosdata1", values)
+
         .then((response) => {
           toast.success("Form Submitted Successfully!", {
             position: "top-center",
@@ -225,11 +226,14 @@ function App() {
 
     //here call function to set LAT and long 
     let locationofoutlet = values.Outlet_address_street
-   await setLatitudeAndLongitude(locationofoutlet);
+    console.log("waitinggg")
+    let success =  await setLatitudeAndLongitude(locationofoutlet);
 
-    if (Object.keys(errors).length > 0) { // Change formik.errors to values.errors
+   console.log("wait",success)
 
-      scrollToFirstError();
+    if (Object.keys(errors).length > 0 || success === false) { // Change formik.errors to values.errors
+
+      scrollToFirstError(success);
 
     } else {
       handleSubmit();
@@ -237,10 +241,8 @@ function App() {
   };
 
   // Function to find the first field with an error and scroll to it
-  const scrollToFirstError = () => {
+  const scrollToFirstError = (success) => {
     console.log("Inside scroll function !");
-
-
 
     const firstErrorField = Object.keys(errors)[0];
     console.log("firstErrorField", firstErrorField);
@@ -264,50 +266,59 @@ function App() {
 
       }
 
-      handleSubmit();
+      if(success === true){
+        handleSubmit();
+      }
+
+      
 
     } else {
 
-      handleSubmit();
+      if(success === true){
+        handleSubmit();
+      }
 
     }
   };
 
 /* global google */
-  const setLatitudeAndLongitude = (locationofoutlet) => {
-    console.log("setLatitudeAndLongitude ", locationofoutlet)
 
+const setLatitudeAndLongitude = (locationofoutlet) => {
+  console.log("setLatitudeAndLongitude ", locationofoutlet);
 
-    const geocoder = new google.maps.Geocoder();
-    geocoder.geocode({ address: locationofoutlet }, (results, status) => {
-      if (status === 'OK' && results.length > 0) {
-        const coordinates = results[0].geometry.location;
-        const latitude = coordinates.lat();
-        const longitude = coordinates.lng();
+  return new Promise((resolve, reject) => {
+      const geocoder = new google.maps.Geocoder();
+      geocoder.geocode({ address: locationofoutlet }, (results, status) => {
+          if (status === 'OK' && results.length > 0) {
+              const coordinates = results[0].geometry.location;
+              const latitude = coordinates.lat();
+              const longitude = coordinates.lng();
 
+              console.log("let long ,", latitude, longitude);
 
-        console.log("let long ,", latitude, longitude)
+              handleChange({
+                  target: {
+                      name: 'loc_lat',
+                      value: latitude
+                  }
+              });
 
-        handleChange({
-          target: {
-            name: 'loc_lat',
-            value: latitude
+              handleChange({
+                  target: {
+                      name: 'loc_lon',
+                      value: longitude
+                  }
+              });
+
+              resolve(true); // Resolve the promise with true
+          } else {
+              // alert('Geocode was not successful for the following reason:', status);
+              toast.error("Invalid Outlet Location !");
+              resolve(false); // Resolve the promise with false
           }
-        });
-
-        handleChange({
-          target: {
-            name: 'loc_lon',
-            value: longitude
-          }
-        });
-
-
-      } else {
-        alert('Geocode was not successful for the following reason:', status);
-      }
-    });
-  }
+      });
+  });
+};
 
 
 

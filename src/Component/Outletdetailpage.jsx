@@ -4,12 +4,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import './Outletdetailpage.css';
 import OutletTimingTable from './OutletTimingTable';
 function OutletDetailPage({ values, handleBlur, handleChange, touched, errors, brandNameRef, handlTimeReturn }) {
-    // console.log("Time function ---->>", handlTimeReturn)
-    // const brandNameRef = useRef(null);
-    // const bnameRef = useRef(null);
-    // const role1Ref= useRef(null);
-    // const bmobRef = useRef(null);
-    // const location = useRef(null);
+  
     function generateTimeArray() {
         const times = [];
         let hours = 6;

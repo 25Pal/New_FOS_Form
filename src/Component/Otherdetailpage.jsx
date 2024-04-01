@@ -126,8 +126,6 @@ function Otherdetailpage({ values, handleBlur, handleChange, touched, errors, ha
   }
   
 
-  
-
   return (
     <div className='mainOutlet'>
 
@@ -143,11 +141,8 @@ function Otherdetailpage({ values, handleBlur, handleChange, touched, errors, ha
               FOS ID<span className="mandatory">*</span>
             </label>
 
-            <div id='fosid' name="fos_id">
-              {/* <input id='fosInputField' name='fos_id' value={values.fos_id} onChange={handleChange} onBlur={handleBlur} placeholder='Select FOSID' />
-                { errors.fos_id && touched.fos_id ?   <p  className='form-error'  > {errors.fos_id}  </p> : null  }
-            */}
-
+            <div  name="fos_id">
+             
               <Select
                 id='fosInputField'
                 options={FOSIDs}

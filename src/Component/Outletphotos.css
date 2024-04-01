@@ -50,7 +50,8 @@
 
 .singleFile{
     border: 1px solid rgb(203, 203, 198);
-    display: grid;
+    display: flex;
+    justify-content: space-between;
     gap: 3rem;
     grid-auto-flow: column;
     height:2.5rem;

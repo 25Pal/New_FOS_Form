@@ -18,26 +18,73 @@ const Outletphotos = ({ saveOutletsPhoto }) => {
     const handlePhotoSelection = (event) => {
         const files = event.target.files;
 
+        console.log("files--->",files.length)
+
         const selectedImages = [];
         const imageNamesArray = [];
         
         if (selectedPhotos.length + files.length > 4 || selectedPhotos.length + files.length < 4) {
 
             let remainingFile = 4 - (selectedPhotos.length);
-            toast.dark(`Select ${remainingFile} file !`, {
+            toast.error(`Select ${remainingFile} file !`, {
                 position: "top-center"
             });
             return;
         }
 
+        // Function to read each file and push its base64 URL into the selectedImages array
+    const readFiles = (index) => {
+        console.log("inedxxxx->", index)
+        if (index >= files.length) {
 
-        for (let i = 0; i < files.length; i++) {
-            selectedImages.push(files[i]);
-            imageNamesArray.push(files[i].name);
+            // All files have been read, update state and perform other actions
+            setSelectedPhotos(prevSelectedPhotos => [...prevSelectedPhotos, ...selectedImages]);
+            setImageNames(prevImageNames => [...prevImageNames, ...imageNamesArray]);
+            console.log("------ selectedImages  -------", selectedImages);
+            saveOutletsPhoto(selectedImages);
+            setUploading(true);
+
+            // Simulate file upload progress
+            const progressInterval = setInterval(() => {
+                setUploadProgress(prevProgress => prevProgress.map(progress => {
+                    const newProgress = progress + Math.random() * 10;
+                    return newProgress >= 100 ? 100 : newProgress; // Cap at 100%
+                }));
+            }, 500);
+
+            // Simulate upload completion after 5 seconds
+            setTimeout(() => {
+                clearInterval(progressInterval); // Stop updating progress
+                setUploadProgress(Array.from({ length: (files.length + selectedPhotos.length) }, () => 100)); // Set progress to 100%
+                setUploading(false); // Upload complete
+            }, 1000);
+
+            return; // Exit the function
         }
+
+        const reader = new FileReader();
+        reader.onload = (event) => {
+            const base64Url = event.target.result;
+            selectedImages.push(base64Url); // Push the base64 URL into the selectedImages array
+            imageNamesArray.push(files[index].name);
+            // Read the next file
+            readFiles(index + 1);
+        };
+        reader.readAsDataURL(files[index]); // Read the current file as a data URL (base64)
+    };
+
+
+
+    // for(let i=0 ;i< files.length;i++){
+        readFiles(0);
+    // }
+
+    
 
         setSelectedPhotos(prevSelectedPhotos => [...prevSelectedPhotos, ...selectedImages]);
         setImageNames(prevImageNames => [...prevImageNames, ...imageNamesArray]);
+        console.log("------ selectedImages  -------",selectedImages)
+
         saveOutletsPhoto(selectedImages);
         setUploading(true);
 
@@ -55,6 +102,9 @@ const Outletphotos = ({ saveOutletsPhoto }) => {
             setUploadProgress(Array.from({ length: (files.length+ selectedPhotos.length) }, () => 100)); // Set progress to 100%
             setUploading(false); // Upload complete
         }, 1000);
+
+
+
     };
 
 
@@ -80,8 +130,10 @@ const Outletphotos = ({ saveOutletsPhoto }) => {
     };
 
     useEffect(() => {
+        // console.log("Inside useEffect --->", selectedPhotos)
+
         if (selectedPhotos.length > 0) {
-            console.log("Inside useEffect --->", selectedPhotos, imageNames,uploadProgress )
+            // console.log("Inside useEffect --->", selectedPhotos)
             setUploading(true);
         } else {
             setUploading(false);
