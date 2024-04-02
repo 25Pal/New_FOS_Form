@@ -205,7 +205,7 @@ function App() {
             position: "top-center",
             autoClose: 2000,
             onClose: () => {
-              // window.location.reload();
+              window.location.reload();
             }
           });
         })
