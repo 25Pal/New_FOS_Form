@@ -17,13 +17,14 @@ import axios from 'axios';
 import { signUpSchema } from "./schema";
 import CameraComponent from './Component/CameraComponent';
 import Outletphotos from './Component/OutletPhotosComponent';
+import Spinner from 'react-bootstrap/Spinner';
+
 
 function App() {
   const brandNameRef = useRef(null);
 
 
   const [formData, setFormData] = useState(
-
     {
 
       //========== Outlet Details =========\\
@@ -134,8 +135,8 @@ function App() {
       "Billing_address_locality": "",
 
       "loc": "",
-      "loc_lat": "",//Make Dynamic 
-      "loc_lon": "",// Make Dynamic 
+      "loc_lat": "",
+      "loc_lon": "",
       "w_o_time": "",
       "w_c_time": "",
       "wk_o_time": "",
@@ -146,11 +147,14 @@ function App() {
 
 
   const [isRefReady, setIsRefReady] = useState(false);
+  const [submitBtn, setSubmitBtn] = useState(false);
 
   useEffect(() => {
+
     if (brandNameRef.current) {
       setIsRefReady(true);
     }
+
   }, [brandNameRef]);
 
   const handlTimeReturn = (timeDataArray) => {
@@ -194,9 +198,7 @@ function App() {
     initialValues: formData,
     validationSchema: signUpSchema,
     onSubmit: async (values) => {
-      if (Object.keys(errors).length > 0) {
-        console.log("Inside Submit function =====>>>", values)
-      }
+     
       axios.post("https://apis.saveeat.in/api/v1/adminUser/getfosdata1", values)
       // axios.post("http://localhost:3032/api/v1/adminUser/getfosdata1", values)
 
@@ -220,140 +222,212 @@ function App() {
 
 
   const handleSubmit1 = async (e) => {
+
     e.preventDefault();
-    console.log("values.errors", values.errors, values)
-    console.log(" cheking values", values)
+
+    console.log("--------------- Inside Handle Submit -------------------")
 
     //here call function to set LAT and long 
     let locationofoutlet = values.Outlet_address_street
-    console.log("waitinggg")
-    let success =  await setLatitudeAndLongitude(locationofoutlet);
 
-   console.log("wait",success)
+    let success = await setLatitudeAndLongitude(locationofoutlet, handleChange);
 
-    if (Object.keys(errors).length > 0 || success === false) { // Change formik.errors to values.errors
+    console.log("Response from  setLatitudeAndLongitude  Function  ======>>> ", success)
 
+    if (Object.keys(errors).length > 0 ) { // Change formik.errors to values.errors
+
+      console.log("-------- Errors Found in Schema -------", Object.keys(errors).length, success)
       scrollToFirstError(success);
 
     } else {
-      handleSubmit();
+
+      console.log("------------------ Inside Else Condition -----------", Object.keys(errors).length, success)
+
+      if (success === false) {
+
+        // toast.error("Invalid Outlet Location !");
+
+        scrollToFirstError(success);
+        return false;
+
+      } else {
+
+        console.log("----------- Form Submitted --------")
+        setSubmitBtn(false);
+
+        handleSubmit();
+      }
+
+
     }
   };
 
   // Function to find the first field with an error and scroll to it
   const scrollToFirstError = (success) => {
-    console.log("Inside scroll function !");
 
+    console.log("-------- Inside scrollToFirstError Function ----------", success, errors)
     const firstErrorField = Object.keys(errors)[0];
-    console.log("firstErrorField", firstErrorField);
 
-    const firstErrorFieldElement = document.querySelector(`[name='${firstErrorField}']`);
-    console.log("firstErrorFieldElement", firstErrorFieldElement);
-
-    if (firstErrorFieldElement) {
-
-      if (firstErrorField === "menuImage") {
-        firstErrorFieldElement.style.display = 'block';
-      }
-
+    if(firstErrorField){
+      const firstErrorFieldElement = document.querySelector(`[name='${firstErrorField}']`);
+      console.log("----------firstErrorFieldElement ----------", Object.keys(errors)[0], firstErrorFieldElement)
       firstErrorFieldElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
+  
       firstErrorFieldElement.focus();
-      // Change display back to none after focusing
-      if (firstErrorField === "menuImage") {
+  
+      handleSubmit();
+  
+      console.log("Form Submitted from scrollToFirstError function ", Object.keys(errors).length)
+  
+  
+    }else if(Object.keys(errors).length === 0 && success == false){
 
-        firstErrorFieldElement.style.display = 'none';
+
+      const getOutletLocationField = document.querySelector(`[name='Outlet_address_street']`);
+
+      console.log("getOutletLocationField -------->", getOutletLocationField)
+
+      if (getOutletLocationField) {
+
+        getOutletLocationField.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+        getOutletLocationField.focus();
+        getOutletLocationField.style.border = '1px solid red';
+
+        getOutletLocationField.addEventListener('input', () => {
+          getOutletLocationField.style.border = '1px solid #d4d4d4'; // Remove border style
+        });
 
       }
 
-      if(success === true){
-        handleSubmit();
-      }
 
-      
-
-    } else {
-
-      if(success === true){
-        handleSubmit();
-      }
+      toast.error("Please Put proper Outlet Location !")
 
     }
-  };
 
-/* global google */
+    
+    // if (success === true) {
 
-const setLatitudeAndLongitude = (locationofoutlet) => {
-  console.log("setLatitudeAndLongitude ", locationofoutlet);
+    //   const firstErrorField = Object.keys(errors)[0];
+    //   const firstErrorFieldElement = document.querySelector(`[name='${firstErrorField}']`);
+    //   console.log("----------firstErrorFieldElement ----------", Object.keys(errors)[0], firstErrorFieldElement)
+    //   firstErrorFieldElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
-  return new Promise((resolve, reject) => {
-      const geocoder = new google.maps.Geocoder();
-      geocoder.geocode({ address: locationofoutlet }, (results, status) => {
-          if (status === 'OK' && results.length > 0) {
-              const coordinates = results[0].geometry.location;
-              const latitude = coordinates.lat();
-              const longitude = coordinates.lng();
+    //   firstErrorFieldElement.focus();
 
-              console.log("let long ,", latitude, longitude);
+    //   handleSubmit();
 
-              handleChange({
-                  target: {
-                      name: 'loc_lat',
-                      value: latitude
-                  }
-              });
+    //   console.log("Form Submitted from scrollToFirstError function ", Object.keys(errors).length)
 
-              handleChange({
-                  target: {
-                      name: 'loc_lon',
-                      value: longitude
-                  }
-              });
+    // }
+    // else {
 
-              resolve(true); // Resolve the promise with true
-          } else {
-              // alert('Geocode was not successful for the following reason:', status);
-              toast.error("Invalid Outlet Location !");
-              resolve(false); // Resolve the promise with false
-          }
-      });
-  });
-};
+     
 
 
+    //   console.log("Inside else of scrollToFirstError ")
+
+    //   const getOutletLocationField = document.querySelector(`[name='Outlet_address_street']`);
+
+    //   console.log("getOutletLocationField -------->", getOutletLocationField)
+
+    //   if (getOutletLocationField) {
+
+    //     getOutletLocationField.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    //     getOutletLocationField.focus();
+    //     getOutletLocationField.style.border = '1px solid red';
+
+    //     getOutletLocationField.addEventListener('input', () => {
+    //       getOutletLocationField.style.border = '1px solid #d4d4d4'; // Remove border style
+    //     });
+
+    //   }
 
 
-
-
-    return (
-
-      <div className="App" >
-
-        <form className='MainForm' onSubmit={handleSubmit1}>
-
-          <HeaderImage />
-          <Outletdetailpage handleChange={handleChange} handleBlur={handleBlur} values={values} errors={errors} touched={touched} brandNameRef={brandNameRef} handlTimeReturn={handlTimeReturn} />
-          <Compannydetailpage handleChange={handleChange} handleBlur={handleBlur} values={values} errors={errors} touched={touched} />
-          <Bankdetailspage handleChange={handleChange} handleBlur={handleBlur} values={values} errors={errors} touched={touched} />
-          <CameraComponent onPhotoCapture={(photoData) => saveOwnerPhoto(photoData)} handleChange={handleChange} />
-
-          <Outletphotos saveOutletsPhoto={saveOutletsPhoto} handleChange={handleChange} />
-
-          <Commisiondetailpage handleChange={handleChange} handleBlur={handleBlur} values={values} errors={errors} touched={touched} />
-          <Otherdetailpage handleChange={handleChange} handleBlur={handleBlur} values={values} errors={errors} touched={touched} />
-
-          <div className='saveBtn'>
-            <button type='submit'> Submit </button>
-          </div>
-
-        </form>
-
-        <ToastContainer />
+    // }
 
 
 
-      </div>
-    );
   }
 
-  export default App;
+  /* global google */
+
+  const setLatitudeAndLongitude = (locationofoutlet, handleChange) => {
+    console.log("Inside setLatitudeAndLongitude ===>>>", locationofoutlet);
+
+    return new Promise((resolve, reject) => {
+      const geocoder = new google.maps.Geocoder();
+      geocoder.geocode({ address: locationofoutlet }, (results, status) => {
+
+        if (status === 'OK' && results.length > 0) {
+          const coordinates = results[0].geometry.location;
+          const latitude = coordinates.lat();
+          const longitude = coordinates.lng();
+
+          console.log("let long ,", latitude, longitude);
+
+          handleChange({
+            target: {
+              name: 'loc_lat',
+              value: latitude
+            }
+          });
+
+          handleChange({
+            target: {
+              name: 'loc_lon',
+              value: longitude
+            }
+          });
+
+          resolve(true);
+        } else {
+
+
+          resolve(false);
+
+        }
+      });
+    });
+  };
+
+
+
+
+
+
+  return (
+
+    <div className="App" >
+
+      <form className='MainForm' onSubmit={handleSubmit1}>
+
+        <HeaderImage />
+        <Outletdetailpage handleChange={handleChange} handleBlur={handleBlur} values={values} errors={errors} touched={touched} brandNameRef={brandNameRef} handlTimeReturn={handlTimeReturn} />
+        <Compannydetailpage handleChange={handleChange} handleBlur={handleBlur} values={values} errors={errors} touched={touched} />
+        <Bankdetailspage handleChange={handleChange} handleBlur={handleBlur} values={values} errors={errors} touched={touched} />
+        <CameraComponent onPhotoCapture={(photoData) => saveOwnerPhoto(photoData)} handleChange={handleChange} />
+        <Outletphotos saveOutletsPhoto={saveOutletsPhoto} handleChange={handleChange} values={values} errors={errors} touched={touched} />
+        <Commisiondetailpage handleChange={handleChange} handleBlur={handleBlur} values={values} errors={errors} touched={touched} />
+        <Otherdetailpage handleChange={handleChange} handleBlur={handleBlur} values={values} errors={errors} touched={touched} />
+        <div className='saveBtn'>
+          {
+            submitBtn ? <Spinner animation="border" variant="success" /> : <button type='submit'     > Submit </button>
+
+          }
+
+
+        </div>
+
+      </form>
+
+      <ToastContainer />
+
+
+
+    </div>
+  );
+}
+
+export default App;

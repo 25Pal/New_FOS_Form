@@ -17,9 +17,8 @@ export const signUpSchema = Yup.object({
     //#Mobile 3
     omob3: Yup.string().matches(/^\d{10}$/, 'Invalid Mobile Number'),
 
-
     // outletemail: Yup.string().email().min(1, "Invalid Email").required("Please Enter Valid Email"),
-    
+
     //#1
     bemail: Yup.string().email("Invalid Email").min(1, "Invalid Email").required("Please Enter Valid Email"),
     //#2
@@ -80,11 +79,11 @@ export const signUpSchema = Yup.object({
     //IFSC code 
     ifsc: Yup.string().matches(/^[A-Za-z]{4}[0][A-Za-z0-9]{6}$/, 'Invalid IFSC Code'),
 
+    outletPhotos: Yup.array().min(4, "Please upload at least 4 photos"),
+
     comm: Yup.string().min(1, "Commission is can not be empty").max(3, "Invalid Commission").required("Please Enter Valid Commision value"),
 
     //Other Deatils 
-    fos_id: Yup.string().required("Please Select FOSID"),
-
-
+    fos_id: Yup.string().required("Please Select FOSID")
 
 })

@@ -531,21 +531,24 @@ function OutletDetailPage({ values, handleBlur, handleChange, touched, errors, b
                         <hr style={{ marginTop: "15px", boxShadow: "0px 0.6px 5px #CFCCCC", color: "#CFCCC" }} />
 
                         <div style={{ display: "grid", gap: '1rem' }}>
-                            <div>
+                            <div >
                                 <div className="subDiv" >
                                     <h6>
                                         Location <span className='mandatory'>*</span>
                                     </h6>
                                 </div>
 
-                                <div className='OutletInputFields' >
-                                    <div className='inputFields'>
-                                        <div className='errorcontainr'>
+                                <div className='OutletInputFields'  >
+
+                                    <div className='inputFields' style={{gap:"0rem"}} >
+
+                                        <div className='errorcontainr' >
                                             <textarea style={{ width: "100%", height: "auto" }} placeholder=' Enter Outlet Location' value={values.Outlet_address_street} name="Outlet_address_street" onChange={handleChange} onBlur={handleBlur}>
 
                                             </textarea>
-                                            {errors.Outlet_address_street && touched.Outlet_address_street ? <p className='form-error'  > {errors.Outlet_address_street}  </p> : null}
+                                           
                                         </div>
+                                         {errors.Outlet_address_street && touched.Outlet_address_street ? <p className='form-error'  > {errors.Outlet_address_street}  </p> : null}
                                     </div>
                                 </div>
                             </div>

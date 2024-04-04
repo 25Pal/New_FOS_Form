@@ -5,7 +5,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import Spinner from 'react-bootstrap/Spinner';
 import CloseButton from 'react-bootstrap/CloseButton';
 
-const Outletphotos = ({ saveOutletsPhoto }) => {
+const Outletphotos = ({ saveOutletsPhoto , values , errors , touched}) => {
+    console.log("Eroooresss", errors)
     const [selectedPhotos, setSelectedPhotos] = useState([]);
     const [uploading, setUploading] = useState(false);
     const [uploadProgress, setUploadProgress] = useState([]);
@@ -23,14 +24,14 @@ const Outletphotos = ({ saveOutletsPhoto }) => {
         const selectedImages = [];
         const imageNamesArray = [];
         
-        if (selectedPhotos.length + files.length > 4 || selectedPhotos.length + files.length < 4) {
+        // if (selectedPhotos.length + files.length > 4 || selectedPhotos.length + files.length < 4) {
 
-            let remainingFile = 4 - (selectedPhotos.length);
-            toast.error(`Select ${remainingFile} file !`, {
-                position: "top-center"
-            });
-            return;
-        }
+        //     let remainingFile = 4 - (selectedPhotos.length);
+        //     toast.error(`Select ${remainingFile} file !`, {
+        //         position: "top-center"
+        //     });
+        //     return;
+        // }
 
         // Function to read each file and push its base64 URL into the selectedImages array
     const readFiles = (index) => {
@@ -148,34 +149,31 @@ const Outletphotos = ({ saveOutletsPhoto }) => {
 
                 <div style={{ display: "grid", gap: "3.4rem", border: "1px dotted black", padding: "1rem 5rem 1rem 5rem", borderRadius: "10px" }}>
                     <div className='uplaod-icon'>
-
                         <div>
                             <svg width="63" height="41" viewBox="0 0 63 41" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M31.5 31.6427V14.9285M31.5 14.9285L23.1818 20.4999M31.5 14.9285L39.8182 20.4999M62 28.857C62 22.703 57.0344 17.7142 50.9091 17.7142C50.8435 17.7142 50.7794 17.7148 50.7141 17.7159C49.3695 8.26517 41.2785 1 31.5 1C23.7456 1 17.0546 5.56866 13.9457 12.1729C6.71754 12.6482 1 18.6887 1 26.0709C1 33.7634 7.20696 40 14.8636 40L50.9091 39.9998C57.0344 39.9998 62 35.011 62 28.857Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                             </svg>
                         </div>
-
                         <div className='upd-txt'>
                             Upload your files here
                         </div>
+                  
                     </div>
                     <div className='btn-containerr'>
-                        <button type='button' style={{ pointerEvents: selectedPhotos.length === 4 ? "none" : "", opacity: selectedPhotos.length === 4 ? "0.5" : "1" }} onClick={handleButtonClick}>Upload Photo</button>
+                        <button type='button' style={{ pointerEvents: selectedPhotos.length === 4 ? "none" : "", opacity: selectedPhotos.length === 4 ? "0.5" : "1" }} onClick={handleButtonClick}>Upload Photos</button>
                         <input type='file' accept='image/*' multiple={true} ref={inputRef} style={{ display: 'none' }} onChange={handlePhotoSelection} />
                     </div>
-
                 </div>
 
                 {selectedPhotos.length > 0  && (
                     uploadProgress[0] ? 
-                    <div className='fileComponent' style={{ display: 'grid', gap: '1rem'}}>
+                    <div className='fileComponent' style={{ display: 'grid', gap: '1rem' }}>
 
                         {selectedPhotos.map((photo, index) => (
-                            uploadProgress[index] ? <div className='singleFile' key={index} style={{ position: 'relative', minWidth: '120px' }}>
+                            uploadProgress[index] ? <div className='singleFile'  key={index} style={{ position: 'relative', minWidth: '120px' , border:"1px solid red" }}>
                                 <div className='fileName'>
                                     <span>{imageNames[index]}</span>
                                 </div>
-
                                 <button type='button' className='delete-button'  onClick={() => handleDelete(index)}>
                                 <CloseButton aria-label="Hide" />
                                 </button>
@@ -185,6 +183,8 @@ const Outletphotos = ({ saveOutletsPhoto }) => {
                     </div>:<div> <Spinner variant ="success"  /></div>
 
                 )}
+
+
 
 
 

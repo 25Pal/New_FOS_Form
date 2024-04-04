@@ -9,6 +9,7 @@ const CameraComponent = ({ onPhotoCapture }) => {
     const [showOpenCamBtn , setShowOpenCamBtn]=useState(true);
     const [showClickBtn, setShowClickBtn]=useState(false);
     const [showUploadBtn , setShowUplaodBtn]=useState(false);
+    const [showUploadDone , setShowUploadDone] = useState(false);
 
 
 
@@ -23,6 +24,7 @@ const CameraComponent = ({ onPhotoCapture }) => {
             setShowFrame(true)
             setShowOpenCamBtn(false)
             setShowUplaodBtn(false)
+            setShowUploadDone(false);
             setShowClickBtn(true)
             const stream = await navigator.mediaDevices.getUserMedia({ video: true });
 
@@ -51,6 +53,9 @@ const CameraComponent = ({ onPhotoCapture }) => {
             setShowFrame(true)
             setShowClickedPhoto(true);
             setShowUplaodBtn(true);
+            setShowUploadDone(false);
+
+            
             setShowOpenCamBtn(false);
             setShowClickBtn(false);
 
@@ -73,11 +78,12 @@ const CameraComponent = ({ onPhotoCapture }) => {
     const handleUploadPhoto = () => {
 
         onPhotoCapture(photo);
-        setShowFrame(false)
-        setShowClickedPhoto(false);
+        setShowFrame(true)
+        setShowClickedPhoto(true);
         setShowClickBtn(false);
-        setShowOpenCamBtn(true);
+        setShowOpenCamBtn(false);
         setShowUplaodBtn(false);
+        setShowUploadDone(true);
 
     };
 
@@ -107,10 +113,10 @@ const CameraComponent = ({ onPhotoCapture }) => {
                 {
                     !showClickedPhoto ?
                         <div className="video-container" style={{ display: showFrame ? "flex" : "none" }}  >
-                            <video style={{ border: "1px solid blue", width: "25rem" }} ref={videoRef}></video>
+                            <video style={{ border: "1px solid blue", width: "25rem" ,transform: "scaleX(-1)" }} ref={videoRef}></video>
                         </div> :
                         <div className="photo-container" style={{ display: showFrame ? "flex" : "none" }}  >
-                            {photo && showClickedPhoto === true ? <img src={photo} alt="Captured" /> : ''}
+                            {photo && showClickedPhoto === true ? <img src={photo} alt="Captured"  style={{transform: "scaleX(-1)" }}/> : ''}
                         </div>
                 }
 
@@ -130,9 +136,18 @@ const CameraComponent = ({ onPhotoCapture }) => {
                     {
                         <button type='button' style={{ display: showUploadBtn ? "block" : "none"  , background:"#28A745"}} onClick={handleUploadPhoto}>Upload Photo</button>
                     }
+                    {/* {
+                        <button type='button' style={{ display: photo && showClickedPhoto === true ?  "block" : "none"  , background:"#28A745"}} onClick={handleUploadPhoto}>Upload Done</button>
+                    } */}
                     {
-                        <button type='button' style={{ display: showUploadBtn ? "block" : "none",background:"none" , color:"#000"  , border:"1px solid black"}} onClick={handleCancelPhoto}>Retake</button>
+                        <button type='button' style={{ display: showUploadDone ?   "flex" : "none" , gap:"10px" , alignItems:"center", justifyContent:"center" , background:"#28A745"}} >Upload Done 
+                        <i class="bi bi-check-circle"   style={{ fontSize: '20px' }}  ></i>
+                        </button>
                     }
+                    {
+                        <button type='button' style={{ display:  showUploadDone ||showUploadBtn   ? "block" : "none",background:"none" , color:"#000"  , border:"1px solid black"}} onClick={handleCancelPhoto}>Retake</button>
+                    }
+                   
                 </div>
             </div>
         </div>

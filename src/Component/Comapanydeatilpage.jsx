@@ -178,33 +178,33 @@ function comapanyDetailPage({ values, handleBlur, handleChange, touched, errors 
             </div>
             <div className='subInputField'>
               <div>
-              <div className='singleDetail' >
-                <label> Mobile Number </label>
-                <div className='errorcontainr'>
-                  <input name='o_mnumber' maxLength={10} placeholder='Enter Signing Number' value={values.o_mnumber} onChange={handleChange} onBlur={handleBlur} />
+                <div className='singleDetail' >
+                  <label> Mobile Number </label>
+                  <div className='errorcontainr'>
+                    <input name='o_mnumber' maxLength={10} placeholder='Enter Signing Number' value={values.o_mnumber} onChange={handleChange} onBlur={handleBlur} />
+
+                  </div>
 
                 </div>
-
-              </div>
-              {errors.o_mnumber && touched.o_mnumber ? <p className='form-error'  > {errors.o_mnumber}  </p> : null}
+                {errors.o_mnumber && touched.o_mnumber ? <p className='form-error'  > {errors.o_mnumber}  </p> : null}
 
 
               </div>
-              
-<div>
-<div className='singleDetail'>
-                <label>   Email </label>
-                <div className='errorcontainr'>
-                  <input name='s_a_email' placeholder='Enter Signing Email' value={values.s_a_email} onChange={handleChange} onBlur={handleBlur} />
+
+              <div>
+                <div className='singleDetail'>
+                  <label>   Email </label>
+                  <div className='errorcontainr'>
+                    <input name='s_a_email' placeholder='Enter Signing Email' value={values.s_a_email} onChange={handleChange} onBlur={handleBlur} />
+
+                  </div>
 
                 </div>
+                {errors.s_a_email && touched.s_a_email ? <p className='form-error'  > {errors.s_a_email}  </p> : null}
+
 
               </div>
-              {errors.s_a_email && touched.s_a_email ? <p className='form-error'  > {errors.s_a_email}  </p> : null}
 
-
-</div>
-             
 
 
             </div>
@@ -212,19 +212,24 @@ function comapanyDetailPage({ values, handleBlur, handleChange, touched, errors 
 
           <hr style={{ marginTop: "15px", boxShadow: "0px 0.6px 5px #CFCCCC", color: "#CFCCC" }} />
 
-          <div className=' subDiv1 billingDetails' style={{"marginBottom": "2.5rem"}}>
+          <div className=' subDiv1 billingDetails' style={{ "marginBottom": "2.5rem" }}>
 
             <h6>
               Registered Address / Billing Address <span className='mandatory'>*</span>
             </h6>
 
-            <div className='errorcontainr'>
-              <textarea style={{ height: "50px", padding: "10px", outline: "none", border: "1px solid #d4d4d4", borderRadius: "5px" }} name='Billing_address_street' value={values.Billing_address_street} placeholder=' Enter Billing Address' onChange={handleChange} onBlur={handleBlur}>
+            <div className='singleDetail' style={{ gap: "0rem" }} >
+              <div className='errorcontainr'>
+                <textarea style={{ height: "50px", padding: "10px", outline: "none", border: "1px solid #d4d4d4", borderRadius: "5px" }} name='Billing_address_street' value={values.Billing_address_street} placeholder=' Enter Billing Address' onChange={handleChange} onBlur={handleBlur}>
 
-              </textarea>
+                </textarea>
+
+              </div>
               {errors.Billing_address_street && touched.Billing_address_street ? <p className='form-error'  > {errors.Billing_address_street}  </p> : null}
 
             </div>
+
+
 
 
           </div>
@@ -233,51 +238,46 @@ function comapanyDetailPage({ values, handleBlur, handleChange, touched, errors 
           <hr style={{ marginTop: "15px", boxShadow: "0px 0.6px 5px #CFCCCC", color: "#CFCCC" }} />
 
           <div className='typesOptions'>
-            <div className=' subDiv1 optionContainer'>
-              <h6>
-                Ownership Type<span className='mandatory'> *</span>
-              </h6>
-              <div name="ownership">
-                <Select
-                  id='ownertype'
-                  options={options1}
-                  styles={customStyles}
-                  isSearchable={false}
-                  value={options1.find((option) => option.value === values.ownership)}
-                  onChange={(selectedOption) => handleChange({ target: { name: "ownership", value: selectedOption.value } })}
+            <div >
+              <div className=' subDiv1 optionContainer'>
+                <h6>
+                  Ownership Type<span className='mandatory'> *</span>
+                </h6>
+                <div name="ownership" style={{ height: "fit-content" }}>
+                  <Select
+                    id='ownertype'
+                    options={options1}
+                    styles={customStyles}
+                    isSearchable={true}
+                    value={options1.find((option) => option.value === values.ownership)}
+                    onChange={(selectedOption) => handleChange({ target: { name: "ownership", value: selectedOption.value } })}
 
-                />
+                  />
 
+                </div>
               </div>
-
               {errors.ownership && touched.ownership ? <p className='form-error'  > {errors.ownership}  </p> : null}
 
 
             </div>
 
+            <div >
+              <div className='subDiv1 optionContainer'>
+                <h6>
+                  Type of Business<span className='mandatory'> *</span>
+                </h6>
+                <div name="type_of_business">
+                  <Select
+                    id='bustype'
+                    options={options2}
+                    styles={customStyles}
+                    isSearchable={true}
+                    value={options2.find((option) => option.value === values.ownership)}
+                    onChange={(selectedOption) => handleChange({ target: { name: "type_of_business", value: selectedOption.value } })}
 
-            <div className='subDiv1 optionContainer'>
-
-              <h6>
-                Type of Business<span className='mandatory'> *</span>
-
-              </h6>
-
-              <div name="type_of_business">
-
-                <Select
-                  id='bustype'
-                  options={options2}
-                  styles={customStyles}
-                  isSearchable={false}
-                  value={options2.find((option) => option.value === values.ownership)}
-                  onChange={(selectedOption) => handleChange({ target: { name: "type_of_business", value: selectedOption.value } })}
-
-                />
+                  />
+                </div>
               </div>
-
-
-
               {errors.type_of_business && touched.type_of_business ? <p className='form-error'  > {errors.type_of_business}  </p> : null}
 
             </div>

@@ -64,14 +64,14 @@ function Commisiondetailpage({ values, handleBlur, handleChange, touched, errors
                     Commission<span className="mandatory">*</span>
                 </label>
 
-                <div id='comm'>
+                <div id='comm' name="comm">
 
 
                     <Select
                         id='commInputField'
                         options={options1}
                         styles={customStyles}
-                        isSearchable={false}
+                        
                         value={ options1.find((option) => option.value === values.comm )}
                         onChange={ (selectedOption) =>  checkCommision(selectedOption , handleChange)   }
                     />

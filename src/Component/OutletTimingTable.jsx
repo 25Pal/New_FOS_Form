@@ -118,12 +118,16 @@ function OutletTimingTable({ Day, timeList, handleSwitch, switchh, slot, handleA
     textOverflow: 'ellipsis',
     fontSize: '0.9rem', 
 
-    '@media (max-width: 768px)': {
-      fontSize: '1.4rem', 
+    '@media (max-width: 990px)': {//When screen is below 990px
+      fontSize: '2rem'
     },
-    '@media (max-width: 480px)': {
-      fontSize: '1.2rem', 
 
+    '@media (max-width: 701px)': {//When screen is below 701px
+      fontSize: '2rem'
+    },
+
+    '@media (max-width: 575px)': {// When screen is below 575px
+      fontSize: '1.3rem'
     },
   })
   }

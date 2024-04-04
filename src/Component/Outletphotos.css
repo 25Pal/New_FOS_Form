@@ -35,6 +35,11 @@
     
 }
 
+.btn-containerr{
+    display: flex;
+    justify-content: center;
+}
+
 .btn-containerr button {
     border-radius: 6px;
     width: 150px;
@@ -44,6 +49,7 @@
     font-size: 16px;
     font-weight: 600;
     padding: 0.5rem;
+
     
 
 }
