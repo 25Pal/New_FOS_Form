@@ -9,6 +9,8 @@ function OutletTimingTable({ Day, timeList, handleSwitch, switchh, slot, handleA
 
 
   const [showPlusButton, setShowPlusButton] = useState(false)
+  const [fromSelected, setFromSelected] = useState(false);
+
 
   useEffect(() => {
 
@@ -54,7 +56,7 @@ function OutletTimingTable({ Day, timeList, handleSwitch, switchh, slot, handleA
     } else {
 
       // alert("Please select both 'From' and 'To' times in the last slot before adding a new one.");
-      toast.dark("Please Select Proper Time !",{
+      toast.dark("Please Select Proper Time !", {
         position: "top-center",
         className: 'toast-center'
       });
@@ -90,46 +92,50 @@ function OutletTimingTable({ Day, timeList, handleSwitch, switchh, slot, handleA
       setShowPlusButton(true)
 
     }
+
     saveSelectedTime(Day, selectedTime, type, slotIndex);
   }
   const customStyles3 = {
-   
+
 
     control: provided => ({
       ...provided,
-      
+
       width: '100%',
-    height: '100%',
-    border: '2px solid rgb(221, 210, 210)',
-    padding: '0rem',
-    borderRadius: '10px',
-      
+      height: '100%',
+      border: '2px solid rgb(221, 210, 210)',
+      padding: '0rem',
+      borderRadius: '10px',
+
     }),
     option: (provided, state) => ({
       ...provided,
       backgroundColor: state.isSelected ? '#007bff' : 'white',
       color: state.isSelected ? 'white' : 'black'
-    }) 
+    })
     ,
-  singleValue: provided => ({
-    ...provided,
-    whiteSpace: 'nowrap', 
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-    fontSize: '0.9rem', 
+    singleValue: provided => ({
+      ...provided,
+      whiteSpace: 'nowrap',
+      overflow: 'hidden',
+      // textOverflow: 'ellipsis',
+      fontSize: '0.9rem',
 
-    '@media (max-width: 990px)': {//When screen is below 990px
-      fontSize: '2rem'
-    },
+      '@media (max-width: 990px)': {//When screen is below 990px
+        fontSize: '2rem'
+      },
 
-    '@media (max-width: 701px)': {//When screen is below 701px
-      fontSize: '2rem'
-    },
+      '@media (max-width: 701px)': {//When screen is below 701px
+        fontSize: '2rem'
+      },
 
-    '@media (max-width: 575px)': {// When screen is below 575px
-      fontSize: '1.3rem'
-    },
-  })
+      '@media (max-width: 575px)': {// When screen is below 575px
+        fontSize: '1.1rem',
+        // textOverflow: 'normal',
+        // whiteSpace: 'nowrap',
+        // border: '1px solid red'
+      },
+    })
   }
 
 
@@ -184,29 +190,14 @@ function OutletTimingTable({ Day, timeList, handleSwitch, switchh, slot, handleA
                       className={`selectTimeContainer ${switchh === undefined || !switchh ? 'disable_elements' : ''}`}
                       style={{ display: 'flex', justifyContent: 'center', alignItems: "center" }} >
 
-                      {/* <select value={oneSlot.from}
-                      
-                       className={`${switchh === undefined || !switchh ? 'disable_elements' : ''}`}
-                        disabled={switchh === undefined || !switchh} 
-                        onChange={(e) => handleSelectSlotTime(e.target.value, 'from', slotIndex)}>
-
-                        <option >Select Time</option>
-
-                        {
-                          filteredSlot.timeDropdown[slotIndex].fromTimeList.map((time, timeindex) => (
-                            <option key={time + "from" + Day + timeindex} value={time}  >{time}</option>
-                          ))
-                        }
-
-                      </select> */}
-
+      
                       <Select
                         value={{ value: oneSlot.from, label: oneSlot.from }}
                         styles={customStyles3}
                         className={`${switchh === undefined || !switchh ? 'disable_elements' : ''}`}
                         disabled={switchh === undefined || !switchh}
                         isSearchable={false}
-                        onChange={(selectedOption) => handleSelectSlotTime(selectedOption.value, 'from', slotIndex)}
+                        onChange={(selectedOption) => {handleSelectSlotTime(selectedOption.value, 'from', slotIndex); setFromSelected(true) }}
                         options={filteredSlot.timeDropdown[slotIndex].fromTimeList.map((time) => ({ value: time, label: time }))} // Convert time array to options format
                       />
 
@@ -224,33 +215,19 @@ function OutletTimingTable({ Day, timeList, handleSwitch, switchh, slot, handleA
                       className={`selectTimeContainer ${switchh === undefined || !switchh ? 'disable_elements' : ''}`}
                       style={{ display: 'flex', justifyContent: 'center', alignItems: "center" }}>
 
-                      {/* <select
-                        className={`${switchh === undefined || !switchh ? 'disable_elements' : ''}`}
-                        disabled={switchh === undefined || !switchh}
-                        value={oneSlot.to} onChange={(e) => handleSelectSlotTime(e.target.value, 'to', slotIndex)}>
-                        <option >Select Time</option>
-                        {
-                          filteredSlot.timeDropdown[slotIndex].toTimeList.map((time, timeindex) => (
-                            <option key={time + "to" + Day + timeindex} value={time}  >{time}</option>
-                          ))
-                        }
-
-
-                      </select> */}
-
+                    
                       <Select
                         value={{ value: oneSlot.to, label: oneSlot.to }}
                         // classNamePrefix="select"
                         styles={customStyles3}
                         isSearchable={false}
                         className={`${switchh === undefined || !switchh ? 'disable_elements' : ''}`}
-                        disabled={switchh === undefined || !switchh}
+                        disabled={switchh === undefined || !switchh  || !fromSelected }
                         onChange={(selectedOption) => handleSelectSlotTime(selectedOption.value, 'to', slotIndex)}
                         options={filteredSlot.timeDropdown[slotIndex].toTimeList.map((time) => ({ value: time, label: time }))} // Convert time array to options format
                       />
 
                     </div>
-
 
                   </div>
 

@@ -4,8 +4,10 @@ import { ToastContainer, toast } from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css';
 import Spinner from 'react-bootstrap/Spinner';
 import CloseButton from 'react-bootstrap/CloseButton';
+import { useMediaQuery } from "react-responsive";
 
 const Outletphotos = ({ saveOutletsPhoto , values, handleChange}) => {
+    const isSmallScreen = useMediaQuery({ maxWidth: 698 });
 
     const [selectedPhotos, setSelectedPhotos] = useState([]);
     const [uploading, setUploading] = useState(false);
@@ -153,7 +155,7 @@ const Outletphotos = ({ saveOutletsPhoto , values, handleChange}) => {
         <div className='mainOutlet'>
 
             <h5 className='heading8 d-flex gap-2'>Photo of the Outlet <h6 className='mt-1' >(Add 4 images only)</h6> </h5>
-            <div className='uplaodbtn-component d-flex justify-content-evenly ' style={{ gap: "1rem", }}>
+            <div className={`uplaodbtn-component d-flex ${isSmallScreen ?'flex-column' :''  } justify-content-evenly`} style={{ gap: "1rem", }}>
 
                 <div className='photosContainer' style={{ display: "grid", gap: "3.4rem", border: "1px dotted black", padding: "1rem 1.5rem 1rem 1.5rem", borderRadius: "10px" }}>
                     <div className='uplaod-icon'>

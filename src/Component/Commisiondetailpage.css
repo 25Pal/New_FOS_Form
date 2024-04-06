@@ -122,7 +122,7 @@
     }
 
     #commInputField {
-        border: 1px solid rgb(120, 113, 113);
+        /* border: 1px solid rgb(120, 113, 113); */
         height: 3.5rem;
         padding: 1rem;
         font-size: 22.5px;

@@ -84,3 +84,10 @@
     font-family: 'Inter',sans-serif;
 }
 
+
+
+@media (max-width: 575px) and (min-width: 200px) {
+    .uplaodbtn-component{
+        display: flex;
+    }
+}
