@@ -5,108 +5,85 @@ import 'react-toastify/dist/ReactToastify.css';
 import Spinner from 'react-bootstrap/Spinner';
 import CloseButton from 'react-bootstrap/CloseButton';
 
-const Outletphotos = ({ saveOutletsPhoto , values , errors , touched}) => {
-    console.log("Eroooresss", errors)
+const Outletphotos = ({ saveOutletsPhoto , values, handleChange}) => {
+
     const [selectedPhotos, setSelectedPhotos] = useState([]);
     const [uploading, setUploading] = useState(false);
     const [uploadProgress, setUploadProgress] = useState([]);
     const [totalUploadProgress, setTotalUploadProgress] = useState(0);
     const inputRef = useRef(null);
-
     const [imageNames, setImageNames] = useState([]);
 
 
+
     const handlePhotoSelection = (event) => {
+
         const files = event.target.files;
 
-        console.log("files--->",files.length)
+        console.log("Check selectedPhotos in handlePhotoSelection ---->" , values.outletphotos , files.length)
 
-        const selectedImages = [];
-        const imageNamesArray = [];
-        
-        // if (selectedPhotos.length + files.length > 4 || selectedPhotos.length + files.length < 4) {
-
-        //     let remainingFile = 4 - (selectedPhotos.length);
-        //     toast.error(`Select ${remainingFile} file !`, {
-        //         position: "top-center"
-        //     });
-        //     return;
-        // }
-
-        // Function to read each file and push its base64 URL into the selectedImages array
-    const readFiles = (index) => {
-        console.log("inedxxxx->", index)
-        if (index >= files.length) {
-
-            // All files have been read, update state and perform other actions
-            setSelectedPhotos(prevSelectedPhotos => [...prevSelectedPhotos, ...selectedImages]);
-            setImageNames(prevImageNames => [...prevImageNames, ...imageNamesArray]);
-            console.log("------ selectedImages  -------", selectedImages);
-            saveOutletsPhoto(selectedImages);
-            setUploading(true);
-
-            // Simulate file upload progress
-            const progressInterval = setInterval(() => {
-                setUploadProgress(prevProgress => prevProgress.map(progress => {
-                    const newProgress = progress + Math.random() * 10;
-                    return newProgress >= 100 ? 100 : newProgress; // Cap at 100%
-                }));
-            }, 500);
-
-            // Simulate upload completion after 5 seconds
-            setTimeout(() => {
-                clearInterval(progressInterval); // Stop updating progress
-                setUploadProgress(Array.from({ length: (files.length + selectedPhotos.length) }, () => 100)); // Set progress to 100%
-                setUploading(false); // Upload complete
-            }, 1000);
-
-            return; // Exit the function
+        if (selectedPhotos.length + files.length > 4) {
+            toast.error("Maximum 4 files allowed.");
+            return false;
         }
 
-        const reader = new FileReader();
-        reader.onload = (event) => {
-            const base64Url = event.target.result;
-            selectedImages.push(base64Url); // Push the base64 URL into the selectedImages array
-            imageNamesArray.push(files[index].name);
-            // Read the next file
-            readFiles(index + 1);
-        };
-        reader.readAsDataURL(files[index]); // Read the current file as a data URL (base64)
-    };
+
+        // Clear the red border style from photosContainer div
+        const photosContainerDiv = document.querySelector('.photosContainer');
+        photosContainerDiv.style.border = '1px dotted black';
+
+        // Read each selected file
+        const selectedImages = [];
+
+        selectedImages.push(...values.outletphotos);
+
+        if(files.length > 4){
+            toast.error("Please uplaod 4 files only ");
+            return false;
+        }
 
 
+     
 
-    // for(let i=0 ;i< files.length;i++){
-        readFiles(0);
-    // }
+        for (let i = 0; i < files.length; i++) {
 
-    
+            const file = files[i];
 
-        setSelectedPhotos(prevSelectedPhotos => [...prevSelectedPhotos, ...selectedImages]);
-        setImageNames(prevImageNames => [...prevImageNames, ...imageNamesArray]);
-        console.log("------ selectedImages  -------",selectedImages)
+            const reader = new FileReader();
 
-        saveOutletsPhoto(selectedImages);
-        setUploading(true);
+            reader.onload = (event) => {
 
-        // Simulate file upload progress
-        const progressInterval = setInterval(() => {
-            setUploadProgress(prevProgress => prevProgress.map(progress => {
-                const newProgress = progress + Math.random() * 10;
-                return newProgress >= 100 ? 100 : newProgress; // Cap at 100%
-            }));
-        }, 500);
+                const base64Url = event.target.result;
+                const imageData = {
+                    name: file.name,
+                    dataUrl: base64Url
+                };
 
-        // Simulate upload completion after 5 seconds
+                selectedImages.push(imageData);
+                selectedPhotos.push(imageData);
+                imageNames.push(imageData.name);
+
+            
+
+               // If 4 images are selected or all images have been processed, save the photos
+            if (selectedImages.length === 4 || i === files.length - 1) {
+                saveOutletsPhoto(selectedImages);
+            }
+
+            };
+
+            reader.readAsDataURL(file); // Read the selected file as a data URL (base64)
+        }
+
         setTimeout(() => {
-            clearInterval(progressInterval); // Stop updating progress
-            setUploadProgress(Array.from({ length: (files.length+ selectedPhotos.length) }, () => 100)); // Set progress to 100%
-            setUploading(false); // Upload complete
+
+            setUploading(true);
+
         }, 1000);
 
-
-
     };
+
+
 
 
     // Function to trigger click event of hidden input element
@@ -118,8 +95,21 @@ const Outletphotos = ({ saveOutletsPhoto , values , errors , touched}) => {
     const handleDelete = (index) => {
         const updatedPhotos = [...selectedPhotos];
         const upadatedImageNames = [...imageNames];
+
+          // Clear the red border style from photosContainer div
+          const photosContainerDiv = document.querySelector('.photosContainer');
+          photosContainerDiv.style.border = '1px dotted black';
+
+        console.log("Inside handle delete =---->>", updatedPhotos ,upadatedImageNames , index )
+
+
         updatedPhotos.splice(index, 1);
         upadatedImageNames.splice(index, 1);
+
+        console.log("updatedOutletPhotos  before =-------->", values.outletphotos)
+        // Remove the corresponding entry from values.outletphotos
+    const updatedOutletPhotos = values.outletphotos.filter((photo, i) => i !== index);
+
 
         setSelectedPhotos(updatedPhotos);
 
@@ -128,18 +118,36 @@ const Outletphotos = ({ saveOutletsPhoto , values , errors , touched}) => {
         const updatedUploadProgress = [...uploadProgress];
         updatedUploadProgress.splice(index, 1);
         setUploadProgress(updatedUploadProgress);
+
+         // Update values.outletphotos
+    handleChange({
+        target: {
+            name: 'outletphotos',
+            value: updatedOutletPhotos,
+        },
+    });
+
+    console.log("updatedOutletPhotos  After =-------->", values.outletphotos)
+
+
+
     };
 
     useEffect(() => {
-        // console.log("Inside useEffect --->", selectedPhotos)
+        console.log("Inside useEffect  selectedPhotos--->", selectedPhotos)
+        // console.log("Inside useEffect selectedImages --->", selectedImages)
+
 
         if (selectedPhotos.length > 0) {
             // console.log("Inside useEffect --->", selectedPhotos)
-            setUploading(true);
-        } else {
             setUploading(false);
+        } else {
+            setUploading(true);
         }
     }, [selectedPhotos, imageNames]);
+
+
+   
 
     return (
         <div className='mainOutlet'>
@@ -147,7 +155,7 @@ const Outletphotos = ({ saveOutletsPhoto , values , errors , touched}) => {
             <h5 className='heading8 d-flex gap-2'>Photo of the Outlet <h6 className='mt-1' >(Add 4 images only)</h6> </h5>
             <div className='uplaodbtn-component d-flex justify-content-evenly ' style={{ gap: "1rem", }}>
 
-                <div style={{ display: "grid", gap: "3.4rem", border: "1px dotted black", padding: "1rem 5rem 1rem 5rem", borderRadius: "10px" }}>
+                <div className='photosContainer' style={{ display: "grid", gap: "3.4rem", border: "1px dotted black", padding: "1rem 1.5rem 1rem 1.5rem", borderRadius: "10px" }}>
                     <div className='uplaod-icon'>
                         <div>
                             <svg width="63" height="41" viewBox="0 0 63 41" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -157,38 +165,51 @@ const Outletphotos = ({ saveOutletsPhoto , values , errors , touched}) => {
                         <div className='upd-txt'>
                             Upload your files here
                         </div>
-                  
+
                     </div>
                     <div className='btn-containerr'>
                         <button type='button' style={{ pointerEvents: selectedPhotos.length === 4 ? "none" : "", opacity: selectedPhotos.length === 4 ? "0.5" : "1" }} onClick={handleButtonClick}>Upload Photos</button>
-                        <input type='file' accept='image/*' multiple={true} ref={inputRef} style={{ display: 'none' }} onChange={handlePhotoSelection} />
+                        <input name='outletPhotos' type='file' accept='image/*' multiple={true} ref={inputRef} style={{ display: 'none' }} onChange={handlePhotoSelection} />
                     </div>
                 </div>
 
-                {selectedPhotos.length > 0  && (
-                    uploadProgress[0] ? 
-                    <div className='fileComponent' style={{ display: 'grid', gap: '1rem' }}>
+               
 
-                        {selectedPhotos.map((photo, index) => (
-                            uploadProgress[index] ? <div className='singleFile'  key={index} style={{ position: 'relative', minWidth: '120px' , border:"1px solid red" }}>
-                                <div className='fileName'>
-                                    <span>{imageNames[index]}</span>
-                                </div>
-                                <button type='button' className='delete-button'  onClick={() => handleDelete(index)}>
-                                <CloseButton aria-label="Hide" />
-                                </button>
-                            </div> : null
+                {
+                    selectedPhotos.length > 0 && (
+                        // uploading ?
+                            <div className='fileComponent' style={{ display: 'grid', gap: '1rem' }}>
 
-                        ))}
-                    </div>:<div> <Spinner variant ="success"  /></div>
+                                {
+                                selectedPhotos.map((photo, index) => (
 
-                )}
+                                    <div className='singleFile' key={index} style={{ position: 'relative', minWidth: '120px', height:"auto" }}>
+
+                                        <div className='fileName'>
+                                            <span>{imageNames[index]}</span>
+                                        </div>
+
+                                        <button type='button' className='delete-button' onClick={() => handleDelete(index)}>
+                                            <CloseButton aria-label="Hide" />
+                                        </button>
+
+                                    </div> 
+
+                                ))
+                                }
+                            </div> 
+                            // : <div> <Spinner variant="success" /></div>
+
+                    )}
 
 
 
 
 
             </div>
+
+
+
         </div>
     );
 };

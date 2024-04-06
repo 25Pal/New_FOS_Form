@@ -4,7 +4,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import './Outletdetailpage.css';
 import OutletTimingTable from './OutletTimingTable';
 function OutletDetailPage({ values, handleBlur, handleChange, touched, errors, brandNameRef, handlTimeReturn }) {
-  
+
     function generateTimeArray() {
         const times = [];
         let hours = 6;
@@ -272,14 +272,29 @@ function OutletDetailPage({ values, handleBlur, handleChange, touched, errors, b
         }
     }
 
+    // Function to validate file type (checks if it's an Excel file)
+    const isValidExcelFileType = (file) => {
+        const allowedExtensions = ['.xls', '.xlsx'];
+        const fileName = file.name.toLowerCase();
+        return allowedExtensions.some(ext => fileName.endsWith(ext));
+    };
+
     const handleFileChange = (event) => {
 
         event.preventDefault();
+
         const file = event.target.files[0];
+
+        // Validate file type
+        if (!isValidExcelFileType(file)) {
+
+            toast.error("Invalid file type. Please upload an Excel file.");
+            return;
+        }
 
         setSelectedFile(file)
         var reader = new FileReader();
-
+        
         console.log("File clicked ", file, file.name, file.size);
         let menuImage = ""
 
@@ -447,35 +462,35 @@ function OutletDetailPage({ values, handleBlur, handleChange, touched, errors, b
                             </div>
                             <div className='OutletInputFields' >
                                 <div>
-                                <div className='inputFields'>
-                                    <label>Name</label>
-                                    <div className='errorcontainr'>
-                                        <input name='oname' value={values.oname} onChange={handleChange} onBlur={handleBlur} placeholder='Enter Manger Name' />
+                                    <div className='inputFields'>
+                                        <label>Name</label>
+                                        <div className='errorcontainr'>
+                                            <input name='oname' value={values.oname} onChange={handleChange} onBlur={handleBlur} placeholder='Enter Manger Name' />
+
+                                        </div>
 
                                     </div>
-
-                                </div>
 
                                 </div>
                                 <div>
-                                <div className='inputFields'>
-                                    <label>Designation</label>
-                                    <div className='errorcontainr'>
-                                        <input name='role1' value={values.role1} onChange={handleChange} onBlur={handleBlur} placeholder='Enter Role ' />
+                                    <div className='inputFields'>
+                                        <label>Designation</label>
+                                        <div className='errorcontainr'>
+                                            <input name='role1' value={values.role1} onChange={handleChange} onBlur={handleBlur} placeholder='Enter Role ' />
 
+                                        </div>
                                     </div>
-                                </div>
 
                                 </div>
                                 <div>
-                                <div className='inputFields'>
-                                    <label>Mobile Number</label>
-                                    <div className='errorcontainr'>
-                                        <input name='omob' maxLength={10} value={values.omob} onChange={handleChange} onBlur={handleBlur} placeholder='Enter Manger Number' />
+                                    <div className='inputFields'>
+                                        <label>Mobile Number</label>
+                                        <div className='errorcontainr'>
+                                            <input name='omob' maxLength={10} value={values.omob} onChange={handleChange} onBlur={handleBlur} placeholder='Enter Manger Number' />
 
+                                        </div>
                                     </div>
-                                </div>
-                                {errors.omob && touched.omob ? <p className='form-error'  > {errors.omob}  </p> : null}
+                                    {errors.omob && touched.omob ? <p className='form-error'  > {errors.omob}  </p> : null}
 
                                 </div>
                             </div>
@@ -486,39 +501,39 @@ function OutletDetailPage({ values, handleBlur, handleChange, touched, errors, b
                             </div>
                             <div className='OutletInputFields'>
                                 <div>
-                                <div className='inputFields'>
-                                    <label>Name</label>
-                                    <div className='errorcontainr'>
-                                        <input name='name3' value={values.name3} onChange={handleChange} placeholder='Enter Person Name' />
+                                    <div className='inputFields'>
+                                        <label>Name</label>
+                                        <div className='errorcontainr'>
+                                            <input name='name3' value={values.name3} onChange={handleChange} placeholder='Enter Person Name' />
+
+                                        </div>
 
                                     </div>
-
-                                </div>
 
                                 </div>
 
                                 <div>
-                                <div className='inputFields'>
-                                    <label>Designation</label>
-                                    <div className='errorcontainr'>
-                                        <input name='role2' value={values.role2} onChange={handleChange} placeholder='Enter Role ' />
+                                    <div className='inputFields'>
+                                        <label>Designation</label>
+                                        <div className='errorcontainr'>
+                                            <input name='role2' value={values.role2} onChange={handleChange} placeholder='Enter Role ' />
+
+                                        </div>
 
                                     </div>
-
-                                </div>
 
                                 </div>
 
                                 <div>
 
-                                <div className='inputFields'>
-                                    <label>Mobile Number</label>
-                                    <div className='errorcontainr'>
-                                        <input name='omob3' maxLength={10} value={values.omob3} onChange={handleChange} onBlur={handleBlur} placeholder='Enter Person Number' />
-                                    </div>
+                                    <div className='inputFields'>
+                                        <label>Mobile Number</label>
+                                        <div className='errorcontainr'>
+                                            <input name='omob3' maxLength={10} value={values.omob3} onChange={handleChange} onBlur={handleBlur} placeholder='Enter Person Number' />
+                                        </div>
 
-                                </div>
-                                {errors.omob3 && touched.omob3 ? <p className='form-error'  > {errors.omob3}  </p> : null}
+                                    </div>
+                                    {errors.omob3 && touched.omob3 ? <p className='form-error'  > {errors.omob3}  </p> : null}
 
                                 </div>
 
@@ -540,15 +555,15 @@ function OutletDetailPage({ values, handleBlur, handleChange, touched, errors, b
 
                                 <div className='OutletInputFields'  >
 
-                                    <div className='inputFields' style={{gap:"0rem"}} >
+                                    <div className='inputFields' style={{ gap: "0rem" }} >
 
                                         <div className='errorcontainr' >
                                             <textarea style={{ width: "100%", height: "auto" }} placeholder=' Enter Outlet Location' value={values.Outlet_address_street} name="Outlet_address_street" onChange={handleChange} onBlur={handleBlur}>
 
                                             </textarea>
-                                           
+
                                         </div>
-                                         {errors.Outlet_address_street && touched.Outlet_address_street ? <p className='form-error'  > {errors.Outlet_address_street}  </p> : null}
+                                        {errors.Outlet_address_street && touched.Outlet_address_street ? <p className='form-error'  > {errors.Outlet_address_street}  </p> : null}
                                     </div>
                                 </div>
                             </div>
@@ -584,44 +599,44 @@ function OutletDetailPage({ values, handleBlur, handleChange, touched, errors, b
 
                             <div className='OutletInputFields' >
                                 <div>
-                                <div className='inputFields'>
-                                    <label>Name</label>
+                                    <div className='inputFields'>
+                                        <label>Name</label>
 
-                                    <div className='errorcontainr'>
-                                        <input name='bname' value={values.bname} onChange={handleChange} onBlur={handleBlur} placeholder='Enter Owner Name' />
+                                        <div className='errorcontainr'>
+                                            <input name='bname' value={values.bname} onChange={handleChange} onBlur={handleBlur} placeholder='Enter Owner Name' />
+
+                                        </div>
 
                                     </div>
-
-                                </div>
-                                {errors.bname && touched.bname ? <p className='form-error'  > {errors.bname}  </p> : null}
+                                    {errors.bname && touched.bname ? <p className='form-error'  > {errors.bname}  </p> : null}
 
 
                                 </div>
                                 <div>
 
-                                <div className='inputFields'>
-                                    <label>Designation</label>
-                                    <div className='errorcontainr'>
-                                        <input name='role' value={values.role} onChange={handleChange} onBlur={handleBlur} placeholder='Enter Role ' />
+                                    <div className='inputFields'>
+                                        <label>Designation</label>
+                                        <div className='errorcontainr'>
+                                            <input name='role' value={values.role} onChange={handleChange} onBlur={handleBlur} placeholder='Enter Role ' />
+
+                                        </div>
 
                                     </div>
-
-                                </div>
-                                {errors.role && touched.role ? <p className='form-error'  > {errors.role}  </p> : null}
+                                    {errors.role && touched.role ? <p className='form-error'  > {errors.role}  </p> : null}
 
                                 </div>
 
                                 <div>
-                                <div className='inputFields'>
-                                    <label>Email</label>
-                                    <div className='errorcontainr'>
-                                        <input name='bemail' value={values.bemail} onChange={handleChange} onBlur={handleBlur} placeholder='Enter Owner Email ' />
+                                    <div className='inputFields'>
+                                        <label>Email</label>
+                                        <div className='errorcontainr'>
+                                            <input name='bemail' value={values.bemail} onChange={handleChange} onBlur={handleBlur} placeholder='Enter Owner Email ' />
+
+                                        </div>
+
 
                                     </div>
-
-
-                                </div>
-                                {errors.bemail && touched.bemail ? <p className='form-error'  > {errors.bemail}  </p> : null}
+                                    {errors.bemail && touched.bemail ? <p className='form-error'  > {errors.bemail}  </p> : null}
 
 
                                 </div>
@@ -636,35 +651,35 @@ function OutletDetailPage({ values, handleBlur, handleChange, touched, errors, b
                             <div className='OutletInputFields'>
                                 <div>
 
-                                <div className='inputFields'>
-                                    <label>Name</label>
-                                    <div className='errorcontainr'>
-                                        <input name='oname' value={values.oname} onChange={handleChange} placeholder='Enter Manger Name' />
+                                    <div className='inputFields'>
+                                        <label>Name</label>
+                                        <div className='errorcontainr'>
+                                            <input name='oname' value={values.oname} onChange={handleChange} placeholder='Enter Manger Name' />
+
+                                        </div>
 
                                     </div>
-
-                                </div>
                                 </div>
                                 <div>
-                                <div className='inputFields'>
-                                    <label>Designation</label>
-                                    <div className='errorcontainr'>
-                                        <input name='role1' value={values.role1} onChange={handleChange} placeholder='Enter Role ' />
+                                    <div className='inputFields'>
+                                        <label>Designation</label>
+                                        <div className='errorcontainr'>
+                                            <input name='role1' value={values.role1} onChange={handleChange} placeholder='Enter Role ' />
 
+                                        </div>
                                     </div>
-                                </div>
 
                                 </div>
 
                                 <div>
-                                <div className='inputFields'>
-                                    <label>Email</label>
-                                    <div className='errorcontainr'>
-                                        <input name='oemail' value={values.oemail} onChange={handleChange} onBlur={handleBlur} placeholder='Enter Manger Email' />
-                                    </div>
+                                    <div className='inputFields'>
+                                        <label>Email</label>
+                                        <div className='errorcontainr'>
+                                            <input name='oemail' value={values.oemail} onChange={handleChange} onBlur={handleBlur} placeholder='Enter Manger Email' />
+                                        </div>
 
-                                </div>
-                                {errors.oemail && touched.oemail ? <p className='form-error'  > {errors.oemail}  </p> : null}
+                                    </div>
+                                    {errors.oemail && touched.oemail ? <p className='form-error'  > {errors.oemail}  </p> : null}
 
 
                                 </div>
@@ -677,37 +692,37 @@ function OutletDetailPage({ values, handleBlur, handleChange, touched, errors, b
                             </div>
                             <div className='OutletInputFields'>
                                 <div>
-                                <div className='inputFields' >
-                                    <label>Name</label>
-                                    <div className='errorcontainr'>
-                                        <input name='name3' value={values.name3} onChange={handleChange} placeholder='Enter Person Name' />
+                                    <div className='inputFields' >
+                                        <label>Name</label>
+                                        <div className='errorcontainr'>
+                                            <input name='name3' value={values.name3} onChange={handleChange} placeholder='Enter Person Name' />
+
+                                        </div>
 
                                     </div>
-
-                                </div>
 
                                 </div>
 
                                 <div>
-                                <div className='inputFields'>
-                                    <label>Designation</label>
-                                    <div className='errorcontainr'>
-                                        <input name='role2' value={values.role2} onChange={handleChange} placeholder='Enter Role' />
+                                    <div className='inputFields'>
+                                        <label>Designation</label>
+                                        <div className='errorcontainr'>
+                                            <input name='role2' value={values.role2} onChange={handleChange} placeholder='Enter Role' />
+
+                                        </div>
 
                                     </div>
-
-                                </div>
 
                                 </div>
 
                                 <div>
-                                <div className='inputFields'>
-                                    <label>Email</label>
-                                    <div className='errorcontainr'>
-                                        <input name='email3' value={values.email3} onChange={handleChange} onBlur={handleBlur} placeholder='Enter Person Email' />
+                                    <div className='inputFields'>
+                                        <label>Email</label>
+                                        <div className='errorcontainr'>
+                                            <input name='email3' value={values.email3} onChange={handleChange} onBlur={handleBlur} placeholder='Enter Person Email' />
+                                        </div>
                                     </div>
-                                </div>
-                                {errors.email3 && touched.email3 ? <p className='form-error'  > {errors.email3}  </p> : null}
+                                    {errors.email3 && touched.email3 ? <p className='form-error'  > {errors.email3}  </p> : null}
 
 
                                 </div>

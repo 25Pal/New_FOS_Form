@@ -71,8 +71,12 @@
     font-size: 14px;
     font-weight: 600;
     font-family: "Inter",sans-serif;
+   
+
 }
 
+
+/* style={{ maxWidth: '100%', overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis' }} */
 .upd-txt{
     font-size: 16px;
     font-weight: 600;

@@ -12,12 +12,13 @@ function BankDetailPage({ values, handleBlur, handleChange, touched, errors }) {
   const handleChequeFileChange = (event) => {
 
     event.preventDefault();
+    
     const file = event.target.files[0];
-    setChequeFile(file)
+    setChequeFile(file);
     var reader = new FileReader();
 
     console.log("File clicked ", file, file.name, file.size);
-    let chequeImage = ""
+    let chequeImage = "";
 
     document.getElementById('chequeName').innerText = file.name;
     document.getElementById('chequeSize').innerText = file.size / 100 + 'KB';

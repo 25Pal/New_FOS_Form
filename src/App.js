@@ -148,6 +148,7 @@ function App() {
 
   const [isRefReady, setIsRefReady] = useState(false);
   const [submitBtn, setSubmitBtn] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
 
@@ -181,7 +182,10 @@ function App() {
 
 
   const saveOutletsPhoto = (photoData) => {
-    console.log("---------->saveOutletsPhoto<-------", photoData);
+    console.log("---------->saveOutletsPhoto<-------", [...photoData]);
+
+
+
 
     handleChange({
       target: {
@@ -189,6 +193,9 @@ function App() {
         value: photoData,
       }
     });
+
+
+
 
   }
 
@@ -198,23 +205,22 @@ function App() {
     initialValues: formData,
     validationSchema: signUpSchema,
     onSubmit: async (values) => {
-     
-      axios.post("https://apis.saveeat.in/api/v1/adminUser/getfosdata1", values)
-      // axios.post("http://localhost:3032/api/v1/adminUser/getfosdata1", values)
 
-        .then((response) => {
-          toast.success("Form Submitted Successfully!", {
-            position: "top-center",
-            autoClose: 2000,
-            onClose: () => {
-              window.location.reload();
-            }
-          });
-        })
-        .catch((error) => {
-          // Handle error
-          toast.error("An error occurred. Please try again later.");
+      try {
+        setSubmitting(true); // Set submitting state to true when form submission starts
+        // await axios.post("http://localhost:3032/api/v1/adminUser/getfosdata1", values);
+        await axios.post("https://apis.saveeat.in/api/v1/adminUser/getfosdata1", values);
+        toast.success("Form Submitted Successfully!", {
+          position: "top-center",
+          autoClose: 1000,
+          onClose: () => {
+            window.location.reload();
+          }
         });
+      } catch (error) {
+        // Handle error
+        toast.error("Form Not Submitted !");
+      };
     },
 
   });
@@ -234,7 +240,7 @@ function App() {
 
     console.log("Response from  setLatitudeAndLongitude  Function  ======>>> ", success)
 
-    if (Object.keys(errors).length > 0 ) { // Change formik.errors to values.errors
+    if (Object.keys(errors).length > 0) { // Change formik.errors to values.errors
 
       console.log("-------- Errors Found in Schema -------", Object.keys(errors).length, success)
       scrollToFirstError(success);
@@ -246,16 +252,57 @@ function App() {
       if (success === false) {
 
         // toast.error("Invalid Outlet Location !");
-
         scrollToFirstError(success);
         return false;
 
       } else {
 
-        console.log("----------- Form Submitted --------")
-        setSubmitBtn(false);
+        // Check if the length of outletPhotos is less than 4
+        console.log("values.outletphotos.length   ----->>", values.outletphotos.length)
+        if (values.outletphotos.length >= 1) {
+          console.log("values.outletphotos.length show error   ----->>", values.outletphotos.length)
 
-        handleSubmit();
+          if (values.outletphotos.length < 4) {
+
+            const mainOutletDiv = document.querySelector('.photosContainer');
+            mainOutletDiv.style.border = '1.5px dotted red';
+            mainOutletDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            toast.error("Please upload at least 4 photos of the outlet.", {
+              position: "top-center",
+              autoClose: 1000
+            });
+
+            return false;
+          } else {
+
+            console.log("----------- Form Submitted  1--------")
+            setSubmitBtn(true);
+            if (submitting === true) {
+              alert("1");
+              return false
+            } else {
+              handleSubmit();
+            }
+
+          }
+
+
+        } else {
+
+          console.log("----------- Form Submitted  2--------")
+          setSubmitBtn(true);
+
+          if (submitting === true) {
+            alert("2");
+            return false
+          } else {
+            handleSubmit();
+
+          }
+
+        }
+
+
       }
 
 
@@ -268,19 +315,19 @@ function App() {
     console.log("-------- Inside scrollToFirstError Function ----------", success, errors)
     const firstErrorField = Object.keys(errors)[0];
 
-    if(firstErrorField){
+    if (firstErrorField) {
       const firstErrorFieldElement = document.querySelector(`[name='${firstErrorField}']`);
       console.log("----------firstErrorFieldElement ----------", Object.keys(errors)[0], firstErrorFieldElement)
       firstErrorFieldElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  
+
       firstErrorFieldElement.focus();
-  
+
       handleSubmit();
-  
+
       console.log("Form Submitted from scrollToFirstError function ", Object.keys(errors).length)
-  
-  
-    }else if(Object.keys(errors).length === 0 && success == false){
+
+
+    } else if (Object.keys(errors).length === 0 && success == false) {
 
 
       const getOutletLocationField = document.querySelector(`[name='Outlet_address_street']`);
@@ -301,54 +348,12 @@ function App() {
       }
 
 
-      toast.error("Please Put proper Outlet Location !")
+      toast.error("Please Put proper Outlet Location !", {
+        position: "top-center",
+        autoClose: 1000
+      })
 
     }
-
-    
-    // if (success === true) {
-
-    //   const firstErrorField = Object.keys(errors)[0];
-    //   const firstErrorFieldElement = document.querySelector(`[name='${firstErrorField}']`);
-    //   console.log("----------firstErrorFieldElement ----------", Object.keys(errors)[0], firstErrorFieldElement)
-    //   firstErrorFieldElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
-    //   firstErrorFieldElement.focus();
-
-    //   handleSubmit();
-
-    //   console.log("Form Submitted from scrollToFirstError function ", Object.keys(errors).length)
-
-    // }
-    // else {
-
-     
-
-
-    //   console.log("Inside else of scrollToFirstError ")
-
-    //   const getOutletLocationField = document.querySelector(`[name='Outlet_address_street']`);
-
-    //   console.log("getOutletLocationField -------->", getOutletLocationField)
-
-    //   if (getOutletLocationField) {
-
-    //     getOutletLocationField.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
-    //     getOutletLocationField.focus();
-    //     getOutletLocationField.style.border = '1px solid red';
-
-    //     getOutletLocationField.addEventListener('input', () => {
-    //       getOutletLocationField.style.border = '1px solid #d4d4d4'; // Remove border style
-    //     });
-
-    //   }
-
-
-    // }
-
-
-
   }
 
   /* global google */
@@ -392,9 +397,9 @@ function App() {
     });
   };
 
-
-
-
+  useEffect(() => {
+    console.log("submitBtn ? ", submitBtn)
+  })
 
 
   return (
@@ -411,11 +416,11 @@ function App() {
         <Outletphotos saveOutletsPhoto={saveOutletsPhoto} handleChange={handleChange} values={values} errors={errors} touched={touched} />
         <Commisiondetailpage handleChange={handleChange} handleBlur={handleBlur} values={values} errors={errors} touched={touched} />
         <Otherdetailpage handleChange={handleChange} handleBlur={handleBlur} values={values} errors={errors} touched={touched} />
-        <div className='saveBtn'>
-          {
-            submitBtn ? <Spinner animation="border" variant="success" /> : <button type='submit'     > Submit </button>
 
-          }
+        <div className='saveBtn'  >
+
+          <button type='submit' disabled={submitting}> {submitting ? 'Submitting' : 'Submit'} </button>
+          {/* <button type='button'  style={{background:"green", border:"none" , color:"white" }}  > Submitting </button>  */}
 
 
         </div>
@@ -423,10 +428,8 @@ function App() {
       </form>
 
       <ToastContainer />
-
-
-
     </div>
+
   );
 }
 

@@ -30,10 +30,10 @@ export const signUpSchema = Yup.object({
 
 
     //========= Menu Uplaod File ==================\\
-    menuImage: Yup.mixed().test('fileRequired', 'Menu image is required', function (value) {
+    menuImage: Yup.mixed().test('fileRequired', 'Menu file is required', function (value) {
        
         if (!value || (typeof value === 'object' && !value.name)) {
-            return false; 
+            return false;
         }
         return true; 
     }),
