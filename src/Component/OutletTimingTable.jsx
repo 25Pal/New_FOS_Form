@@ -9,7 +9,7 @@ function OutletTimingTable({ Day, timeList, handleSwitch, switchh, slot, handleA
 
 
   const [showPlusButton, setShowPlusButton] = useState(false)
-  const [fromSelected, setFromSelected] = useState(false);
+  // const [fromSelected, setFromSelected] = useState(false);
 
 
   useEffect(() => {
@@ -81,26 +81,100 @@ function OutletTimingTable({ Day, timeList, handleSwitch, switchh, slot, handleA
 
   function handleSelectSlotTime(selectedTime, type, slotIndex) {
     console.log("handleSelectSlotTime functio ----->", selectedTime, type, slotIndex, showPlusButton);
-
+    console.log("==============================================================")
     if (selectedTime === "05:45") {
 
-      setShowPlusButton(!showPlusButton)
+
+      let findCurrentDay = slot.find(item => item.day === Day);
+      console.log("findCurrentDay", findCurrentDay, findCurrentDay.slots[slotIndex].from)
+
+      if(type === "to"){
+        if (findCurrentDay.slots[slotIndex].from === "Select Time") {
+        
+          console.log("---------findCurrentDay------ Inside ", findCurrentDay)
+  
+  
+          toast.error("Please select a 'From' time first!", {
+            position: "top-center",
+            autoClose: 1500
+          })
+          return false;
+  
+        }else{
+          saveSelectedTime(Day, selectedTime, type, slotIndex);
+          setShowPlusButton(false)
+        }
+      }else {
+        setShowPlusButton(false)
+
+        saveSelectedTime(Day, selectedTime, type, slotIndex);
+      }
+
 
     } else {
 
-      // console.log("Inside else ")
-      setShowPlusButton(true)
+      let findCurrentDay = slot.find(item => item.day === Day);
 
+      let checkTimeExist = findCurrentDay.slots.map((obj) => {
+
+        if (obj.from === "05:45" || obj.to === "05:45") {
+
+          console.log("--------- Inside If block --------")
+
+          let findCurrentDay = slot.find(item => item.day === Day);
+          if(type=== "to"){
+            if (findCurrentDay.slots[slotIndex].from === "Select Time") {
+
+              saveSelectedTime(Day, "Select Time", type, slotIndex);
+
+            }
+          }else{
+
+            saveSelectedTime(Day, selectedTime, type, slotIndex);
+          }
+
+
+
+
+          return setShowPlusButton(false)
+        } else {
+
+          console.log("--------- Inside else block --------")
+          let findCurrentDay = slot.find(item => item.day === Day);
+          if(type === "to"){
+            if (findCurrentDay.slots[slotIndex].from === "Select Time") {
+
+              saveSelectedTime(Day, "Select Time", type, slotIndex);
+
+            }else{
+              saveSelectedTime(Day, selectedTime, type, slotIndex);
+            }
+          }else{
+            saveSelectedTime(Day, selectedTime, type, slotIndex);
+          }
+
+          return setShowPlusButton(true)
+        }
+
+      })
+
+
+
+      // saveSelectedTime(Day, selectedTime, type, slotIndex);
     }
 
-    saveSelectedTime(Day, selectedTime, type, slotIndex);
-  }
-  const customStyles3 = {
 
+  }
+
+
+  useEffect(() => {
+    console.log("showPlusButton ---->>", showPlusButton)
+  }, [showPlusButton])
+
+  const customStyles3 = {
 
     control: provided => ({
       ...provided,
-
       width: '100%',
       height: '100%',
       border: '2px solid rgb(221, 210, 210)',
@@ -131,9 +205,12 @@ function OutletTimingTable({ Day, timeList, handleSwitch, switchh, slot, handleA
 
       '@media (max-width: 575px)': {// When screen is below 575px
         fontSize: '1.1rem',
-        // textOverflow: 'normal',
-        // whiteSpace: 'nowrap',
-        // border: '1px solid red'
+
+      },
+      '@media (max-width: 481px)': {// When screen is below 575px
+        fontSize: '1rem',
+        // border:"1px solid red"
+
       },
     })
   }
@@ -190,14 +267,14 @@ function OutletTimingTable({ Day, timeList, handleSwitch, switchh, slot, handleA
                       className={`selectTimeContainer ${switchh === undefined || !switchh ? 'disable_elements' : ''}`}
                       style={{ display: 'flex', justifyContent: 'center', alignItems: "center" }} >
 
-      
+
                       <Select
                         value={{ value: oneSlot.from, label: oneSlot.from }}
                         styles={customStyles3}
                         className={`${switchh === undefined || !switchh ? 'disable_elements' : ''}`}
                         disabled={switchh === undefined || !switchh}
                         isSearchable={false}
-                        onChange={(selectedOption) => {handleSelectSlotTime(selectedOption.value, 'from', slotIndex); setFromSelected(true) }}
+                        onChange={(selectedOption) => { handleSelectSlotTime(selectedOption.value, 'from', slotIndex) }}
                         options={filteredSlot.timeDropdown[slotIndex].fromTimeList.map((time) => ({ value: time, label: time }))} // Convert time array to options format
                       />
 
@@ -215,14 +292,12 @@ function OutletTimingTable({ Day, timeList, handleSwitch, switchh, slot, handleA
                       className={`selectTimeContainer ${switchh === undefined || !switchh ? 'disable_elements' : ''}`}
                       style={{ display: 'flex', justifyContent: 'center', alignItems: "center" }}>
 
-                    
                       <Select
                         value={{ value: oneSlot.to, label: oneSlot.to }}
-                        // classNamePrefix="select"
                         styles={customStyles3}
                         isSearchable={false}
                         className={`${switchh === undefined || !switchh ? 'disable_elements' : ''}`}
-                        disabled={switchh === undefined || !switchh  || !fromSelected }
+                        disabled={switchh === undefined || !switchh}
                         onChange={(selectedOption) => handleSelectSlotTime(selectedOption.value, 'to', slotIndex)}
                         options={filteredSlot.timeDropdown[slotIndex].toTimeList.map((time) => ({ value: time, label: time }))} // Convert time array to options format
                       />

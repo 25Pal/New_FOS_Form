@@ -5,7 +5,7 @@
   padding: 20px;
   box-sizing: border-box;
   background-color: #F5F6FB;
-  /* border: 1px solid black; */
+  border: 1px solid black;
 
 }
 
@@ -119,4 +119,45 @@
     /* border: 1px solid black; */
   }
 
+}
+
+
+@media (max-width: 481px) and (min-width: 200px){
+  .MainForm {
+
+    border: 2px solid rgb(37, 209, 31);
+    max-width: 200%;
+    width: 100%;
+    padding: 0px;
+    gap: 1rem !important;
+    margin-left: 0rem;
+    border: 2px solid black;
+
+  }
+  
+  .App {
+    width: 200%;
+    /* max-width: 100%; */
+    margin: 0;
+    padding: 10px;
+    box-sizing: border-box;
+    background-color: #F5F6FB;
+    border: 1px solid rgb(223, 15, 15);
+  /* display: ruby;   'It makes all div in center' */
+
+  }
+
+  .form-error{
+    color: rgb(249, 69, 69);
+    font-size: 12px;
+    font-weight: 600;
+    padding-left: 7px;
+    
+  }
+  
+  .errorcontainr{
+    /* border: 7px solid black; */
+    margin-bottom: 1rem;
+  
+  }
 }

@@ -104,6 +104,7 @@ function BankDetailPage({ values, handleBlur, handleChange, touched, errors }) {
 
       <div id='bankDetailsPage'>
         <div className='parentContainer'>
+          
           <div className='Container1'>
             <div className='Container2'>
 
@@ -126,6 +127,7 @@ function BankDetailPage({ values, handleBlur, handleChange, touched, errors }) {
 
             </div>
           </div>
+
           <div className='Container1'>
             <div className='Container2' >
 

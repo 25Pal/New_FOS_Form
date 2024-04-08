@@ -113,7 +113,7 @@ const CameraComponent = ({ onPhotoCapture }) => {
                 {
                     !showClickedPhoto ?
                         <div className="video-container" style={{ display: showFrame ? "flex" : "none" }}  >
-                            <video style={{ border: "1px solid blue", width: "25rem" ,transform: "scaleX(-1)" }} ref={videoRef}></video>
+                            <video style={{ border: "1px solid blue", width: "auto" ,transform: "scaleX(-1)" }} ref={videoRef}></video>
                         </div> :
                         <div className="photo-container" style={{ display: showFrame ? "flex" : "none" }}  >
                             {photo && showClickedPhoto === true ? <img src={photo} alt="Captured"  style={{transform: "scaleX(-1)" }}/> : ''}

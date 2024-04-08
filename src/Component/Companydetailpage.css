@@ -42,7 +42,7 @@
     gap: 1rem;
 }
 
-.billingDetails label{
+.billingDetails label {
     height: 17px;
     width: auto;
     font-family: "Roboto", sans-serif;
@@ -78,21 +78,21 @@
 .optionContainer {
     display: grid;
     gap: 1rem;
-    /* height: 100%; */
-    /* border: 1px solid green ; */
+   
 }
 
 #ownertype {
-   outline: none;
-}
-#bustype{
-  
-   outline: none;
-
-
+    outline: none;
 }
 
-.singleDetail label{
+#bustype {
+
+    outline: none;
+
+
+}
+
+.singleDetail label {
     /* border: 1px solid red; */
     height: 17px;
     width: auto;
@@ -105,7 +105,7 @@
     margin-top: 1rem;
 }
 
-.singleDetail input{
+.singleDetail input {
     border: 1px solid #d4d4d4;
     width: 100%;
     border-radius: 5px;
@@ -113,11 +113,11 @@
     outline: none;
     padding: 0.5rem;
     min-width: 100%;
-    
+
     /* border: 1px solid black; */
 }
 
-.subInputField{
+.subInputField {
     /* border: 1px solid brown; */
     gap: 4rem;
 
@@ -134,28 +134,30 @@
     }
 }
 
-.errorcontainr textarea{
+.errorcontainr textarea {
     width: 100%;
     height: 100% !important;
-   
+
 }
 
 
 
 @media (max-width: 990px) and (min-width: 700px) {
-    .heading2{
+    .heading2 {
+
         /* border: 1px solid red; */
-        h5{
+        h5 {
             font-size: 28px;
-           
-            margin-left: 0rem;   
-          }
+
+            margin-left: 0rem;
+        }
     }
-   
+
     #comapnyDetailsPage {
         /* border: 3px solid green; */
         padding: 20px;
     }
+
     .subInputField {
         grid-auto-flow: row;
         /* border: 1px solid red; */
@@ -163,23 +165,23 @@
 
     }
 
-    .singleDetail input{
+    .singleDetail input {
 
         border: 1px solid #aea5a5;
         /* margin-bottom: 0.7rem; */
         padding: 2px 0px 2px 7px;
         height: 3.5rem;
         font-size: 22px;
-        margin-top:0.5rem;
+        margin-top: 0.5rem;
 
     }
 
-    .singleDetail label   {
+    .singleDetail label {
         font-size: 22.5px;
         color: black;
         margin-top: 0.5rem;
-       
-        
+
+
     }
 
     .subDiv1 {
@@ -192,7 +194,7 @@
         }
     }
 
-    .billingDetails textarea{
+    .billingDetails textarea {
         /* border: 1px solid greenyellow; */
         height: 6rem !important;
         padding: 7px;
@@ -211,31 +213,32 @@
         grid-auto-flow: row;
     }
 
-    .typesOptions{
-      grid-auto-flow: row;
+    .typesOptions {
+        grid-auto-flow: row;
     }
 
     #ownertype {
         height: 4rem !important;
-     
+
     }
-   
-    
+
+
 
 
 
 }
 
 @media (max-width: 701px) and (min-width: 576px) {
-    .heading2{
+    .heading2 {
+
         /* border: 1px solid red; */
-        h5{
+        h5 {
             font-size: 27px;
-           
-            margin-left: 0rem;   
-          }
+
+            margin-left: 0rem;
+        }
     }
-   
+
     #comapnyDetailsPage {
         /* border: 3px solid rgb(181, 32, 174); */
         padding: 1rem;
@@ -248,23 +251,23 @@
 
     }
 
-    .singleDetail input{
+    .singleDetail input {
 
         border: 1px solid #aea5a5;
         /* margin-bottom: 0.7rem; */
         padding: 2px 0px 2px 7px;
         height: 3.5rem;
         font-size: 21px;
-        margin-top:0.5rem;
+        margin-top: 0.5rem;
 
     }
 
-    .singleDetail label   {
+    .singleDetail label {
         font-size: 22px;
         color: black;
         margin-top: 0.5rem;
-       
-        
+
+
     }
 
     .subDiv1 {
@@ -277,7 +280,7 @@
         }
     }
 
-    .billingDetails textarea{
+    .billingDetails textarea {
         /* border: 1px solid greenyellow; */
         height: 6rem !important;
         padding: 7px;
@@ -288,43 +291,44 @@
     .identityDetails {
         /* border: 1px solid rgb(81, 255, 0); */
         grid-auto-flow: row;
-gap: 0.5rem;
+        gap: 0.5rem;
     }
 
     .signingDetails {
         grid-auto-flow: row;
     }
 
-    .typesOptions{
+    .typesOptions {
         /* border: 1px solid black; */
-      grid-auto-flow: row;
+        grid-auto-flow: row;
     }
 
     #ownertype {
         /* border: 1px solid black; */
         height: 4rem !important;
-       
-    }
-   
 
-   
+    }
+
+
+
 }
 
-@media (max-width: 575px) and (min-width: 200px) {
-    .heading2{
+@media (max-width: 575px) and (min-width: 480px) {
+    .heading2 {
+
         /* border: 1px solid red; */
-        h5{
+        h5 {
             font-size: 25px;
-           
-            margin-left: 0rem;   
-          }
+
+            margin-left: 0rem;
+        }
     }
 
-    
+
     #comapnyDetailsPage {
         /* border: 3px solid rgb(82, 32, 181); */
         padding: 1rem;
-        
+
     }
 
     .subInputField {
@@ -333,15 +337,15 @@ gap: 0.5rem;
         gap: 0.5rem;
     }
 
-    .identityDetails{
+    .identityDetails {
         gap: 0.5rem;
     }
 
-    .singleDetail{
+    .singleDetail {
         gap: 0.8rem;
     }
 
-    .singleDetail input{
+    .singleDetail input {
 
         border: 1px solid #aea5a5;
         /* margin-bottom: 0.7rem; */
@@ -354,30 +358,30 @@ gap: 0.5rem;
 
     }
 
-    .singleDetail label   {
+    .singleDetail label {
         font-size: 20.5px;
         color: black;
         margin-top: 0.5rem;
-        
-       
+
+
         /* border: 1px solid red; */
-        
+
     }
 
     .subDiv1 {
         margin-top: 0.3rem;
-       
+
 
         h6 {
             font-size: 21px;
             margin-bottom: 10px;
             font-weight: 700;
-          
-       
+
+
         }
     }
 
-    .billingDetails textarea{
+    .billingDetails textarea {
         border: 1px solid #aea5a5;
         height: 6rem !important;
         padding: 7px;
@@ -396,15 +400,126 @@ gap: 0.5rem;
         grid-auto-flow: row;
     }
 
-    .typesOptions{
+    .typesOptions {
         /* border: 1px solid black; */
-      grid-auto-flow: row;
+        grid-auto-flow: row;
     }
 
     #ownertype {
         border: none;
         height: 4rem !important;
-       
+
     }
+
+}
+
+@media (max-width: 481px) and (min-width: 200px) {
+    .heading2 {
+
+        /* border: 1px solid red; */
+        h5 {
+            font-size: 22px;
+            margin-left: 0rem;
+        }
+    }
+
+
+    #comapnyDetailsPage {
+        /* border: 3px solid rgb(82, 32, 181); */
+        padding: 0.5rem;
+
+    }
+
+    .subInputField {
+        grid-auto-flow: row;
+        /* border: 1px solid red; */
+        gap: 0.5rem;
+    }
+
+    .identityDetails {
+        gap: 0.5rem;
+        /* border: 1px solid red; */
+
+    }
+
+    .singleDetail {
+        gap: 0.8rem;
+    }
+
+    .singleDetail input {
+
+        border: 1px solid #aea5a5;
+        margin-bottom: 0.7rem;
+        padding: 2px 0px 2px 7px;
+        height: 2.5rem;
+        font-size: 18.5px;
+        /* border: 1px solid red; */
+
+    }
+
+    .singleDetail label {
+        font-size: 19px;
+        color: black;
+        margin-top: 0.1rem;
+        /* border: 1px solid red; */
+    }
+
+    .subDiv1 {
+        margin-top: 0.3rem;
+        h6 {
+            font-size: 21px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+    }
+
+    .billingDetails textarea {
+        border: 1px solid #aea5a5;
+        height: 6rem !important;
+        padding: 7px;
+        font-size: 18px;
+        border-radius: 10px;
+    }
+
+
+    .identityDetails {
+        /* border: 1px solid rgb(81, 255, 0); */
+        grid-auto-flow: row;
+
+    }
+
+    .signingDetails {
+        grid-auto-flow: row;
+    }
+
+    .typesOptions {
+        /* border: 1px solid black; */
+        grid-auto-flow: row;
+    }
+
+    #ownertype {
+        border: none;
+        height: 4rem !important;
+
+    }
+
+    .errorcontainr textarea {
+        width: 100%;
+        height: 100% !important;
+        /* border: 1px solid red; */
+    }
+
+    .subDiv1 h6 {
+        /* border: 1px solid red; */
+        font-size: 18px;
+        /* margin-bottom: 5px; */
+    }
+
+    .optionContainer {
+        display: grid;
+        gap: 0.1rem;        
+    }
+
    
+
 }

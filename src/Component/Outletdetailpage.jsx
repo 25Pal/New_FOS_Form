@@ -38,20 +38,18 @@ function OutletDetailPage({ values, handleBlur, handleChange, touched, errors, b
     const [selectedFile, setSelectedFile] = useState({});
     const [menuUplaodError, setMenuUplaodError] = useState(null)
     const [switchh, setSwitchh] = useState({});
+
     const [slot, setSlot] = useState([
-        { day: "Monday", slots: [{ from: "Select Time ", to: "Select Time" }], timeDropdown: [{ fromTimeList: timeList, toTimeList: timeList }] },
-        { day: "Tuesday", slots: [{ from: "Select Time ", to: "Select Time" }], timeDropdown: [{ fromTimeList: timeList, toTimeList: timeList }] },
-        { day: "Wednesday", slots: [{ from: "Select Time ", to: "Select Time" }], timeDropdown: [{ fromTimeList: timeList, toTimeList: timeList }] },
-        { day: "Thursday", slots: [{ from: "Select Time ", to: "Select Time" }], timeDropdown: [{ fromTimeList: timeList, toTimeList: timeList }] },
-        { day: "Friday", slots: [{ from: "Select Time ", to: "Select Time" }], timeDropdown: [{ fromTimeList: timeList, toTimeList: timeList }] },
-        { day: "Saturday", slots: [{ from: "Select Time ", to: "Select Time" }], timeDropdown: [{ fromTimeList: timeList, toTimeList: timeList }] },
-        { day: "Sunday", slots: [{ from: "Select Time ", to: "Select Time" }], timeDropdown: [{ fromTimeList: timeList, toTimeList: timeList }] }
+        { day: "Monday", slots: [{ from: "Select Time", to: "Select Time" }], timeDropdown: [{ fromTimeList: timeList, toTimeList: timeList }] },
+        { day: "Tuesday", slots: [{ from: "Select Time", to: "Select Time" }], timeDropdown: [{ fromTimeList: timeList, toTimeList: timeList }] },
+        { day: "Wednesday", slots: [{ from: "Select Time", to: "Select Time" }], timeDropdown: [{ fromTimeList: timeList, toTimeList: timeList }] },
+        { day: "Thursday", slots: [{ from: "Select Time", to: "Select Time" }], timeDropdown: [{ fromTimeList: timeList, toTimeList: timeList }] },
+        { day: "Friday", slots: [{ from: "Select Time", to: "Select Time" }], timeDropdown: [{ fromTimeList: timeList, toTimeList: timeList }] },
+        { day: "Saturday", slots: [{ from: "Select Time", to: "Select Time" }], timeDropdown: [{ fromTimeList: timeList, toTimeList: timeList }] },
+        { day: "Sunday", slots: [{ from: "Select Time", to: "Select Time" }], timeDropdown: [{ fromTimeList: timeList, toTimeList: timeList }] }
     ]);
 
-
-
     function handleSwitch(day, value) {
-
         setSwitchh(prevState => ({
             ...prevState,
             [day]: value
@@ -59,12 +57,13 @@ function OutletDetailPage({ values, handleBlur, handleChange, touched, errors, b
     }
 
     function saveSelectedTime(Day, selectedTime, type, slotIndex) {
-
+console.log("running.....",selectedTime)
         let findCurrentDay = slot.find(item => item.day === Day);
 
         if (findCurrentDay) {
 
             let findDaySlot = findCurrentDay.slots[slotIndex];
+            console.log("----",findDaySlot)
             let findSlotTimeDropDown = "";
 
 
@@ -84,11 +83,23 @@ function OutletDetailPage({ values, handleBlur, handleChange, touched, errors, b
 
             } else {
 
+                console.log("We r in  'to' block ! ")
+
                 findDaySlot.to = selectedTime;
                 let nextSlotIndex = slotIndex + 1;
 
 
-                let checkNextSlotExist = findCurrentDay.slots[nextSlotIndex];
+                if(findDaySlot.from === "Select Time" ) {
+
+                    toast.error("Please select a 'From' time first!" , {
+                        position: "top-center",
+                        autoClose: 1500
+                      })
+                    return false;
+
+                }else{
+
+                    let checkNextSlotExist = findCurrentDay.slots[nextSlotIndex];
 
 
                 if (checkNextSlotExist) {
@@ -115,6 +126,12 @@ function OutletDetailPage({ values, handleBlur, handleChange, touched, errors, b
 
                 }
 
+                }
+
+
+
+                
+
 
 
 
@@ -123,8 +140,10 @@ function OutletDetailPage({ values, handleBlur, handleChange, touched, errors, b
 
             const updatedSlot = slot.map(item => {
 
+                console.log("Inside update slots ")
                 if (item.day === Day) {
 
+            
                     const updatedSlots = item.slots.map((slot, idx) => {
 
                         if (idx === slotIndex) {
@@ -167,12 +186,13 @@ function OutletDetailPage({ values, handleBlur, handleChange, touched, errors, b
 
 
 
+            console.log("<<------- Check uplaoded slots ---->>", updatedSlot )
 
             setSlot(updatedSlot);
 
 
         } else {
-            alert("No Day entryy found ")
+            alert("No Day entry found ")
         }
 
     }
@@ -545,12 +565,13 @@ function OutletDetailPage({ values, handleBlur, handleChange, touched, errors, b
 
                         <hr style={{ marginTop: "15px", boxShadow: "0px 0.6px 5px #CFCCCC", color: "#CFCCC" }} />
 
-                        <div style={{ display: "grid", gap: '1rem' }}>
+                        <div   className='locationnlocality' style={{ display: "grid", gap: '1rem' }}>
                             <div >
-                                <div className="subDiv" >
-                                    <h6>
+                                <div className="subDiv">
+                                    <h6 >
                                         Location <span className='mandatory'>*</span>
                                     </h6>
+
                                 </div>
 
                                 <div className='OutletInputFields'  >

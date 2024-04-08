@@ -135,14 +135,12 @@ function comapanyDetailPage({ values, handleBlur, handleChange, touched, errors 
 
           <hr style={{ marginTop: "15px", boxShadow: "0px 0.6px 5px #CFCCCC", color: "#CFCCC" }} />
 
-          {/* <label>  Signing Authority</label> */}
           <div className="subDiv1" >
             <h6>
               Signing Authority<span className='mandatory'> *</span>
             </h6>
           </div>
           <div className='signingDetails'>
-
 
             <div className='subInputField' >
 
@@ -266,7 +264,7 @@ function comapanyDetailPage({ values, handleBlur, handleChange, touched, errors 
                 <h6>
                   Type of Business<span className='mandatory'> *</span>
                 </h6>
-                <div name="type_of_business">
+                <div  name="type_of_business">
                   <Select
                     id='bustype'
                     options={options2}
@@ -274,7 +272,6 @@ function comapanyDetailPage({ values, handleBlur, handleChange, touched, errors 
                     isSearchable={true}
                     value={options2.find((option) => option.value === values.ownership)}
                     onChange={(selectedOption) => handleChange({ target: { name: "type_of_business", value: selectedOption.value } })}
-
                   />
                 </div>
               </div>
