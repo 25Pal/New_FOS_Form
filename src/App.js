@@ -208,8 +208,8 @@ function App() {
 
       try {
         setSubmitting(true); // Set submitting state to true when form submission starts
-        await axios.post("http://localhost:3032/api/v1/adminUser/getfosdata1", values);
-        // await axios.post("https://apis.saveeat.in/api/v1/adminUser/getfosdata1", values);
+        // await axios.post("http://localhost:3032/api/v1/adminUser/getfosdata1", values);
+        await axios.post("https://apis.saveeat.in/api/v1/adminUser/getfosdata1", values);
         toast.success("Form Submitted Successfully!", {
           position: "top-center",
           autoClose: 1000,
