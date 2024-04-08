@@ -114,9 +114,9 @@ const CameraComponent = ({ onPhotoCapture }) => {
                 {
                     !showClickedPhoto ?
                         <div className="video-container" style={{ display: showFrame ? "flex" : "none" }}  >
-                            <video style={{  width: `${isSmallScreen ? '100%':'auto'}` ,transform: "scaleX(-1)" }} ref={videoRef}></video>
+                            <video style={{  maxWidth: `${isSmallScreen ? '100%':'auto'}` ,transform: "scaleX(-1)" }} ref={videoRef}></video>
                         </div> :
-                        <div className="photo-container" style={{ display: showFrame ? "flex" : "none" , width: `${isSmallScreen ? '100%':'auto'}`  }}  >
+                        <div className="photo-container" style={{ display: showFrame ? "flex" : "none" , maxWidth: `${isSmallScreen ? '100%':'auto'}`  }}  >
                             {photo && showClickedPhoto === true ? <img src={photo} alt="Captured"  style={{transform: "scaleX(-1)" ,width: `${isSmallScreen ? '100%':'auto'}`}}/> : ''}
                         </div>
                 }
@@ -145,7 +145,7 @@ const CameraComponent = ({ onPhotoCapture }) => {
                         <i class="bi bi-check-circle"   style={{ fontSize: '20px' }}  ></i>
                         </button>
                     }
-                    
+
                     {
                         <button type='button' style={{ display:  showUploadDone ||showUploadBtn   ? "block" : "none",background:"none" , color:"#000"  , border:"1px solid black"}} onClick={handleCancelPhoto}>Retake</button>
                     }
