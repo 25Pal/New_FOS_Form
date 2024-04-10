@@ -194,6 +194,7 @@ function OutletTimingTable({ Day, timeList, handleSwitch, switchh, slot, handleA
       overflow: 'hidden',
       // textOverflow: 'ellipsis',
       fontSize: '0.9rem',
+      // border:"1px solid red",
 
       '@media (max-width: 990px)': {//When screen is below 990px
         fontSize: '2rem'
@@ -209,7 +210,13 @@ function OutletTimingTable({ Day, timeList, handleSwitch, switchh, slot, handleA
       },
       '@media (max-width: 481px)': {// When screen is below 575px
         fontSize: '1rem',
+
+      },
+      '@media (max-width: 381px)': {// When screen is below 575px
+        fontSize: '0.8rem',
         // border:"1px solid red"
+      
+       
 
       },
     })

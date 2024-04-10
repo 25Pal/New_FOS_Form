@@ -34,7 +34,7 @@
 }
 
 .Container2 {
-    
+
     display: grid;
     grid-auto-flow: row;
     gap: 0.5rem;
@@ -42,7 +42,7 @@
 
 }
 
-.Container2 label{
+.Container2 label {
     /* border: 1px solid black; */
     height: 20px;
     width: auto;
@@ -55,7 +55,7 @@
     margin-top: 1rem;
 }
 
-.Container2 input{
+.Container2 input {
     border: 1px solid #d4d4d4;
     width: 100%;
     border-radius: 5px;
@@ -65,7 +65,7 @@
 }
 
 .chequeUploadContainerParent {
-   
+
     width: 100%;
 
     display: flex;
@@ -74,7 +74,7 @@
 }
 
 .chequeUploadContainer {
-    
+
     width: 100%;
 
     display: flex;
@@ -85,7 +85,7 @@
 
 
 .chequeButtons {
-    
+
     width: 100%;
 
     display: flex;
@@ -100,17 +100,17 @@
     color: red;
 }
 
-.chequeButtons{
+.chequeButtons {
     /* border: 1px solid rgb(64, 255, 0); */
     display: grid;
     grid-auto-flow: column;
-   justify-content: end;
+    justify-content: end;
     gap: 0px;
 
-    
+
 }
 
-.btn{
+.btn {
     border: none;
     display: flex;
     align-items: center;
@@ -121,41 +121,42 @@
     border-radius: 1px;
 
     /* border: 2px solid black; */
-   
-    
+
+
 }
 
 
-.eye{
+.eye {
     background-color: rgb(31, 153, 31);
 }
 
-.eye:hover{
+.eye:hover {
     background-color: rgb(31, 153, 31);
 }
 
 
 
-.upload{
+.upload {
     background-color: rgb(74, 74, 241);
 
 }
-.upload:hover{
+
+.upload:hover {
     background-color: rgb(74, 74, 241);
 }
 
-.dlt{
+.dlt {
     background-color: rgb(213, 47, 47);
 
 }
 
-.dlt:hover{
+.dlt:hover {
     background-color: rgb(213, 47, 47);
 }
 
 @media (max-width: 990px) and (min-width: 700px) {
-    .heading1{
-        h5{
+    .heading1 {
+        h5 {
             font-size: 27.5px;
         }
     }
@@ -163,8 +164,9 @@
     .errorcontainr {
         /* border: 1px solid black; */
         margin-bottom: 1rem;
-    
+
     }
+
     #bankDetailsPage {
         /* border: 1px solid rgb(94, 255, 0); */
         padding: 20px;
@@ -180,7 +182,8 @@
         justify-content: space-evenly;
 
     }
-    .parentContainer{
+
+    .parentContainer {
         gap: 0rem;
     }
 
@@ -190,19 +193,19 @@
         gap: 0rem;
     }
 
-    .Container2{
+    .Container2 {
         /* border: 1px solid black; */
         grid-auto-flow: row;
     }
 
-    .Container2 label{      
+    .Container2 label {
         font-size: 22px;
         margin-bottom: 0px;
     }
-    
-    .Container2 input{
-       font-size: 21px;
-       height: 3.5rem;
+
+    .Container2 input {
+        font-size: 21px;
+        height: 3.5rem;
     }
 
     .subDiv2 {
@@ -214,25 +217,25 @@
             font-weight: 700;
         }
     }
-    
-    .chequeButtons{
+
+    .chequeButtons {
         /* border: 1px solid red; */
         display: grid;
     }
 
-    .btn{
-       
+    .btn {
+
         width: 5rem;
         height: 3.5rem;
-        
+
     }
 
 }
 
 @media (max-width: 701px) and (min-width: 576px) {
 
-    .heading1{
-        h5{
+    .heading1 {
+        h5 {
             font-size: 27px;
         }
     }
@@ -242,39 +245,40 @@
         /* border: 3px solid blue; */
         padding: 15px;
     }
+
     .chequeUploadContainerParent {
         flex-direction: column;
         gap: 0.5rem;
     }
 
-    .chequeButtons{
+    .chequeButtons {
         justify-content: center;
- 
-     }
+
+    }
 
     .chequeUploadContainer {
         justify-content: space-between;
     }
-   
+
     .Container1 {
         grid-auto-flow: row;
         /* border: 1px solid red; */
         gap: 0rem;
     }
 
-    .Container2{
+    .Container2 {
         /* border: 1px solid black; */
         grid-auto-flow: row;
     }
 
-    .Container2 label{      
+    .Container2 label {
         font-size: 22px;
         margin-bottom: -3px;
     }
-    
-    .Container2 input{
-       font-size: 20px;
-       height: 3.5rem;
+
+    .Container2 input {
+        font-size: 20px;
+        height: 3.5rem;
     }
 
     .subDiv2 {
@@ -286,24 +290,25 @@
             font-weight: 700;
         }
     }
-    
-    
 
-    .btn{
-       
+
+
+    .btn {
+
         width: 5rem;
         height: 3.5rem;
-        
-        
+
+
     }
 }
 
 @media (max-width: 575px) and (min-width: 480px) {
-    .heading1{
-        h5{
+    .heading1 {
+        h5 {
             font-size: 25px;
         }
     }
+
     #bankDetailsPage {
         /* border: 3px solid purple; */
         padding: 1rem;
@@ -319,11 +324,12 @@
         justify-content: space-between;
 
     }
-    .chequeButtons{
-       justify-content: center;
+
+    .chequeButtons {
+        justify-content: center;
 
     }
-   
+
 
     .Container1 {
         grid-auto-flow: row;
@@ -331,18 +337,18 @@
         gap: 0rem;
     }
 
-    .Container2{
+    .Container2 {
         /* border: 1px solid black; */
         grid-auto-flow: row;
     }
 
-    .Container2 label{      
+    .Container2 label {
         font-size: 21px;
         margin-bottom: -3px;
     }
-    
-    .Container2 input{
-       font-size: 19px;
+
+    .Container2 input {
+        font-size: 19px;
     }
 
     .subDiv2 {
@@ -356,7 +362,7 @@
     }
 
 
-    .btn{
+    .btn {
         width: 5rem;
 
     }
@@ -364,11 +370,12 @@
 
 
 @media (max-width: 481px) and (min-width: 200px) {
-    .heading1{
-        h5{
+    .heading1 {
+        h5 {
             font-size: 22px;
         }
     }
+
     #bankDetailsPage {
         /* border: 3px solid purple; */
         padding: 0.5rem;
@@ -384,11 +391,12 @@
 
         flex-direction: column;
     }
-    .chequeButtons{
-       justify-content: center;
+
+    .chequeButtons {
+        justify-content: center;
 
     }
-   
+
 
     .Container1 {
         grid-auto-flow: row;
@@ -396,44 +404,124 @@
         gap: 0rem;
     }
 
-    .Container2{
+    .Container2 {
         /* border: 1px solid black; */
         grid-auto-flow: row;
     }
 
-    .Container2 label{      
+    .Container2 label {
         font-size: 19px;
         margin-bottom: -3px;
     }
-    
-    .Container2 input{
-       font-size: 18.5px;
-       height: 2.5rem;
+
+    .Container2 input {
+        font-size: 18.5px;
+        height: 2.5rem;
     }
 
     .subDiv2 {
         margin-top: 0.4rem;
+
         h6 {
             font-size: 19.5px;
             margin-bottom: 9px;
             font-weight: 700;
-/* border: 1px solid red; */
+            /* border: 1px solid red; */
 
         }
     }
 
-    .subDiv2 #chequeName{
+    .subDiv2 #chequeName {
         font-size: 16px !important;
 
     }
 
-    .subDiv2 #chequeSize{
+    .subDiv2 #chequeSize {
         font-size: 16px !important;
 
     }
 
-    .btn{
+    .btn {
         width: 6rem;
+
+    }
+}
+
+@media (max-width: 381px) and (min-width: 200px) {
+    .heading1 {
+        h5 {
+            font-size: 20px;
+        }
+    }
+
+    #bankDetailsPage {
+        /* border: 3px solid purple; */
+        padding: 0.5rem;
+    }
+
+    .chequeUploadContainerParent {
+        flex-direction: column;
+        gap: 0.5rem;
+        /* border: 1px solid red; */
+    }
+
+    .chequeUploadContainer {
+
+        flex-direction: column;
+    }
+
+    .chequeButtons {
+        justify-content: center;
+
+    }
+
+
+    .Container1 {
+        grid-auto-flow: row;
+        /* border: 1px solid red; */
+        gap: 0rem;
+    }
+
+    .Container2 {
+        /* border: 1px solid black; */
+        grid-auto-flow: row;
+    }
+
+    .Container2 label {
+        font-size: 17px;
+        margin-bottom: -3px;
+    }
+
+    .Container2 input {
+        font-size: 16px;
+        height: 2.1rem;
+    }
+
+    .subDiv2 {
+        margin-top: 0.4rem;
+
+        h6 {
+            font-size: 18.5px;
+            margin-bottom: 9px;
+            font-weight: 500;
+            /* border: 1px solid red; */
+
+        }
+    }
+
+    .subDiv2 #chequeName {
+        font-size: 16px !important;
+
+    }
+
+    .subDiv2 #chequeSize {
+        font-size: 16px !important;
+
+    }
+
+    .btn {
+        width: 5rem;
+        height: 2.5rem;
 
     }
 }

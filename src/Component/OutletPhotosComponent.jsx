@@ -148,16 +148,13 @@ const Outletphotos = ({ saveOutletsPhoto , values, handleChange}) => {
         }
     }, [selectedPhotos, imageNames]);
 
-
-   
-
     return (
         <div className='mainOutlet'>
 
-            <h5 className='heading8 d-flex gap-2'>Photo of the Outlet <h6 className='mt-1' >(Add 4 images only)</h6> </h5>
+            <h5 className='heading8 d-flex gap-2'>Photo of the Outlet <h6 className='subtxt mt-1' >(Add 4 images only)</h6> </h5>
             <div className={`uplaodbtn-component d-flex ${isSmallScreen ?'flex-column' :''  } justify-content-evenly`} style={{ gap: "1rem", }}>
 
-                <div className='photosContainer' style={{ display: "grid", gap: "3.4rem", border: "1px dotted black", padding: "1rem 1.5rem 1rem 1.5rem", borderRadius: "10px" }}>
+                <div className='photosContainer' >
                     <div className='uplaod-icon'>
                         <div>
                             <svg width="63" height="41" viewBox="0 0 63 41" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -180,7 +177,7 @@ const Outletphotos = ({ saveOutletsPhoto , values, handleChange}) => {
                 {
                     selectedPhotos.length > 0 && (
                         // uploading ?
-                            <div className='fileComponent' style={{ display: 'grid', gap: '1rem' }}>
+                            <div className='fileComponent' style={{ display: 'grid', gap: '0.6rem' }}>
 
                                 {
                                 selectedPhotos.map((photo, index) => (

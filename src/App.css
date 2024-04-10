@@ -5,7 +5,7 @@
   padding: 20px;
   box-sizing: border-box;
   background-color: #F5F6FB;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 
 }
 
@@ -125,13 +125,13 @@
 @media (max-width: 481px) and (min-width: 200px){
   .MainForm {
 
-    border: 2px solid rgb(37, 209, 31);
+    /* border: 2px solid rgb(37, 209, 31); */
     max-width: 200%;
     width: 100%;
     padding: 0px;
     gap: 1rem !important;
     margin-left: 0rem;
-    border: 2px solid black;
+    /* border: 2px solid black; */
 
   }
   
@@ -142,7 +142,7 @@
     padding: 10px;
     box-sizing: border-box;
     background-color: #F5F6FB;
-    border: 1px solid rgb(223, 15, 15);
+    /* border: 1px solid rgb(223, 15, 15); */
   /* display: ruby;   'It makes all div in center' */
 
   }
@@ -159,5 +159,31 @@
     /* border: 7px solid black; */
     margin-bottom: 1rem;
   
+  }
+}
+
+/* saveBtn */
+
+
+@media (max-width: 381px) and (min-width: 200px){
+  
+
+  .form-error{
+    color: rgb(249, 69, 69);
+    font-size: 11px;
+    font-weight: 500;
+    padding-left: 7px;
+    /* border: 1px solid red; */
+    
+  }
+  
+  .errorcontainr{
+    margin-bottom: 1rem;
+  
+  }
+  .saveBtn button{
+    height: 100%;
+    padding: 0.5rem;
+    font-size: 18px;
   }
 }

@@ -164,3 +164,22 @@
 
     }
 }
+
+@media (max-width: 381px) and (min-width: 200px){
+    .heading3 {
+        h5 {
+            font-size: 20px;
+        }
+    }
+
+    #commisionDeatilPage {
+        padding: 0.8rem;
+        padding-top: 0;
+
+    }
+
+    #commisionDeatilPage label {
+        font-size: 17px;
+    }
+
+}

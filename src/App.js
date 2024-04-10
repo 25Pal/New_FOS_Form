@@ -420,7 +420,6 @@ function App() {
         <div className='saveBtn'  >
 
           <button type='submit' disabled={submitting}> {submitting ? 'Submitting' : 'Submit'} </button>
-          {/* <button type='button'  style={{background:"green", border:"none" , color:"white" }}  > Submitting </button>  */}
 
 
         </div>

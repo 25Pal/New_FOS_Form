@@ -35,6 +35,12 @@ const CameraComponent = ({ onPhotoCapture }) => {
                 videoRef.current.play();
             }
 
+            if (isSmallScreen) {
+                videoRef.current.style.height = "auto";
+            } else {
+                videoRef.current.style.height = "100%";
+            }
+
         } catch (error) {
             console.error('Error accessing camera:', error);
         }
@@ -114,7 +120,7 @@ const CameraComponent = ({ onPhotoCapture }) => {
                 {
                     !showClickedPhoto ?
                         <div className="video-container" style={{ display: showFrame ? "flex" : "none" }}  >
-                            <video style={{  maxWidth: `${isSmallScreen ? '50%':'auto'}` ,transform: "scaleX(-1)" }} ref={videoRef}></video>
+                            <video style={{   maxWidth: `${isSmallScreen ? '100%' : 'auto'}`,  height: `${isSmallScreen ? 'auto' : '100%'}`, transform: "scaleX(-1)" , border:"1px solid red" }} ref={videoRef}></video>
                         </div> :
                         <div className="photo-container" style={{ display: showFrame ? "flex" : "none" , maxWidth: `${isSmallScreen ? '50%':'auto'}`  }}  >
                             {photo && showClickedPhoto === true ? <img src={photo} alt="Captured"  style={{transform: "scaleX(-1)" ,width: `${isSmallScreen ? '100%':'auto'}`}}/> : ''}
@@ -137,9 +143,6 @@ const CameraComponent = ({ onPhotoCapture }) => {
                     {
                         <button type='button' style={{ display: showUploadBtn ? "block" : "none"  , background:"#28A745"}} onClick={handleUploadPhoto}>Upload Photo</button>
                     }
-                    {/* {
-                        <button type='button' style={{ display: photo && showClickedPhoto === true ?  "block" : "none"  , background:"#28A745"}} onClick={handleUploadPhoto}>Upload Done</button>
-                    } */}
                     {
                         <button type='button' style={{ display: showUploadDone ?   "flex" : "none" , gap:"10px" , alignItems:"center", justifyContent:"center" , background:"#28A745"}} >Upload Done 
                         <i class="bi bi-check-circle"   style={{ fontSize: '20px' }}  ></i>

@@ -16,7 +16,7 @@
     gap: 0.5rem;
 }
 
-.timingTable{
+.timingTable {
     border: 2px solid rgb(234, 231, 231);
     height: auto !important;
     padding: 0.6rem;
@@ -131,9 +131,9 @@
     gap: 0rem;
 }
 
-.menuFileName{
+.menuFileName {
     font-size: '17px';
-     font-weight: '500'
+    font-weight: '500'
 }
 
 
@@ -149,15 +149,15 @@
     /* border: 1px solid black; */
 }
 
-.eye1{
+.eye1 {
     background-color: rgb(31, 153, 31);
 }
 
-.upload1{
+.upload1 {
     background-color: rgb(74, 74, 241);
 }
 
-.dlt1{
+.dlt1 {
 
     background-color: rgb(213, 47, 47);
 
@@ -210,7 +210,7 @@
 
     .MenuUploadContainer {
         justify-content: space-between;
-     
+
 
     }
 
@@ -256,9 +256,10 @@
         border-color: #978f8f;
     }
 
-   
+
     .subDiv {
         margin-top: 0.6rem;
+
         /* margin-left: -1px; */
         h6 {
             font-size: 24px;
@@ -267,15 +268,15 @@
         }
     }
 
-    #menuFileName{
+    #menuFileName {
         font-size: 20px;
-         font-weight: 500;
-   }
-
-   #menuFileSize{
-       font-size: 20px;
         font-weight: 500;
-   }
+    }
+
+    #menuFileSize {
+        font-size: 20px;
+        font-weight: 500;
+    }
 
     .inputFields label {
         font-size: 26px;
@@ -333,7 +334,7 @@
 
     }
 
-    
+
 
     #outletDetailsPage {
         /* border: 2px solid rgb(224, 68, 11); */
@@ -405,15 +406,15 @@
         }
     }
 
-    #menuFileName{
+    #menuFileName {
         font-size: 2px;
-         font-weight: 500;
-   }
+        font-weight: 500;
+    }
 
-   #menuFileSize{
-       font-size: 20px;
-        font-weight: 500 ;
-   }
+    #menuFileSize {
+        font-size: 20px;
+        font-weight: 500;
+    }
 
     .inputFields label {
         font-size: 22px;
@@ -547,6 +548,7 @@
 @media (max-width: 481px) and (min-width: 200px) {
 
     .heading {
+
         /* border: 1px solid red; */
         h5 {
             font-size: 22px;
@@ -555,7 +557,7 @@
     }
 
     #outletDetailsPage {
-        border: 1px solid rgb(24, 187, 212);
+        /* border: 1px solid rgb(24, 187, 212); */
         padding: 0.5rem;
         width: 100%;
     }
@@ -586,7 +588,7 @@
 
     .inputFields textarea {
         font-size: 20.5px;
-        
+
 
     }
 
@@ -608,7 +610,7 @@
         font-size: 19px;
         color: black;
         margin-top: 0rem;
-       
+
     }
 
     .mainOutlet {
@@ -623,15 +625,16 @@
     .MenuUploadContainerParent {
         display: flex;
         flex-direction: column;
-gap: 0.5rem;
+        gap: 0.5rem;
 
     }
 
     .MenuUploadContainer {
-        
+
         flex-direction: column;
         align-items: start;
     }
+
     .MenuUploadContainer .subDiv h6 {
         /* border: 1px solid red; */
         font-size: 16px;
@@ -645,15 +648,126 @@ gap: 0.5rem;
         margin-bottom: 1rem;
     }
 
-    .locationnlocality{
+    .locationnlocality {
         /* border: 1px solid red; */
         gap: 1rem !important;
         display: block !important;
     }
+
     .btn1 {
 
         height: 2.5rem;
         width: 6rem;
-       
+
+    }
+}
+
+@media (max-width: 381px) and (min-width: 200px) {
+    .heading {
+
+        /* border: 1px solid red; */
+        h5 {
+            font-size: 20px;
+            margin-left: 0rem;
+        }
+    }
+
+    #outletDetailsPage {
+        /* border: 1px solid rgb(24, 187, 212); */
+        padding: 0.5rem;
+        width: 100%;
+    }
+
+    .OutletInputFields {
+        grid-auto-flow: row;
+        gap: 0rem;
+        width: auto;
+
+    }
+
+    .inputFields {
+        gap: 0.8rem;
+        padding: 5px;
+        /* border: 1px solid red; */
+
+    }
+
+    .inputFields input {
+
+        border: 1px solid #b7b4b4;
+        margin-bottom: 0.5rem;
+        padding: 2px 0px 2px 7px;
+        height: 2.1rem;
+        font-size: 16px;
+    }
+
+    .inputFields textarea {
+        font-size: 16px;
+
+    }
+
+    .subDiv {
+        margin-top: 0.4rem;
+
+        h6 {
+            font-size: 19px;
+            margin-bottom: 10px;
+            font-weight: 500;
+
+        }
+    }
+
+    .inputFields label {
+
+        font-size: 17px;
+        color: black;
+        margin-top: 0rem;
+
+    }
+
+    .mainOutlet {
+        /* border: 1px solid rgb(47, 255, 0) !important; */
+        width: 100%;
+        padding: 0px;
+        margin-top: 1rem;
+
+    }
+
+
+    .MenuUploadContainerParent {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+    }
+
+    .MenuUploadContainer {
+
+        flex-direction: column;
+        align-items: start;
+    }
+
+    .MenuUploadContainer .subDiv h6 {
+        /* border: 1px solid red; */
+        font-size: 16px;
+
+    }
+
+
+    .menuButtons {
+        gap: 0px;
+        justify-content: center;
+        margin-bottom: 1rem;
+    }
+
+    .locationnlocality {
+        gap: 1rem !important;
+        display: block !important;
+    }
+
+    .btn1 {
+
+        height: 2.5rem;
+        width: 5rem;
+
     }
 }
