@@ -36,9 +36,9 @@ const CameraComponent = ({ onPhotoCapture }) => {
             }
 
             if (isSmallScreen) {
-                videoRef.current.style.height = "auto";
+                videoRef.current.style.maxWidth = "auto";
             } else {
-                videoRef.current.style.height = "100%";
+                videoRef.current.style.maxWidth = "100%";
             }
 
         } catch (error) {
@@ -119,10 +119,10 @@ const CameraComponent = ({ onPhotoCapture }) => {
             <div className='childCamera-component'>
                 {
                     !showClickedPhoto ?
-                        <div className="video-container" style={{ display: showFrame ? "flex" : "none" }}  >
-                            <video style={{   maxWidth: `${isSmallScreen ? '100%' : 'auto'}`,  height: `${isSmallScreen ? 'auto' : '100%'}`, transform: "scaleX(-1)" , border:"1px solid red" }} ref={videoRef}></video>
+                        <div className="video-container" style={{ display: showFrame ? "flex" : "none", alignItems:"center" , justifyContent:"center" }}  >
+                            <video style={{   maxWidth: `${isSmallScreen ? '100%' : 'auto'}`, transform: "scaleX(-1)" }} ref={videoRef}></video>
                         </div> :
-                        <div className="photo-container" style={{ display: showFrame ? "flex" : "none" , maxWidth: `${isSmallScreen ? '50%':'auto'}`  }}  >
+                        <div className="photo-container" style={{ display: showFrame ? "flex" : "none", alignItems:"center" , justifyContent:"center"  , maxWidth: `${isSmallScreen ? '100%':'auto'}`  }}  >
                             {photo && showClickedPhoto === true ? <img src={photo} alt="Captured"  style={{transform: "scaleX(-1)" ,width: `${isSmallScreen ? '100%':'auto'}`}}/> : ''}
                         </div>
                 }
